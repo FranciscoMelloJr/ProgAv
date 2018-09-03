@@ -12,10 +12,9 @@ public class Main extends Application {
 	public void start(Stage primaryStage) {
 		try {
 			AnchorPane root = (AnchorPane)FXMLLoader.load(getClass().getResource("Principal.fxml"));
-			Scene scene = new Scene(root);
+			Scene scene = new Scene(root,925,600);
 			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 			primaryStage.setScene(scene);
-			primaryStage.setMaximized(true);
 			primaryStage.setTitle("Vendas");
 			primaryStage.show();
 		} catch(Exception e) {

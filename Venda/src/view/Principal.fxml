@@ -60,7 +60,10 @@
             </VBox>
          </left>
          <center>
-            <TabPane fx:id="tabPane" prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: black;" tabClosingPolicy="ALL_TABS" BorderPane.alignment="CENTER" />
+            <TabPane fx:id="tabPane" prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: black;" tabClosingPolicy="ALL_TABS" BorderPane.alignment="CENTER">
+               <BorderPane.margin>
+                  <Insets bottom="20.0" right="20.0" />
+               </BorderPane.margin></TabPane>
          </center>
       </BorderPane>
    </children>

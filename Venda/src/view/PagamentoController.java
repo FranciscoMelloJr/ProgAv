@@ -21,14 +21,14 @@ public class PagamentoController {
 	private ArrayList<Cliente> clientes = new ArrayList<Cliente>();
 
 	@FXML
-	public void inicializaComboCidade() {
+	public void initialize() {
 		txtCidade.getItems().add("Tubarão");
 		txtCidade.getItems().add("Laguna");
 		txtCidade.getItems().add("Imbituba");
 		txtCidade.getItems().add("Garopaba");
 		txtCidade.getItems().add("Florianópolis");
 		txtCidade.getItems().add("Criciúma");
-		txtCidade.getSelectionModel().select(1);
+		txtCidade.getSelectionModel().select(0);
 		
 	}
 	
