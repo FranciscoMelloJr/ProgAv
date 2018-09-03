@@ -14,7 +14,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="480.0" prefWidth="720.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.CompraController">
+<AnchorPane prefHeight="480.0" prefWidth="720.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.CompraController">
    <children>
       <BorderPane AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <left>
@@ -80,7 +80,7 @@
                            <graphic>
                               <ImageView fitHeight="26.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@../../../../../Imagens%20Ecplise/adicionar.png" />
+                                    <Image url="@../../img/adicionar.png" />
                                  </image>
                               </ImageView>
                            </graphic>
@@ -95,7 +95,7 @@
                            <graphic>
                               <ImageView fitHeight="26.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@../../../../../Imagens%20Ecplise/limpar.png" />
+                                    <Image url="@../../img/limpar.png" />
                                  </image>
                               </ImageView>
                            </graphic>
@@ -131,7 +131,7 @@
                            <graphic>
                               <ImageView fitHeight="26.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@../../../../../Imagens%20Ecplise/concluir.png" />
+                                    <Image url="@../../img/concluir.png" />
                                  </image>
                               </ImageView>
                            </graphic>
