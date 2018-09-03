@@ -6,6 +6,7 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -41,8 +42,11 @@
                      <GridPane.margin>
                         <Insets bottom="5.0" left="30.0" right="10.0" top="20.0" />
                      </GridPane.margin>
+                     <toggleGroup>
+                        <ToggleGroup fx:id="pagamento" />
+                     </toggleGroup>
                   </RadioButton>
-                  <RadioButton fx:id="ckBol" mnemonicParsing="false" text="Boleto" GridPane.columnIndex="1">
+                  <RadioButton fx:id="ckBol" mnemonicParsing="false" text="Boleto" toggleGroup="$pagamento" GridPane.columnIndex="1">
                      <font>
                         <Font name="Georgia" size="14.0" />
                      </font>
@@ -50,7 +54,7 @@
                         <Insets bottom="5.0" left="5.0" right="10.0" top="20.0" />
                      </GridPane.margin>
                   </RadioButton>
-                  <RadioButton fx:id="ckDep" mnemonicParsing="false" text="Depósito" GridPane.columnIndex="2">
+                  <RadioButton fx:id="ckDep" mnemonicParsing="false" text="Depósito" toggleGroup="$pagamento" GridPane.columnIndex="2">
                      <font>
                         <Font name="Georgia" size="14.0" />
                      </font>

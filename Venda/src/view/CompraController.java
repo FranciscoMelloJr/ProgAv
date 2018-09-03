@@ -72,7 +72,6 @@ public class CompraController {
 		double aux = 0;
 		for (Produto p : produtos) 
 			aux = p.getSub() + aux;
-		txtTotal.setText("R$"+aux);
-		
+			txtTotal.setText("R$"+aux);
 	}
 }
