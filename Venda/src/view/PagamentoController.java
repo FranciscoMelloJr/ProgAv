@@ -15,6 +15,10 @@ public class PagamentoController {
 	@FXML RadioButton ckDep;
 	
 	@FXML TextField txtCliente;
+	@FXML TextField txtClient;
+	@FXML TextField txtCity;
+	@FXML TextField txtPagamento;
+	@FXML TextField txtTtl;
 	
 	@FXML ComboBox<String> txtCidade;
 	
@@ -38,18 +42,16 @@ public class PagamentoController {
 		
 			Cliente c = new Cliente();
 			c.setNome(txtCliente.getText());
-			c.setCart(ckCart.isSelected());
-			c.setBol(ckBol.isSelected());
-			c.setDep(ckDep.isSelected());
+			if(ckCart.isSelected())
+					txtPagamento.setText("Cartão");
+			if(ckBol.isSelected())
+				txtPagamento.setText("Boleto");
+			if(ckDep.isSelected())
+				txtPagamento.setText("Depósito");
+			txtClient.setText(c.getNome());
 			c.setCidade(txtCidade.getSelectionModel().getSelectedItem());
-			
-			clientes.add(c);
-			
-	}
-	
-	
-	//colMat.setCellValueFactory(cellData -> cellData.getValue().matProperty().get()?new SimpleStringProperty("X"):new SimpleStringProperty(""));		
-	//colVesp.setCellValueFactory(cellData -> cellData.getValue().vesProperty().get()?new SimpleStringProperty("X"):new SimpleStringProperty(""));
-	//colNot.setCellValueFactory(cellData -> cellData.getValue().notProperty().get()?new SimpleStringProperty("X"):new SimpleStringProperty(""));
+			txtCity.setText(c.getCidade());	
+			clientes.add(c);				
 
+			}
 }
