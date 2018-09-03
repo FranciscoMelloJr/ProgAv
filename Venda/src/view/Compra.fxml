@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="480.0" prefWidth="720.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.CompraController">
+   <children>
+      <BorderPane AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <left>
+            <VBox BorderPane.alignment="CENTER">
+               <children>
+                  <HBox>
+                     <children>
+                        <Label text="Produto">
+                           <font>
+                              <Font name="Georgia" size="18.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets bottom="5.0" left="5.0" right="10.0" top="20.0" />
+                           </HBox.margin>
+                        </Label>
+                        <TextField fx:id="txtNome" prefHeight="25.0" prefWidth="150.0">
+                           <HBox.margin>
+                              <Insets right="5.0" top="20.0" />
+                           </HBox.margin>
+                        </TextField>
+                     </children>
+                  </HBox>
+                  <HBox>
+                     <children>
+                        <Label text="Valor">
+                           <font>
+                              <Font name="Georgia" size="18.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets bottom="5.0" left="5.0" right="10.0" top="20.0" />
+                           </HBox.margin>
+                        </Label>
+                        <TextField fx:id="txtValor" prefHeight="25.0" prefWidth="170.0">
+                           <HBox.margin>
+                              <Insets right="5.0" top="20.0" />
+                           </HBox.margin>
+                        </TextField>
+                     </children>
+                  </HBox>
+                  <HBox>
+                     <children>
+                        <Label text="Quantidade">
+                           <font>
+                              <Font name="Georgia" size="18.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets bottom="5.0" left="5.0" right="10.0" top="20.0" />
+                           </HBox.margin>
+                        </Label>
+                        <TextField fx:id="txtQnt" prefHeight="25.0" prefWidth="120.0">
+                           <HBox.margin>
+                              <Insets right="5.0" top="20.0" />
+                           </HBox.margin>
+                        </TextField>
+                     </children>
+                  </HBox>
+                  <HBox prefHeight="100.0" prefWidth="200.0">
+                     <children>
+                        <Button mnemonicParsing="false" onAction="#incluir" prefHeight="50.0" prefWidth="100.0" style="-fx-background-color: white; -fx-background-radius: 25; -fx-border-color: black; -fx-border-radius: 25;" text="ADD">
+                           <font>
+                              <Font name="Georgia" size="18.0" />
+                           </font>
+                           <graphic>
+                              <ImageView fitHeight="26.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../../../../Imagens%20Ecplise/adicionar.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                           <HBox.margin>
+                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                           </HBox.margin>
+                        </Button>
+                        <Button layoutX="20.0" layoutY="20.0" mnemonicParsing="false" onAction="#limpaTela" prefHeight="50.0" prefWidth="100.0" style="-fx-background-color: white; -fx-background-radius: 25; -fx-border-color: black; -fx-border-radius: 25;" text="Limpar">
+                           <font>
+                              <Font name="Georgia" size="12.0" />
+                           </font>
+                           <graphic>
+                              <ImageView fitHeight="26.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../../../../Imagens%20Ecplise/limpar.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                           <HBox.margin>
+                              <Insets bottom="10.0" right="10.0" top="10.0" />
+                           </HBox.margin>
+                        </Button>
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+         </left>
+         <center>
+            <VBox BorderPane.alignment="CENTER">
+               <children>
+                  <TableView fx:id="tbl" prefHeight="448.0" prefWidth="485.0">
+                    <columns>
+                      <TableColumn fx:id="colNome" prefWidth="230.0" text="Produto" />
+                      <TableColumn fx:id="colValor" minWidth="0.0" text="Valor" />
+                        <TableColumn fx:id="colQnt" text="Quantidade" />
+                        <TableColumn fx:id="colSub" prefWidth="84.0" text="Sub Total" />
+                    </columns>
+                     <VBox.margin>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </VBox.margin>
+                  </TableView>
+                  <HBox>
+                     <children>
+                        <Button mnemonicParsing="false" onAction="#finalizarCompra" prefHeight="30.0" prefWidth="133.0" style="-fx-background-color: white; -fx-background-radius: 25; -fx-border-color: black; -fx-border-radius: 25;" text="Finalizar">
+                           <font>
+                              <Font name="Georgia" size="12.0" />
+                           </font>
+                           <graphic>
+                              <ImageView fitHeight="26.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../../../../Imagens%20Ecplise/concluir.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                           <padding>
+                              <Insets right="20.0" />
+                           </padding>
+                           <HBox.margin>
+                              <Insets bottom="10.0" left="10.0" top="5.0" />
+                           </HBox.margin>
+                        </Button>
+                        <Label prefHeight="21.0" prefWidth="116.0" text="Totalizador">
+                           <font>
+                              <Font name="Georgia" size="18.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets bottom="20.0" left="120.0" right="5.0" top="5.0" />
+                           </HBox.margin>
+                        </Label>
+                        <TextField fx:id="txtTotal" prefHeight="25.0" prefWidth="151.0">
+                           <HBox.margin>
+                              <Insets bottom="20.0" left="6.0" right="10.0" top="5.0" />
+                           </HBox.margin>
+                        </TextField>
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+         </center>
+      </BorderPane>
+   </children>
+</AnchorPane>
