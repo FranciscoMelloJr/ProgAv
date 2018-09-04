@@ -17,13 +17,14 @@ public class CompraController {
 	@FXML TextField txtTotal;
 	
 	@FXML TableView<Produto> tbl;
+	
 	@FXML TableColumn<Produto, String> colNome;
 	@FXML TableColumn<Produto, Number> colValor;
 	@FXML TableColumn<Produto, Number> colQnt;
 	@FXML TableColumn<Produto, Number> colSub;
 	
 	private ArrayList<Produto> produtos = new ArrayList<Produto>();
-
+	
 	@FXML
 	public void initialize() {
 		InicializaTabela();

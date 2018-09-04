@@ -13,12 +13,10 @@ public class PagamentoController {
 	@FXML RadioButton ckCart;
 	@FXML RadioButton ckBol;
 	@FXML RadioButton ckDep;
-	
 	@FXML TextField txtCliente;
 	@FXML TextField txtClient;
 	@FXML TextField txtCity;
 	@FXML TextField txtPagamento;
-	@FXML TextField txtTtl;
 	
 	@FXML ComboBox<String> txtCidade;
 	
@@ -36,7 +34,6 @@ public class PagamentoController {
 		
 	}
 	
-	
 	@FXML
 	public void registrar() {
 		
@@ -51,7 +48,7 @@ public class PagamentoController {
 			txtClient.setText(c.getNome());
 			c.setCidade(txtCidade.getSelectionModel().getSelectedItem());
 			txtCity.setText(c.getCidade());	
-			clientes.add(c);				
-
+			clientes.add(c);
+			
 			}
 }
