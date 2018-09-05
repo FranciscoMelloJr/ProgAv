@@ -1,5 +1,7 @@
 package view;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.ArrayList;
 
 import javafx.collections.FXCollections;
@@ -72,7 +74,8 @@ public class CompraController {
 	@FXML public void finalizarCompra() {
 		double aux = 0;
 		for (Produto p : produtos) 
-			aux = p.getSub() + aux;
-			txtTotal.setText("R$"+aux);
+			aux += p.getSub();
+		BigDecimal bd = new BigDecimal(aux).setScale(2, RoundingMode.HALF_EVEN);
+			txtTotal.setText("R$"+bd);
 	}
 }
