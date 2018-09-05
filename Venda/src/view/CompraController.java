@@ -37,7 +37,7 @@ public class CompraController {
 	public void incluir() {
 		Produto p = new Produto();
 		p.setNome(txtNome.getText());
-		p.setValor(Double.parseDouble(txtValor.getText()));
+		p.setValor(Double.parseDouble(txtValor.getText().replace(",", ".")));
 		p.setQnt(Integer.parseInt(txtQnt.getText()));
 		p.setSub(p.getValor()*p.getQnt());
 		produtos.add(p);
