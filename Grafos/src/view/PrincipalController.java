@@ -9,8 +9,6 @@ public class PrincipalController {
 	@FXML
 	RadioButton ckOrientado;
 	@FXML
-	RadioButton ckNorientado;
-	@FXML
 	RadioButton ckValorado;
 
 	@FXML

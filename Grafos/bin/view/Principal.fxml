@@ -15,7 +15,7 @@
 <AnchorPane xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.PrincipalController">
    <children>
       <BorderPane layoutX="171.0" layoutY="137.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-         <center>
+         <bottom>
             <VBox BorderPane.alignment="CENTER">
                <children>
                   <HBox>
@@ -43,7 +43,7 @@
                               <Insets bottom="5.0" left="10.0" top="5.0" />
                            </HBox.margin>
                         </Label>
-                        <RadioButton fx:id="ckNorientado" mnemonicParsing="false" text="Não-Orientado">
+                        <RadioButton mnemonicParsing="false" text="Não-Orientado">
                            <font>
                               <Font size="14.0" />
                            </font>
@@ -85,6 +85,14 @@
                               <ToggleGroup fx:id="Valorado" />
                            </toggleGroup>
                         </RadioButton>
+                        <RadioButton fx:id="ckValorado1" mnemonicParsing="false" prefHeight="19.0" prefWidth="63.0" text="Não" toggleGroup="$Valorado">
+                           <font>
+                              <Font name="Georgia" size="14.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets left="80.0" top="10.0" />
+                           </HBox.margin>
+                        </RadioButton>
                      </children>
                   </HBox>
                   <HBox>
@@ -102,7 +110,7 @@
                               <Font name="Georgia" size="30.0" />
                            </font>
                            <HBox.margin>
-                              <Insets left="73.0" />
+                              <Insets left="50.0" />
                            </HBox.margin>
                         </Label>
                         <TextField fx:id="txtVetor" alignment="CENTER" prefHeight="25.0" prefWidth="35.0">
@@ -115,12 +123,20 @@
                               <Font name="Georgia" size="30.0" />
                            </font>
                         </Label>
+                        <Label opacity="0.52" text="(1 por vez)">
+                           <font>
+                              <Font name="Georgia" size="15.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets top="10.0" />
+                           </HBox.margin>
+                        </Label>
                         <Button mnemonicParsing="false" onAction="#conjuntoV" prefHeight="14.0" prefWidth="78.0" style="-fx-background-radius: 25; -fx-border-radius: 25; -fx-background-color: grey; -fx-border-color: black;" text="Adicionar">
                            <font>
                               <Font name="Georgia" size="13.0" />
                            </font>
                            <HBox.margin>
-                              <Insets left="85.0" top="5.0" />
+                              <Insets left="10.0" top="5.0" />
                            </HBox.margin>
                         </Button>
                      </children>
@@ -156,28 +172,12 @@
                               <Insets top="7.0" />
                            </HBox.margin>
                         </TextField>
-                        <Label text="]">
-                           <font>
-                              <Font name="Georgia" size="25.0" />
-                           </font>
-                           <HBox.margin>
-                              <Insets top="3.0" />
-                           </HBox.margin>
-                        </Label>
                         <Label text=",">
                            <font>
                               <Font name="Georgia" size="25.0" />
                            </font>
                            <HBox.margin>
                               <Insets top="5.0" />
-                           </HBox.margin>
-                        </Label>
-                        <Label text="[">
-                           <font>
-                              <Font name="Georgia" size="25.0" />
-                           </font>
-                           <HBox.margin>
-                              <Insets top="3.0" />
                            </HBox.margin>
                         </Label>
                         <TextField fx:id="txtDestino" alignment="CENTER" prefHeight="25.0" prefWidth="35.0">
@@ -185,28 +185,12 @@
                               <Insets top="7.0" />
                            </HBox.margin>
                         </TextField>
-                        <Label text="]">
-                           <font>
-                              <Font name="Georgia" size="25.0" />
-                           </font>
-                           <HBox.margin>
-                              <Insets top="3.0" />
-                           </HBox.margin>
-                        </Label>
                         <Label text=",">
                            <font>
                               <Font name="Georgia" size="25.0" />
                            </font>
                            <HBox.margin>
                               <Insets top="5.0" />
-                           </HBox.margin>
-                        </Label>
-                        <Label text="[">
-                           <font>
-                              <Font name="Georgia" size="25.0" />
-                           </font>
-                           <HBox.margin>
-                              <Insets top="3.0" />
                            </HBox.margin>
                         </Label>
                         <TextField fx:id="txtValor" alignment="CENTER" prefHeight="25.0" prefWidth="35.0" promptText="X">
@@ -232,7 +216,7 @@
                               <Font name="Georgia" size="13.0" />
                            </font>
                            <HBox.margin>
-                              <Insets left="15.0" right="10.0" top="5.0" />
+                              <Insets left="25.0" right="10.0" top="5.0" />
                            </HBox.margin>
                         </Button>
                      </children>
@@ -247,7 +231,7 @@
                   </Button>
                </children>
             </VBox>
-         </center>
+         </bottom>
       </BorderPane>
    </children>
 </AnchorPane>
