@@ -105,7 +105,7 @@
                               <Insets bottom="5.0" left="20.0" right="10.0" top="5.0" />
                            </HBox.margin>
                         </Label>
-                        <Label text="[">
+                        <Label text="{">
                            <font>
                               <Font name="Georgia" size="30.0" />
                            </font>
@@ -118,7 +118,7 @@
                               <Insets bottom="5.0" top="7.0" />
                            </HBox.margin>
                         </TextField>
-                        <Label text="]">
+                        <Label text="}">
                            <font>
                               <Font name="Georgia" size="30.0" />
                            </font>
@@ -151,7 +151,7 @@
                               <Insets bottom="5.0" left="20.0" right="10.0" top="5.0" />
                            </HBox.margin>
                         </Label>
-                        <Label text="[">
+                        <Label text="{">
                            <font>
                               <Font name="Georgia" size="30.0" />
                            </font>
@@ -159,7 +159,7 @@
                               <Insets />
                            </HBox.margin>
                         </Label>
-                        <Label text="[">
+                        <Label text="(">
                            <font>
                               <Font name="Georgia" size="25.0" />
                            </font>
@@ -198,7 +198,7 @@
                               <Insets top="7.0" />
                            </HBox.margin>
                         </TextField>
-                        <Label text="]">
+                        <Label text=")">
                            <font>
                               <Font name="Georgia" size="25.0" />
                            </font>
@@ -206,7 +206,7 @@
                               <Insets top="3.0" />
                            </HBox.margin>
                         </Label>
-                        <Label text="]">
+                        <Label text="}">
                            <font>
                               <Font name="Georgia" size="30.0" />
                            </font>
