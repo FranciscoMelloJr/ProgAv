@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="src" path="CadastroAluno/src"/>
+	<classpathentry kind="src" path="IMC/src"/>
+	<classpathentry kind="src" path="POOFX/src"/>
+	<classpathentry kind="src" path="Telas/src"/>
+	<classpathentry kind="src" path="Venda/src"/>
+	<classpathentry kind="con" path="org.eclipse.fx.ide.jdt.core.JAVAFX_CONTAINER"/>
+	<classpathentry kind="output" path="CadastroAluno/bin"/>
+</classpath>
