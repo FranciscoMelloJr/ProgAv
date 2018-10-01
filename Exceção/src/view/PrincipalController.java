@@ -57,9 +57,9 @@ public class PrincipalController {
 			mostraMensagem("Posição não existe no vetor no método", AlertType.ERROR);
 		} catch (Exception e) {
 			mostraMensagem("Erro não identificado", AlertType.WARNING);
-		} finally {
-			mostraMensagem("Fim do programa", AlertType.INFORMATION);
-		}
+		}// finally {
+			//mostraMensagem("Fim do programa", AlertType.INFORMATION);
+	//	}
 	}
 
 	public void insereNoVetor(int pos, int nr) throws ArrayIndexOutOfBoundsException {
