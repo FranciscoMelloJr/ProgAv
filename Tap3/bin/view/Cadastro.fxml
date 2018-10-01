@@ -24,8 +24,7 @@
 <?import javafx.scene.paint.Stop?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.141" fx:controller="view.CadastroController">
+<AnchorPane xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.CadastroController">
    <children>
       <BorderPane layoutX="-59.0" layoutY="-198.0" prefWidth="580.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <top>
@@ -39,7 +38,7 @@
                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                      </HBox.margin>
                   </ImageView>
-                  <Label rotate="-9.5" text="Cadastro de Alunos">
+                  <Label rotate="-9.5" text="Cadastro de Alunos  ">
                      <HBox.margin>
                         <Insets bottom="5.0" left="5.0" right="30.0" top="20.0" />
                      </HBox.margin>
@@ -148,7 +147,7 @@
                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                      </GridPane.margin>
                   </CheckBox>
-                  <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="124.0" style="-fx-background-radius: 10;" text="Cadastrar" GridPane.rowIndex="5">
+                  <Button mnemonicParsing="false" onAction="#incluir" prefHeight="25.0" prefWidth="124.0" style="-fx-background-radius: 10;" text="Cadastrar" GridPane.rowIndex="5">
                      <GridPane.margin>
                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                      </GridPane.margin>
@@ -171,7 +170,7 @@
                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                      </padding>
                   </Label>
-                  <TextField fx:id="txtFiltro" prefHeight="25.0" prefWidth="412.0" GridPane.columnSpan="4" GridPane.rowIndex="7">
+                  <TextField fx:id="txtFiltro" onKeyReleased="#filtrar" prefHeight="25.0" prefWidth="412.0" GridPane.columnSpan="4" GridPane.rowIndex="7">
                      <GridPane.margin>
                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                      </GridPane.margin>
@@ -183,12 +182,14 @@
             </GridPane>
          </center>
          <bottom>
-            <TableView fx:id="tbl" prefHeight="200.0" prefWidth="504.0" BorderPane.alignment="CENTER">
+            <TableView fx:id="tbl" onMouseClicked="#selecionaAluno" prefHeight="200.0" prefWidth="504.0" BorderPane.alignment="CENTER">
               <columns>
                 <TableColumn fx:id="colNome" prefWidth="228.0" text="Nome" />
                 <TableColumn fx:id="colIdade" minWidth="0.0" prefWidth="106.0" text="Idade" />
                   <TableColumn fx:id="colSexo" prefWidth="75.0" text="Sexo" />
-                  <TableColumn fx:id="colTurnos" prefWidth="104.0" text="Turnos" />
+                  <TableColumn fx:id="colMat" prefWidth="50.0" text="Mat" />
+                  <TableColumn fx:id="colVesp" prefWidth="50.0" text="Vesp" />
+                  <TableColumn fx:id="colNot" prefWidth="55.0" text="Noturno " />
               </columns>
                <BorderPane.margin>
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
