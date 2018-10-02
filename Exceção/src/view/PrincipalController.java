@@ -54,7 +54,7 @@ public class PrincipalController {
 		} catch (NullPointerException e) {
 			mostraMensagem("Vetor não instanciado", AlertType.ERROR);
 		} catch (ArrayIndexOutOfBoundsException e) {
-			mostraMensagem("Posição não existe no vetor no método", AlertType.ERROR);
+			mostraMensagem("Posição não existe no vetor - No inserir", AlertType.ERROR);
 		} catch (Exception e) {
 			mostraMensagem("Erro não identificado", AlertType.WARNING);
 		}// finally {
@@ -66,7 +66,7 @@ public class PrincipalController {
 		try {
 			vetor[pos] = nr;
 		} catch (ArrayIndexOutOfBoundsException e) {
-			mostraMensagem("Posição não existe no vetor", AlertType.ERROR);
+			mostraMensagem("Posição não existe no vetor - No método", AlertType.ERROR);
 			throw e;
 		}
 	}
