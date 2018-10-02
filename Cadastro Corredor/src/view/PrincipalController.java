@@ -67,28 +67,33 @@ public class PrincipalController {
 			Corredor c = new Corredor();
 			c.setNome(txtNome.getText());
 			if (temNumero(txtNome.getText()))
-				throw new Exception("Insira um nome válido");
+				throw new Exception("\nInsira um nome válido");
 			c.setNasc(dtf.format(txtDataNascimento.getValue()));
 			c.setIdade(calculaIdadeJava8(txtDataNascimento.getValue()));
 			c.setPeito(Integer.parseInt(txtPeito.getText()));
+			if (c.getPeito() < 0)
+				throw new Exception("\nInsira um número de peito positivo");
 			c.setDistancia(Integer.parseInt(txtDistancia.getText()));
+			if (c.getDistancia() < 0)
+				throw new Exception("\nInsira uma distância válida");
 			if (c.getIdade() < 20)
-				throw new NumberFormatException("Idade minímia de 20 anos!");
+				throw new Exception("\nIdade minímia de 20 anos!");
 			if ((c.getIdade() >= 20) && (c.getIdade() < 30))
 				c.setFaixa("A");
-			if ((c.getIdade() >= 30) && (c.getIdade() < 40))
+			else if ((c.getIdade() >= 30) && (c.getIdade() < 40))
 				c.setFaixa("B");
-			if ((c.getIdade() >= 40) && (c.getIdade() < 50))
+			else if ((c.getIdade() >= 40) && (c.getIdade() < 50))
 				c.setFaixa("C");
-			if ((c.getIdade() >= 50) && (c.getIdade() < 60))
+			else if ((c.getIdade() >= 50) && (c.getIdade() < 60)) {
 				c.setFaixa("D");
-			else
+			} else {
 				c.setFaixa("E");
+			}
 			corredores.add(c);
 			tbl.setItems(FXCollections.observableArrayList(corredores));
 			limpaTela();
 		} catch (NumberFormatException e) {
-			mostraMensagem("Insira um valor válido" + e.getMessage(), AlertType.WARNING);
+			mostraMensagem("Insira um número válido\n" + e.getMessage(), AlertType.WARNING);
 		} catch (Exception e) {
 			mostraMensagem("Erro" + e.getMessage(), AlertType.WARNING);
 		}
