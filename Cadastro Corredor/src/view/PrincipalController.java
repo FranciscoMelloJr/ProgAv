@@ -65,6 +65,18 @@ public class PrincipalController {
 		c.setIdade(calculaIdadeJava8(txtDataNascimento.getValue()));
 		corredores.add(c);
 		tbl.setItems(FXCollections.observableArrayList(corredores));
+		limpaTela();
 	}
 
+
+	@FXML
+	public void limpaTela() {
+		txtNome.setText("");
+		txtPeito.setText("");
+		txtDistancia.setText("");
+		txtDataNascimento.setValue(null);
+		
+	}
+	
+	
 }
