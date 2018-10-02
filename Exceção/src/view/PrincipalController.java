@@ -48,7 +48,7 @@ public class PrincipalController {
 			mostraMensagem("Numero inserido com sucesso", AlertType.INFORMATION);
 
 		} catch (NumberFormatException e) {
-			mostraMensagem("Error de conversãao numerica", AlertType.ERROR);
+			mostraMensagem("Erro de conversãao numerica", AlertType.ERROR);
 		} catch (NegativeArraySizeException e) {
 			mostraMensagem("Campo POSIÇÂO não pode ser negativo", AlertType.ERROR);
 		} catch (NullPointerException e) {
