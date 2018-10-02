@@ -11,7 +11,7 @@ public class Corredor {
 	private StringProperty nasc = new SimpleStringProperty("");
 	private IntegerProperty peito = new SimpleIntegerProperty();
 	private IntegerProperty idade = new SimpleIntegerProperty();
-	private IntegerProperty distancia = new SimpleIntegerProperty();
+	private StringProperty distancia = new SimpleStringProperty();
 	private SimpleStringProperty faixa = new SimpleStringProperty();
 
 	public final StringProperty nomeProperty() {
@@ -36,18 +36,6 @@ public class Corredor {
 
 	public final void setIdade(final int idade) {
 		this.idadeProperty().set(idade);
-	}
-
-	public final IntegerProperty distanciaProperty() {
-		return this.distancia;
-	}
-
-	public final int getDistancia() {
-		return this.distanciaProperty().get();
-	}
-
-	public final void setDistancia(final int distancia) {
-		this.distanciaProperty().set(distancia);
 	}
 
 	public final SimpleStringProperty faixaProperty() {
@@ -84,6 +72,18 @@ public class Corredor {
 
 	public final void setPeito(final int peito) {
 		this.peitoProperty().set(peito);
+	}
+
+	public final StringProperty distanciaProperty() {
+		return this.distancia;
+	}
+
+	public final String getDistancia() {
+		return this.distanciaProperty().get();
+	}
+
+	public final void setDistancia(final String distancia) {
+		this.distanciaProperty().set(distancia);
 	}
 
 }

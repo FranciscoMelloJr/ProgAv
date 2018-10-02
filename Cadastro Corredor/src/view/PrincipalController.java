@@ -13,6 +13,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.ComboBox;
 import model.Corredor;
 
 public class PrincipalController {
@@ -22,7 +23,7 @@ public class PrincipalController {
 	@FXML
 	TextField txtPeito;
 	@FXML
-	TextField txtDistancia;
+	ComboBox<String> txtDistancia;
 	@FXML
 	DatePicker txtDataNascimento;
 
@@ -33,7 +34,7 @@ public class PrincipalController {
 	@FXML
 	TableColumn<Corredor, Number> colPeito;
 	@FXML
-	TableColumn<Corredor, Number> colDistancia;
+	TableColumn<Corredor, String> colDistancia;
 	@FXML
 	TableColumn<Corredor, String> colFaixa;
 
@@ -42,6 +43,7 @@ public class PrincipalController {
 	@FXML
 	public void initialize() {
 		inicializaTbl();
+		inicializaComboUF();
 	}
 
 	private void inicializaTbl() {
@@ -49,6 +51,15 @@ public class PrincipalController {
 		colPeito.setCellValueFactory(cellData -> cellData.getValue().peitoProperty());
 		colDistancia.setCellValueFactory(cellData -> cellData.getValue().distanciaProperty());
 		colFaixa.setCellValueFactory(cellData -> cellData.getValue().faixaProperty());
+
+	}
+
+	public void inicializaComboUF() {
+		txtDistancia.getItems().add("5Km");
+		txtDistancia.getItems().add("10Km");
+		txtDistancia.getItems().add("15Km");
+		txtDistancia.getItems().add("30Km");
+		txtDistancia.getItems().add("42Km");
 
 	}
 
@@ -73,9 +84,7 @@ public class PrincipalController {
 			c.setPeito(Integer.parseInt(txtPeito.getText()));
 			if (c.getPeito() < 0)
 				throw new Exception("\nInsira um número de peito positivo");
-			c.setDistancia(Integer.parseInt(txtDistancia.getText()));
-			if (c.getDistancia() < 0)
-				throw new Exception("\nInsira uma distância válida");
+			c.setDistancia(txtDistancia.getSelectionModel().getSelectedItem());
 			if (c.getIdade() < 20)
 				throw new Exception("\nIdade minímia de 20 anos!");
 			if ((c.getIdade() >= 20) && (c.getIdade() < 30))
@@ -95,7 +104,7 @@ public class PrincipalController {
 		} catch (NumberFormatException e) {
 			mostraMensagem("Insira um número válido\n" + e.getMessage(), AlertType.WARNING);
 		} catch (Exception e) {
-			mostraMensagem("Erro" + e.getMessage(), AlertType.WARNING);
+			mostraMensagem("Erro\n" + e.getMessage(), AlertType.WARNING);
 		}
 	}
 
@@ -111,7 +120,7 @@ public class PrincipalController {
 	public void limpaTela() {
 		txtNome.setText("");
 		txtPeito.setText("");
-		txtDistancia.setText("");
+		txtDistancia.setValue(null);
 		txtDataNascimento.setValue(null);
 
 	}
