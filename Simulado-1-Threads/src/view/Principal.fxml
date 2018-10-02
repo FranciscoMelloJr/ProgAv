@@ -11,8 +11,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/10.0.1" fx:controller="view.PrincipalController">
+<AnchorPane xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.PrincipalController">
    <children>
       <BorderPane layoutX="-408.0" layoutY="-286.0" prefHeight="300.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <left>
@@ -53,7 +52,7 @@
                               <Insets bottom="5.0" left="10.0" top="5.0" />
                            </HBox.margin>
                         </Label>
-                        <TextField fx:id="tempo1" prefHeight="25.0" prefWidth="100.0">
+                        <TextField fx:id="tempo1" prefHeight="25.0" prefWidth="100.0" promptText="Em seg.">
                            <HBox.margin>
                               <Insets bottom="5.0" left="20.0" top="5.0" />
                            </HBox.margin>
@@ -114,7 +113,7 @@
                               <Insets bottom="5.0" left="10.0" top="5.0" />
                            </HBox.margin>
                         </Label>
-                        <TextField fx:id="tempo2" prefHeight="25.0" prefWidth="100.0">
+                        <TextField fx:id="tempo2" prefHeight="25.0" prefWidth="100.0" promptText="Em seg.">
                            <HBox.margin>
                               <Insets bottom="5.0" left="20.0" right="10.0" top="5.0" />
                            </HBox.margin>
