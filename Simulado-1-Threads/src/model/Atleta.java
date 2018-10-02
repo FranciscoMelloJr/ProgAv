@@ -33,6 +33,7 @@ public class Atleta extends Task<Void> {
 	@Override
 	protected Void call() throws Exception {
 		double incremento = 1.0 / distancia;
+		System.out.println(tempo + "-------" + distancia + "-------" + incremento);
 		for (int i = 0; i < getDistancia(); i++) {
 			try {
 				Thread.sleep(tempo);
