@@ -66,19 +66,21 @@ public class PrincipalController {
 			DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 			Corredor c = new Corredor();
 			c.setNome(txtNome.getText());
+			if (temNumero(txtNome.getText()))
+				throw new Exception("Insira um nome válido");
 			c.setNasc(dtf.format(txtDataNascimento.getValue()));
 			c.setIdade(calculaIdadeJava8(txtDataNascimento.getValue()));
 			c.setPeito(Integer.parseInt(txtPeito.getText()));
 			c.setDistancia(Integer.parseInt(txtDistancia.getText()));
-			if( c.getIdade()< 20)
+			if (c.getIdade() < 20)
 				throw new NumberFormatException("Idade minímia de 20 anos!");
-			if (c.getIdade() < 30)
+			if ((c.getIdade() >= 20) && (c.getIdade() < 30))
 				c.setFaixa("A");
-			if (c.getIdade() < 40)
+			if ((c.getIdade() >= 30) && (c.getIdade() < 40))
 				c.setFaixa("B");
-			if (c.getIdade() < 50)
+			if ((c.getIdade() >= 40) && (c.getIdade() < 50))
 				c.setFaixa("C");
-			if (c.getIdade() < 60)
+			if ((c.getIdade() >= 50) && (c.getIdade() < 60))
 				c.setFaixa("D");
 			else
 				c.setFaixa("E");
@@ -87,11 +89,8 @@ public class PrincipalController {
 			limpaTela();
 		} catch (NumberFormatException e) {
 			mostraMensagem("Insira um valor válido" + e.getMessage(), AlertType.WARNING);
-		}
-		
-		
-		catch (Exception e) {
-			mostraMensagem("Erro não identificado", AlertType.WARNING);
+		} catch (Exception e) {
+			mostraMensagem("Erro" + e.getMessage(), AlertType.WARNING);
 		}
 	}
 
@@ -110,6 +109,15 @@ public class PrincipalController {
 		txtDistancia.setText("");
 		txtDataNascimento.setValue(null);
 
+	}
+
+	public boolean temNumero(final String nome) {
+		String numeros = "0123456789";
+		for (char a : nome.toCharArray())
+			for (char b : numeros.toCharArray())
+				if (a == b)
+					return true;
+		return false;
 	}
 
 }

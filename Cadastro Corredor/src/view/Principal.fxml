@@ -91,7 +91,7 @@
                               <Insets bottom="5.0" left="10.0" right="10.0" top="5.0" />
                            </HBox.margin>
                         </Label>
-                        <TextField fx:id="txtDistancia">
+                        <TextField fx:id="txtDistancia" promptText="Em metros">
                            <HBox.margin>
                               <Insets bottom="5.0" left="5.0" right="10.0" top="5.0" />
                            </HBox.margin>
