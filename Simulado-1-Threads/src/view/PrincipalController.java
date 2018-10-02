@@ -18,13 +18,17 @@ public class PrincipalController {
 	public void iniciaComThread() {
 		int d1 = Integer.parseInt(distancia1.getText());
 		int d2 = Integer.parseInt(distancia2.getText());
-		int t1 = Integer.parseInt(tempo1.getText());
-		int t2 = Integer.parseInt(tempo2.getText());
+		int t1 = Integer.parseInt(tempo1.getText())*1000;
+		int t2 = Integer.parseInt(tempo2.getText())*1000;
 		Atleta a1 = new Atleta (d1, t1, bar1);
 		Atleta a2 = new Atleta (d2, t2, bar2);
 		new Thread(a1).start();
 		new Thread(a2).start();
 	}
 	
+	@FXML
+	public void sair() {
+		System.exit(0);
+	}
 	
 }
