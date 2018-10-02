@@ -1,8 +1,6 @@
 package model;
 
-import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.IntegerProperty;
-import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
@@ -11,7 +9,7 @@ public class Corredor {
 
 	private StringProperty nome = new SimpleStringProperty("");
 	private StringProperty nasc = new SimpleStringProperty("");
-	private DoubleProperty peito = new SimpleDoubleProperty();
+	private IntegerProperty peito = new SimpleIntegerProperty();
 	private IntegerProperty idade = new SimpleIntegerProperty();
 	private IntegerProperty distancia = new SimpleIntegerProperty();
 	private SimpleStringProperty faixa = new SimpleStringProperty();
@@ -26,18 +24,6 @@ public class Corredor {
 
 	public final void setNome(final String nome) {
 		this.nomeProperty().set(nome);
-	}
-
-	public final DoubleProperty peitoProperty() {
-		return this.peito;
-	}
-
-	public final double getPeito() {
-		return this.peitoProperty().get();
-	}
-
-	public final void setPeito(final double peito) {
-		this.peitoProperty().set(peito);
 	}
 
 	public final IntegerProperty idadeProperty() {
@@ -86,6 +72,18 @@ public class Corredor {
 
 	public final void setNasc(final String nasc) {
 		this.nascProperty().set(nasc);
+	}
+
+	public final IntegerProperty peitoProperty() {
+		return this.peito;
+	}
+
+	public final int getPeito() {
+		return this.peitoProperty().get();
+	}
+
+	public final void setPeito(final int peito) {
+		this.peitoProperty().set(peito);
 	}
 
 }

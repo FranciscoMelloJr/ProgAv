@@ -68,7 +68,7 @@ public class PrincipalController {
 			c.setNome(txtNome.getText());
 			c.setNasc(dtf.format(txtDataNascimento.getValue()));
 			c.setIdade(calculaIdadeJava8(txtDataNascimento.getValue()));
-			c.setPeito(Double.parseDouble(txtPeito.getText()));
+			c.setPeito(Integer.parseInt(txtPeito.getText()));
 			c.setDistancia(Integer.parseInt(txtDistancia.getText()));
 			if( c.getIdade()< 20)
 				throw new NumberFormatException("Idade minímia de 20 anos!");
