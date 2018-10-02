@@ -1,10 +1,9 @@
 package view;
 
-
 import javafx.fxml.FXML;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.control.TextField;
-import model.Trabalhor;
+import model.Trabalhador;
 
 public class PrincipalController {
 	
@@ -22,8 +21,8 @@ public class PrincipalController {
 		int qt2 = Integer.parseInt(t2QT.getText());
 		int tp1 = Integer.parseInt(t1Tempo.getText());
 		int tp2 = Integer.parseInt(t2Tempo.getText());
-		Trabalhor t1 = new Trabalhor (qt1, tp1, bar1);
-		Trabalhor t2 = new Trabalhor (qt2, tp2, bar1);
+		Trabalhador t1 = new Trabalhador (qt1, tp1, bar1);
+		Trabalhador t2 = new Trabalhador (qt2, tp2, bar2);
 		t1.inicia();
 		t2.inicia();
 	}
@@ -34,8 +33,8 @@ public class PrincipalController {
 		int qt2 = Integer.parseInt(t2QT.getText());
 		int tp1 = Integer.parseInt(t1Tempo.getText());
 		int tp2 = Integer.parseInt(t2Tempo.getText());
-		Trabalhor t1 = new Trabalhor (qt1, tp1, bar1);
-		Trabalhor t2 = new Trabalhor (qt2, tp2, bar1);
+		Trabalhador t1 = new Trabalhador (qt1, tp1, bar1);
+		Trabalhador t2 = new Trabalhador (qt2, tp2, bar2);
 		new Thread(t1).start();
 		new Thread(t2).start();
 	}

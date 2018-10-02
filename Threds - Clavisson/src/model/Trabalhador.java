@@ -10,8 +10,6 @@ public class Trabalhador extends Task<Void>{
 	private int tempo;
 	private ProgressBar barra;
 	
-	
-	
 	public Trabalhador(int qt, int tempo, ProgressBar barra) {
 		this.qt = qt;
 		this.tempo = tempo;
