@@ -25,7 +25,6 @@ public class Atleta extends Task<Void> {
 				barra.setProgress(barra.getProgress() + incremento);
 
 			} catch (Exception e) {
-				System.out.println("DEU ERRO SEU MERDA");
 				e.printStackTrace();
 			}
 		}
@@ -41,7 +40,6 @@ public class Atleta extends Task<Void> {
 					barra.setProgress(barra.getProgress() + incremento);
 				});
 			} catch (Exception e) {
-				System.out.println("DEU ERRO SEU MERDA");
 				e.printStackTrace();
 			}
 		}
