@@ -85,38 +85,20 @@ public class PrincipalController {
 		tbl.setOnMouseClicked(e -> {
 			if (e.getClickCount() > 1) {
 				selecionar();
-
 				competicoes.remove(tbl.getSelectionModel().getSelectedItem());
 				tbl.setItems(FXCollections.observableArrayList(competicoes));
 				melhor();
 			}
 		});
 
-		// Competicao c = tbl.getSelectionModel().getSelectedItem();
-		// for (Competicao x : competicoes)
-		// if (c.toString().equals(x.toString())) {
-		// tbl.getItems().removeAll(tbl.getSelectionModel().getSelectedItems());
-		// competicoes.remove(x);
-		// tbl.getSelectionModel().clearSelection();
-		// }
-		// System.out.println("chamou o metodo melhor");
-		// tbl.setItems(FXCollections.observableArrayList(competicoes));
-		// melhor();
 	}
 
 	@FXML
 	public void melhor() {
 		int melhor = competicoes.get(0).getColocação();
-		System.out.println("Entrou no melhor " + melhor);
-		for (Competicao c : competicoes) {
-			System.out.println(c.getColocação() + " NO FOR  " + melhor);
-			if (c.getColocação() < melhor) {
-				System.out.println(c.getColocação() + " NO IF  " + melhor);
+		for (Competicao c : competicoes)
+			if (c.getColocação() < melhor)
 				melhor = c.getColocação();
-			}
-		}
-		System.out.println("Setou o melhor " + melhor);
-
 		txtMelhor.setText(Integer.toString(melhor));
 
 	}
