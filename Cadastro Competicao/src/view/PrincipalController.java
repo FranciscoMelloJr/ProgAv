@@ -79,7 +79,7 @@ public class PrincipalController {
 		txtData.setValue(LocalDate.parse(c.getData(), dtf));
 
 	}
-
+	
 	public void remover() {
 
 		tbl.setOnMouseClicked(e -> {
