@@ -105,7 +105,7 @@
             </VBox>
          </top>
          <center>
-            <TableView fx:id="tbl" editable="true" onMouseClicked="#remover" prefHeight="248.0" prefWidth="600.0" BorderPane.alignment="CENTER">
+            <TableView fx:id="tbl" editable="true" onMouseClicked="#remover" prefHeight="250.0" prefWidth="600.0" BorderPane.alignment="CENTER">
               <columns>
                 <TableColumn fx:id="colNome" prefWidth="250.0" text="Nome" />
                 <TableColumn fx:id="colData" prefWidth="150.0" text="Data" />
@@ -125,7 +125,7 @@
                         <Insets bottom="10.0" left="250.0" top="10.0" />
                      </HBox.margin>
                   </Label>
-                  <TextField fx:id="txtMelhor" prefHeight="25.0" prefWidth="100.0">
+                  <TextField fx:id="txtMelhor" editable="false" prefHeight="25.0" prefWidth="100.0">
                      <HBox.margin>
                         <Insets bottom="10.0" left="100.0" top="10.0" />
                      </HBox.margin>
