@@ -13,9 +13,9 @@
 
 <AnchorPane xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.TransporteController">
    <children>
-      <BorderPane layoutX="-79.0" layoutY="-99.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <BorderPane layoutX="-79.0" layoutY="-99.0" prefHeight="700.0" prefWidth="700.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <center>
-            <VBox prefHeight="285.0" prefWidth="250.0" BorderPane.alignment="CENTER">
+            <VBox BorderPane.alignment="CENTER">
                <children>
                   <Label text="Tipo de transporte">
                      <VBox.margin>
@@ -52,9 +52,9 @@
                         <Insets left="20.0" top="30.0" />
                      </VBox.margin>
                   </Label>
-                  <TextField fx:id="txtDistancia" prefHeight="25.0" prefWidth="100.0">
+                  <TextField fx:id="txtDistancia" maxWidth="150.0" prefHeight="25.0" prefWidth="150.0">
                      <VBox.margin>
-                        <Insets left="25.0" right="100.0" top="10.0" />
+                        <Insets left="25.0" top="10.0" />
                      </VBox.margin>
                   </TextField>
                   <Label text="Custo mensal">
@@ -65,9 +65,9 @@
                         <Insets left="25.0" top="10.0" />
                      </VBox.margin>
                   </Label>
-                  <TextField fx:id="txtCustoMensal" prefHeight="25.0" prefWidth="100.0">
+                  <TextField fx:id="txtCustoMensal" maxWidth="150.0" prefHeight="25.0" prefWidth="150.0">
                      <VBox.margin>
-                        <Insets bottom="20.0" left="25.0" right="100.0" top="10.0" />
+                        <Insets bottom="20.0" left="25.0" top="10.0" />
                      </VBox.margin>
                   </TextField>
                   <Button mnemonicParsing="false" onAction="#cadastrar" text="Cadastrar">
@@ -78,7 +78,7 @@
                         <Font name="Georgia" size="12.0" />
                      </font>
                   </Button>
-                  <Button mnemonicParsing="false" onAction="#unirFiles" text="Unir">
+                  <Button mnemonicParsing="false" onAction="#unirFiles" prefHeight="30.0" prefWidth="150.0" style="-fx-background-radius: 25; -fx-border-radius: 25; -fx-border-color: black;" text="Unir">
                      <font>
                         <Font name="Georgia" size="12.0" />
                      </font>
