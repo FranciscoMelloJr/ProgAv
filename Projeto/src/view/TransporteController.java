@@ -78,7 +78,7 @@ public class TransporteController {
 
 	public void unirFiles() {
 
-		try (FileWriter fileWriter = new FileWriter("transportes.txt");
+		try (FileWriter fileWriter = new FileWriter("unidos.txt");
 				BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
 				FileReader fileReaderTransportes = new FileReader("transportes.txt");
 				BufferedReader bufferedReaderTransportes = new BufferedReader(fileReaderTransportes);
