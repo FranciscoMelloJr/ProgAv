@@ -7,8 +7,11 @@ import java.io.FileWriter;
 import java.util.ArrayList;
 import java.util.Objects;
 
+import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.scene.control.RadioButton;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import model.Aluno;
 import model.Transporte;
@@ -25,13 +28,30 @@ public class TransporteController {
 	@FXML
 	TextField txtCustoMensal;
 
+	@FXML
+	TableView<Transporte> tbl;
+	@FXML
+	TableColumn<Transporte, String> colTipo;
+	@FXML
+	TableColumn<Transporte, Number> colDistancia;
+	@FXML
+	TableColumn<Transporte, Number> colCustoMensal;
+	
+	
 	private ArrayList<Transporte> transportes = new ArrayList<>();
 
 	@FXML
 	public void initialize() {
+		inicializaTabela();
 		leArquivo();
 	}
 
+	private void inicializaTabela() {
+		colTipo.setCellValueFactory(cellData -> cellData.getValue().tipoTransporteProperty());
+		colDistancia.setCellValueFactory(cellData -> cellData.getValue().distanciaProperty());
+		colCustoMensal.setCellValueFactory(cellData -> cellData.getValue().custoMensalProperty());
+	}
+	
 	@FXML
 	public void cadastrar() {
 		inserir();
@@ -54,7 +74,7 @@ public class TransporteController {
 			}
 			br.close();
 			fr.close();
-			// tbl.setItems(FXCollections.observableArrayList(alunos));
+			tbl.setItems(FXCollections.observableArrayList(transportes));
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

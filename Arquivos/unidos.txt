@@ -1,1 +1,2 @@
 Francisco,5,Computação,Público,40.0,110.0
+José,5,Computação,Próprio,10.0,200.0
