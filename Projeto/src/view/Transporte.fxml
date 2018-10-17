@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/10.0.1" fx:controller="view.TransporteController">
+   <children>
+      <BorderPane layoutX="-79.0" layoutY="-99.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <center>
+            <VBox prefHeight="285.0" prefWidth="250.0" BorderPane.alignment="CENTER">
+               <children>
+                  <Label text="Tipo de transporte">
+                     <VBox.margin>
+                        <Insets left="20.0" right="20.0" top="20.0" />
+                     </VBox.margin>
+                     <font>
+                        <Font name="Georgia" size="18.0" />
+                     </font>
+                  </Label>
+                  <RadioButton mnemonicParsing="false" text="Próprio">
+                     <font>
+                        <Font name="Georgia" size="16.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets left="25.0" top="10.0" />
+                     </VBox.margin>
+                     <toggleGroup>
+                        <ToggleGroup fx:id="transporte" />
+                     </toggleGroup>
+                  </RadioButton>
+                  <RadioButton mnemonicParsing="false" text="Público" toggleGroup="$transporte">
+                     <font>
+                        <Font name="Georgia" size="16.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets left="25.0" top="10.0" />
+                     </VBox.margin>
+                  </RadioButton>
+                  <Label text="Distância">
+                     <font>
+                        <Font name="Georgia" size="18.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets left="20.0" top="30.0" />
+                     </VBox.margin>
+                  </Label>
+                  <TextField prefHeight="25.0" prefWidth="100.0">
+                     <VBox.margin>
+                        <Insets left="25.0" right="100.0" top="10.0" />
+                     </VBox.margin>
+                  </TextField>
+                  <Label text="Custo mensal">
+                     <font>
+                        <Font name="Georgia" size="18.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets left="25.0" top="10.0" />
+                     </VBox.margin>
+                  </Label>
+                  <TextField prefHeight="25.0" prefWidth="100.0">
+                     <VBox.margin>
+                        <Insets bottom="20.0" left="25.0" right="100.0" top="10.0" />
+                     </VBox.margin>
+                  </TextField>
+               </children>
+            </VBox>
+         </center>
+      </BorderPane>
+   </children>
+</AnchorPane>

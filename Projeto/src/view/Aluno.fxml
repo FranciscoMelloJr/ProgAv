@@ -12,8 +12,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.171">
+<AnchorPane xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.AlunoController">
    <children>
       <BorderPane layoutX="-100.0" layoutY="-116.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <center>
@@ -29,7 +28,7 @@
                               <Insets left="10.0" top="10.0" />
                            </HBox.margin>
                         </Label>
-                        <TextField prefHeight="25.0" prefWidth="300.0">
+                        <TextField fx:id="txtNome" prefHeight="25.0" prefWidth="300.0">
                            <HBox.margin>
                               <Insets bottom="10.0" left="10.0" top="10.0" />
                            </HBox.margin>
@@ -46,7 +45,7 @@
                               <Insets left="10.0" />
                            </HBox.margin>
                         </Label>
-                        <TextField prefHeight="25.0" prefWidth="50.0">
+                        <TextField fx:id="txtSemestre" prefHeight="25.0" prefWidth="50.0">
                            <HBox.margin>
                               <Insets bottom="10.0" left="10.0" />
                            </HBox.margin>
@@ -63,7 +62,7 @@
                               <Insets left="10.0" />
                            </HBox.margin>
                         </Label>
-                        <TextField>
+                        <TextField fx:id="txtCurso">
                            <HBox.margin>
                               <Insets bottom="10.0" left="10.0" />
                            </HBox.margin>
@@ -75,11 +74,11 @@
                         <Insets bottom="10.0" left="10.0" />
                      </VBox.margin>
                   </Button>
-                  <TableView prefHeight="400.0" prefWidth="530.0">
+                  <TableView fx:id="tbl" prefHeight="400.0" prefWidth="530.0">
                     <columns>
-                      <TableColumn prefWidth="180.0" text="Nome" />
-                      <TableColumn prefWidth="180.0" text="Semestre" />
-                        <TableColumn prefWidth="180.0" text="Curso" />
+                      <TableColumn fx:id="colNome" prefWidth="180.0" text="Nome" />
+                      <TableColumn fx:id="colSemestre" prefWidth="180.0" text="Semestre" />
+                        <TableColumn fx:id="colCurso" prefWidth="180.0" text="Curso" />
                     </columns>
                      <VBox.margin>
                         <Insets bottom="10.0" left="10.0" right="10.0" />

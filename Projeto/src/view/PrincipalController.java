@@ -23,7 +23,7 @@ public class PrincipalController {
 	TableColumn<Dadosfile, String> colTamanho;
 
 	private ArrayList<Dadosfile> lista = new ArrayList<Dadosfile>();
-
+	
 	@FXML
 	public void initialize() {
 		inicializaTabela();
