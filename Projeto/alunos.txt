@@ -1,7 +1,1 @@
-
-Francisco,4,Computação
-Francisco,4,Computação
-Francisco,4,Computação
-Francisco,4,Computação
-Francisco,4,Computação
-Francisco,4,Computação
+Francisco,5,Computação
