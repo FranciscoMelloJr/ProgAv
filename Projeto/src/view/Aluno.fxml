@@ -69,7 +69,7 @@
                         </TextField>
                      </children>
                   </HBox>
-                  <Button mnemonicParsing="false" text="Cadastrar">
+                  <Button mnemonicParsing="false" onAction="#cadastrar" text="Cadastrar">
                      <VBox.margin>
                         <Insets bottom="10.0" left="10.0" />
                      </VBox.margin>

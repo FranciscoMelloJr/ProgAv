@@ -1,0 +1,3 @@
+Francisco,5,Computação
+Abreu,2,Moda
+Francisco,5,Computaçã
