@@ -8,7 +8,7 @@ public class Dadosfile {
 	private StringProperty nome = new SimpleStringProperty("");
 	private StringProperty tamanho = new SimpleStringProperty("");
 	private StringProperty path = new SimpleStringProperty("");
-
+	
 	public final StringProperty nomeProperty() {
 		return this.nome;
 	}

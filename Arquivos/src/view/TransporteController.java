@@ -59,7 +59,7 @@ public class TransporteController {
 
 	private void leArquivo() {
 		transportes.clear();
-		try (BufferedReader br = new BufferedReader(new FileReader("transportes.txt"));) {
+		try (BufferedReader br = new BufferedReader(new FileReader("transportes.txt"))) {
 			String linha = "";
 			while ((linha = br.readLine()) != null) {
 				Transporte t = new Transporte();
@@ -76,21 +76,18 @@ public class TransporteController {
 	}
 
 	private void inserir() {
-		try {
+		try (BufferedWriter bw = new BufferedWriter(new FileWriter("transportes.txt", true))) {
 			Transporte t = new Transporte();
 			t.setTipoTransporte(ckProprio.isSelected() ? "Próprio" : "Público");
 			t.setDistancia(Double.parseDouble(txtDistancia.getText()));
 			t.setCustoMensal(Double.parseDouble(txtCustoMensal.getText()));
-			FileWriter fw = new FileWriter("transportes.txt", true);
-			BufferedWriter bw = new BufferedWriter(fw);
 			bw.append(t.getTipoTransporte() + "," + t.getDistancia() + "," + t.getCustoMensal() + "\n");
-			bw.close();
-			fw.close();
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
-
+	
 	public void unirFiles() {
 
 		try (FileWriter fileWriter = new FileWriter("unidos.txt");
