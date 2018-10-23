@@ -36,8 +36,7 @@ public class TransporteController {
 	TableColumn<Transporte, Number> colDistancia;
 	@FXML
 	TableColumn<Transporte, Number> colCustoMensal;
-	
-	
+
 	private ArrayList<Transporte> transportes = new ArrayList<>();
 
 	@FXML
@@ -51,7 +50,7 @@ public class TransporteController {
 		colDistancia.setCellValueFactory(cellData -> cellData.getValue().distanciaProperty());
 		colCustoMensal.setCellValueFactory(cellData -> cellData.getValue().custoMensalProperty());
 	}
-	
+
 	@FXML
 	public void cadastrar() {
 		inserir();
@@ -60,20 +59,16 @@ public class TransporteController {
 
 	private void leArquivo() {
 		transportes.clear();
-		try {
-			FileReader fr = new FileReader("transportes.txt");
-			BufferedReader br = new BufferedReader(fr);
+		try (BufferedReader br = new BufferedReader(new FileReader("transportes.txt"));) {
 			String linha = "";
 			while ((linha = br.readLine()) != null) {
-				String[] dados = linha.split(",");
 				Transporte t = new Transporte();
+				String[] dados = linha.split(",");
 				t.setTipoTransporte(dados[0]);
 				t.setDistancia(Double.parseDouble(dados[1]));
 				t.setCustoMensal(Double.parseDouble(dados[2]));
 				transportes.add(t);
 			}
-			br.close();
-			fr.close();
 			tbl.setItems(FXCollections.observableArrayList(transportes));
 		} catch (Exception e) {
 			e.printStackTrace();

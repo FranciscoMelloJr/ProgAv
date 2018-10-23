@@ -22,6 +22,9 @@ public class Main extends Application {
 	}
 	
 	public static void main(String[] args) {
+		
+		String alfabeto = String.join(", ", "A", "B", "Coelho");
+		System.out.println(alfabeto);
 		launch(args);
 	}
 }
