@@ -26,6 +26,16 @@ public class TelaController {
 		abreTab("Transporte Aluno", "Transporte.fxml");
 	}
 
+	@FXML
+	public void abreCadastro() {
+		abreTab("Cadastro Propertie", "CadastroPropertie.fxml");
+	}
+
+	@FXML
+	public void abrePropertie() {
+		abreTab("Propertie", "Propertie.fxml");
+	}
+
 	private void abreTab(String titulo, String path) {
 		try {
 			Tab tab = tabAberta(titulo);
