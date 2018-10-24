@@ -38,7 +38,7 @@
                         <ToggleGroup fx:id="transporte" />
                      </toggleGroup>
                   </RadioButton>
-                  <RadioButton fx:id="ckPublico" mnemonicParsing="false" text="Público" toggleGroup="$transporte">
+                  <RadioButton mnemonicParsing="false" text="Público" toggleGroup="$transporte">
                      <font>
                         <Font name="Georgia" size="16.0" />
                      </font>
