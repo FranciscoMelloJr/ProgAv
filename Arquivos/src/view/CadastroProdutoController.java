@@ -95,8 +95,7 @@ public class CadastroProdutoController {
 			String cod = String.format("%03d", produto.getCod()).substring(0, 3);
 			String nome = String.format("%-10.10s", produto.getNome());
 			String valor = String.format("%06.2f", produto.getValor()).substring(0, 6).replace(",", "");
-			String quatidade = String.format("%03d", produto.getQuantidade());
-
+			String quatidade = String.format("%03d", produto.getQuantidade());		
 			bufferedWriter.append(cod + nome + valor + quatidade + "\n");
 
 		} catch (Exception e) {
