@@ -44,20 +44,18 @@ public class AlunoController {
 		colSemestre.setCellValueFactory(cellData -> cellData.getValue().semestreProperty());
 		colCurso.setCellValueFactory(cellData -> cellData.getValue().cursoProperty());
 	}
-	
+
 	@FXML
 	public void cadastrar() {
 		inserir();
 		leArquivo();
 	}
-	
+
 	private void leArquivo() {
 		alunos.clear();
-		try {
-			FileReader fr = new FileReader("alunos.txt");
-			BufferedReader br = new BufferedReader(fr);
+		try (BufferedReader br = new BufferedReader(new FileReader("alunos.txt"))) {
 			String linha = "";
-			while((linha = br.readLine())!=null) {
+			while ((linha = br.readLine()) != null) {
 				String[] dados = linha.split(",");
 				Aluno a = new Aluno();
 				a.setNome(dados[0]);
@@ -65,28 +63,23 @@ public class AlunoController {
 				a.setCurso(dados[2]);
 				alunos.add(a);
 			}
-			br.close();
-			fr.close();
 			tbl.setItems(FXCollections.observableArrayList(alunos));
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
-	
+
 	private void inserir() {
-		try {
+		try (BufferedWriter bw = new BufferedWriter(new FileWriter("alunos.txt", true))) {
 			Aluno a = new Aluno();
 			a.setNome(txtNome.getText());
 			a.setSemestre(Integer.parseInt(txtSemestre.getText()));
 			a.setCurso(txtCurso.getText());
-			FileWriter fw = new FileWriter("alunos.txt",true);
-			BufferedWriter bw = new BufferedWriter(fw);
-			bw.append(a.getNome()+","+a.getSemestre()+","+a.getCurso()+"\n");
-			bw.close();
-			fw.close();
+			bw.append(a.getNome() + "," + a.getSemestre() + "," + a.getCurso() + "\n");
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
-	
+
 }
