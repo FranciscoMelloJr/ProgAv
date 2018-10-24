@@ -1,0 +1,7 @@
+#Arquivo de preferências
+#Wed Oct 24 01:09:06 BRT 2018
+Largura=250
+RazaoSocial=Cat
+Cor=\#4d1a4dff
+Logo=C\:\\Users\\Francisco\\Pictures\\Imagens\\Monstercat_Uncaged_Vol._1.jpg
+Altura=250

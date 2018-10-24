@@ -12,21 +12,20 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 
 public class PropertieController {
-	
+
 	String razaoSocial;
 	String cor;
 	String logo;
 	int largura;
 	int altura;
-	
+
 	@FXML
 	AnchorPane pane;
 	@FXML
 	Label label;
 	@FXML
 	ImageView img;
-	
-	
+
 	@FXML
 	public void initialize() {
 		lerArquivo();
@@ -40,7 +39,7 @@ public class PropertieController {
 		}
 		pane.setStyle("-fx-background-color: " + cor);
 	}
-	
+
 	private void lerArquivo() {
 		Properties propertie = new Properties();
 		try (FileReader fr = new FileReader("propertie.txt")) {
@@ -50,15 +49,10 @@ public class PropertieController {
 			logo = propertie.getProperty("Logo");
 			largura = Integer.parseInt(propertie.getProperty("Largura"));
 			altura = Integer.parseInt(propertie.getProperty("Altura"));
-		}catch (Exception e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
+
 	}
 
-//	private File selecionaInagem() {
-		
-	//	FileChooser.getChooser.Extensionfilter("imagens")
-		
-	}
-
-//}
+}
