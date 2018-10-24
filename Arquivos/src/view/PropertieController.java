@@ -1,13 +1,15 @@
 package view;
 
-import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.util.Properties;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
-import javafx.stage.FileChooser;
 
 public class PropertieController {
 	
@@ -40,14 +42,14 @@ public class PropertieController {
 	}
 	
 	private void lerArquivo() {
-		Properties prop = new Properties();
-		try (FileReader fr = new FileReader("preferencias.properties")) {
-			prop.load(fr);
-			razaoSocial = prop.getProperty("RazaoSocial");
-			cor = prop.getProperty("Cor");
-			logo = prop.getProperty("Logo");
-			largura = Integer.parseInt(prop.getProperty("Largura"));
-			altura = Integer.parseInt(prop.getProperty("Altura"));
+		Properties propertie = new Properties();
+		try (FileReader fr = new FileReader("propertie.txt")) {
+			propertie.load(fr);
+			razaoSocial = propertie.getProperty("RazaoSocial");
+			cor = propertie.getProperty("Cor");
+			logo = propertie.getProperty("Logo");
+			largura = Integer.parseInt(propertie.getProperty("Largura"));
+			altura = Integer.parseInt(propertie.getProperty("Altura"));
 		}catch (Exception e) {
 			e.printStackTrace();
 		}
