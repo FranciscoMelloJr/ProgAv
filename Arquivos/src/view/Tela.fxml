@@ -39,7 +39,7 @@
                <children>
                   <Button mnemonicParsing="false" onAction="#abrePrincipal" prefHeight="60.0" prefWidth="180.0" style="-fx-background-radius: 15;" text="Arquivos">
                      <VBox.margin>
-                        <Insets bottom="25.0" left="10.0" top="25.0" />
+                        <Insets bottom="10.0" left="10.0" top="25.0" />
                      </VBox.margin>
                      <font>
                         <Font name="Gabriola" size="24.0" />
@@ -54,7 +54,7 @@
                   </Button>
                   <Button mnemonicParsing="false" onAction="#abreAluno" prefHeight="60.0" prefWidth="175.0" style="-fx-background-radius: 15;" text="Aluno">
                      <VBox.margin>
-                        <Insets bottom="25.0" left="10.0" />
+                        <Insets bottom="10.0" left="10.0" />
                      </VBox.margin>
                      <font>
                         <Font name="Gabriola" size="24.0" />
@@ -69,7 +69,7 @@
                   </Button>
                   <Button mnemonicParsing="false" onAction="#abreTransporte" prefHeight="60.0" prefWidth="175.0" style="-fx-background-radius: 15;" text="Transporte">
                      <VBox.margin>
-                        <Insets bottom="25.0" left="10.0" />
+                        <Insets bottom="10.0" left="10.0" />
                      </VBox.margin>
                      <font>
                         <Font name="Gabriola" size="24.0" />
@@ -87,7 +87,7 @@
                         <Font name="Gabriola" size="24.0" />
                      </font>
                      <VBox.margin>
-                        <Insets bottom="25.0" left="10.0" />
+                        <Insets bottom="10.0" left="10.0" />
                      </VBox.margin>
                   </Button>
                   <Button mnemonicParsing="false" onAction="#abrePropertie" prefHeight="60.0" prefWidth="175.0" style="-fx-background-radius: 15;" text="Propertie">
@@ -95,8 +95,23 @@
                         <Font name="Gabriola" size="24.0" />
                      </font>
                      <VBox.margin>
-                        <Insets bottom="25.0" left="10.0" />
+                        <Insets bottom="10.0" left="10.0" />
                      </VBox.margin>
+                  </Button>
+                  <Button mnemonicParsing="false" onAction="#abreCadastroProduto" prefHeight="60.0" prefWidth="175.0" style="-fx-background-radius: 15;" text="Produto">
+                     <font>
+                        <Font name="Gabriola" size="24.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets bottom="10.0" left="10.0" />
+                     </VBox.margin>
+                     <graphic>
+                        <ImageView fitHeight="36.0" fitWidth="36.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../img/product.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
                   </Button>
                </children>
             </VBox>
