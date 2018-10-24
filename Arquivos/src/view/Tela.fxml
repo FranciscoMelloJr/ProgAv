@@ -104,7 +104,7 @@
          <center>
             <AnchorPane BorderPane.alignment="CENTER">
                <children>
-                  <TabPane fx:id="tabPane" layoutX="3.0" prefHeight="400.0" prefWidth="650.0" style="-fx-border-color: black;" tabClosingPolicy="ALL_TABS" AnchorPane.bottomAnchor="41.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="5.0" />
+                  <TabPane fx:id="tabPane" layoutX="3.0" maxHeight="1080.0" maxWidth="1920.0" prefHeight="400.0" prefWidth="650.0" style="-fx-border-color: black;" tabClosingPolicy="ALL_TABS" AnchorPane.bottomAnchor="41.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="5.0" />
                </children>
             </AnchorPane>
          </center>

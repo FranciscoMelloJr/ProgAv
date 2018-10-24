@@ -1,7 +1,7 @@
 #Arquivo de preferências
-#Wed Oct 24 01:09:06 BRT 2018
+#Wed Oct 24 10:55:07 BRT 2018
 Largura=250
-RazaoSocial=Cat
-Cor=\#4d1a4dff
-Logo=C\:\\Users\\Francisco\\Pictures\\Imagens\\Monstercat_Uncaged_Vol._1.jpg
+RazaoSocial=25252
+Cor=\#b34d1aff
+Logo=C\:\\Users\\Francisco\\Pictures\\Jornal Escola\\IMG-20141107-WA0006.jpeg
 Altura=250
