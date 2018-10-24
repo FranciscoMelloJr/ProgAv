@@ -39,7 +39,7 @@
                <children>
                   <Button mnemonicParsing="false" onAction="#abrePrincipal" prefHeight="60.0" prefWidth="180.0" style="-fx-background-radius: 15;" text="Arquivos">
                      <VBox.margin>
-                        <Insets bottom="20.0" left="10.0" top="20.0" />
+                        <Insets bottom="25.0" left="10.0" top="25.0" />
                      </VBox.margin>
                      <font>
                         <Font name="Gabriola" size="24.0" />
@@ -54,7 +54,7 @@
                   </Button>
                   <Button mnemonicParsing="false" onAction="#abreAluno" prefHeight="60.0" prefWidth="175.0" style="-fx-background-radius: 15;" text="Aluno">
                      <VBox.margin>
-                        <Insets bottom="20.0" left="10.0" />
+                        <Insets bottom="25.0" left="10.0" />
                      </VBox.margin>
                      <font>
                         <Font name="Gabriola" size="24.0" />
@@ -69,7 +69,7 @@
                   </Button>
                   <Button mnemonicParsing="false" onAction="#abreTransporte" prefHeight="60.0" prefWidth="175.0" style="-fx-background-radius: 15;" text="Transporte">
                      <VBox.margin>
-                        <Insets bottom="20.0" left="10.0" />
+                        <Insets bottom="25.0" left="10.0" />
                      </VBox.margin>
                      <font>
                         <Font name="Gabriola" size="24.0" />
@@ -87,7 +87,7 @@
                         <Font name="Gabriola" size="24.0" />
                      </font>
                      <VBox.margin>
-                        <Insets bottom="20.0" left="10.0" />
+                        <Insets bottom="25.0" left="10.0" />
                      </VBox.margin>
                   </Button>
                   <Button mnemonicParsing="false" onAction="#abrePropertie" prefHeight="60.0" prefWidth="175.0" style="-fx-background-radius: 15;" text="Propertie">
@@ -95,16 +95,16 @@
                         <Font name="Gabriola" size="24.0" />
                      </font>
                      <VBox.margin>
-                        <Insets left="10.0" />
+                        <Insets bottom="25.0" left="10.0" />
                      </VBox.margin>
                   </Button>
                </children>
             </VBox>
          </left>
          <center>
-            <AnchorPane BorderPane.alignment="CENTER">
+            <AnchorPane prefHeight="480.0" prefWidth="720.0" BorderPane.alignment="CENTER">
                <children>
-                  <TabPane fx:id="tabPane" layoutX="3.0" maxHeight="1080.0" maxWidth="1920.0" prefHeight="400.0" prefWidth="650.0" style="-fx-border-color: black;" tabClosingPolicy="ALL_TABS" AnchorPane.bottomAnchor="41.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="5.0" />
+                  <TabPane fx:id="tabPane" layoutX="3.0" minHeight="48.0" minWidth="72.0" prefHeight="400.0" prefWidth="700.0" style="-fx-border-color: black;" tabClosingPolicy="ALL_TABS" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0" />
                </children>
             </AnchorPane>
          </center>

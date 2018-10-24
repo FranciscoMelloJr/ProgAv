@@ -10,6 +10,7 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.VBox;
 
 public class PropertieController {
 
@@ -25,13 +26,23 @@ public class PropertieController {
 	Label label;
 	@FXML
 	ImageView img;
+	@FXML
+	VBox vBox;
 
 	@FXML
 	public void initialize() {
 		lerArquivo();
 		pane.setMinWidth(largura);
 		pane.setMinHeight(altura);
+	//	pane.setPrefWidth(largura);
+	//	pane.setPrefHeight(altura);
+		
+		img.setFitWidth(largura);
+		img.setFitHeight(altura);
+		
+		
 		label.setText(razaoSocial);
+	
 		try {
 			img.setImage(new Image(new FileInputStream(logo)));
 		} catch (FileNotFoundException e) {
