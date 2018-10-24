@@ -13,7 +13,7 @@ import javafx.scene.control.RadioButton;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
-import model.Aluno;
+import model.TipoTransporte;
 import model.Transporte;
 
 public class TransporteController {
@@ -78,24 +78,21 @@ public class TransporteController {
 	private void inserir() {
 		try (BufferedWriter bw = new BufferedWriter(new FileWriter("transportes.txt", true))) {
 			Transporte t = new Transporte();
-			t.setTipoTransporte(ckProprio.isSelected() ? "Próprio" : "Público");
+			t.setTipoTransporte(ckProprio.isSelected() ? TipoTransporte.PROPRIO.name() : TipoTransporte.PUBLICO.name());
 			t.setDistancia(Double.parseDouble(txtDistancia.getText()));
 			t.setCustoMensal(Double.parseDouble(txtCustoMensal.getText()));
 			bw.append(t.getTipoTransporte() + "," + t.getDistancia() + "," + t.getCustoMensal() + "\n");
-			
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
-	
+
 	public void unirFiles() {
 
-		try (FileWriter fileWriter = new FileWriter("unidos.txt");
-				BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
-				FileReader fileReaderTransportes = new FileReader("transportes.txt");
-				BufferedReader bufferedReaderTransportes = new BufferedReader(fileReaderTransportes);
-				FileReader fileReaderAlunos = new FileReader("alunos.txt");
-				BufferedReader bufferedReaderAlunos = new BufferedReader(fileReaderAlunos);
+		try (BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter("unidos.txt"));
+				BufferedReader bufferedReaderTransportes = new BufferedReader(new FileReader("transportes.txt"));
+				BufferedReader bufferedReaderAlunos = new BufferedReader(new FileReader("alunos.txt"));
 
 		) {
 
@@ -104,24 +101,7 @@ public class TransporteController {
 
 			while (Objects.nonNull(linhaTransporte = bufferedReaderTransportes.readLine())
 					&& Objects.nonNull(linhaAluno = bufferedReaderAlunos.readLine())) {
-
-				Transporte transporte = new Transporte();
-				Aluno aluno = new Aluno();
-
-				String[] linhasTranportes = linhaTransporte.split(",");
-				String[] linhasAlunos = linhaAluno.split(",");
-
-				aluno.setNome(linhasAlunos[0]);
-				aluno.setSemestre(Integer.parseInt(linhasAlunos[1]));
-				aluno.setCurso(linhasAlunos[2]);
-
-				transporte.setTipoTransporte(linhasTranportes[0]);
-				transporte.setDistancia(Double.parseDouble(linhasTranportes[1]));
-				transporte.setCustoMensal(Double.parseDouble(linhasTranportes[2]));
-
-				bufferedWriter.append(aluno.getNome() + "," + aluno.getSemestre() + "," + aluno.getCurso() + ","
-						+ transporte.getTipoTransporte() + "," + transporte.getDistancia() + ","
-						+ transporte.getCustoMensal() + "\n");
+				bufferedWriter.append(linhaAluno.substring(0, linhaAluno.length() - 2) + "," + linhaTransporte + "\n");
 			}
 
 		} catch (Exception e) {
