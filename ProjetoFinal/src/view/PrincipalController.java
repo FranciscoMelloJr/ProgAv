@@ -43,7 +43,7 @@ public class PrincipalController {
 		try (FileReader fr = new FileReader("conf.properties"); BufferedReader br = new BufferedReader(fr)) {
 			propertie.load(fr);
 			propertie.setProperty("orientado", String.valueOf(ckOrientado.isSelected()));
-			propertie.setProperty("valorado", String.valueOf(ckOrientado.isSelected()));
+			propertie.setProperty("valorado", String.valueOf(ckValorado.isSelected()));
 
 			try (BufferedWriter bw = new BufferedWriter(new FileWriter("conf.properties"))) {
 				propertie.store(bw, "Atualização de Configurações");
