@@ -2,6 +2,7 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
@@ -33,14 +34,22 @@
                         <Font name="Freestyle Script" size="36.0" />
                      </font>
                      <HBox.margin>
-                        <Insets left="10.0" top="10.0" />
+                        <Insets left="20.0" top="10.0" />
                      </HBox.margin>
                   </Label>
                   <TextField fx:id="txtSource" prefHeight="25.0" prefWidth="50.0">
                      <HBox.margin>
-                        <Insets left="10.0" top="30.0" />
+                        <Insets left="10.0" top="25.0" />
                      </HBox.margin>
                   </TextField>
+                  <RadioButton fx:id="ckDestiny" mnemonicParsing="false">
+                     <font>
+                        <Font name="Freestyle Script" size="14.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets left="30.0" top="25.0" />
+                     </HBox.margin>
+                  </RadioButton>
                   <Label text="Vértice de Destino">
                      <font>
                         <Font name="Freestyle Script" size="36.0" />
@@ -51,7 +60,7 @@
                   </Label>
                   <TextField fx:id="txtDestiny" prefHeight="25.0" prefWidth="50.0">
                      <HBox.margin>
-                        <Insets left="10.0" top="30.0" />
+                        <Insets left="10.0" top="25.0" />
                      </HBox.margin>
                   </TextField>
                </children>
