@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.TableColumn?>
@@ -11,7 +12,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.CaminhoMinimoController">
+<AnchorPane xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.CaminhoMinimoController">
    <children>
       <BorderPane layoutX="-146.0" layoutY="-156.0" prefHeight="700.0" prefWidth="800.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <center>
@@ -37,12 +38,12 @@
                         <Insets left="20.0" top="10.0" />
                      </HBox.margin>
                   </Label>
-                  <TextField fx:id="txtSource" prefHeight="25.0" prefWidth="50.0">
+                  <TextField fx:id="txtSource" onAction="#adicionaSource" prefHeight="25.0" prefWidth="50.0">
                      <HBox.margin>
                         <Insets left="10.0" top="25.0" />
                      </HBox.margin>
                   </TextField>
-                  <RadioButton fx:id="ckDestiny" mnemonicParsing="false">
+                  <RadioButton fx:id="ckDestiny" mnemonicParsing="false" onAction="#destinySN">
                      <font>
                         <Font name="Freestyle Script" size="14.0" />
                      </font>
@@ -58,11 +59,16 @@
                         <Insets left="10.0" top="10.0" />
                      </HBox.margin>
                   </Label>
-                  <TextField fx:id="txtDestiny" prefHeight="25.0" prefWidth="50.0">
+                  <TextField fx:id="txtDestiny" onAction="#adicionaSource" prefHeight="25.0" prefWidth="50.0">
                      <HBox.margin>
                         <Insets left="10.0" top="25.0" />
                      </HBox.margin>
                   </TextField>
+                  <Button mnemonicParsing="false" onAction="#adicionaSource" style="-fx-border-color: black; -fx-border-radius: 25; -fx-background-radius: 25;" text="Finalizar">
+                     <HBox.margin>
+                        <Insets left="10.0" top="25.0" />
+                     </HBox.margin>
+                  </Button>
                </children>
             </HBox>
          </top>

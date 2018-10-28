@@ -1,6 +1,8 @@
 package view;
 
+import java.io.BufferedReader;
 import java.io.FileReader;
+import java.util.ArrayList;
 import java.util.Properties;
 
 import javafx.collections.FXCollections;
@@ -19,7 +21,7 @@ public class CaminhoMinimoController {
 	TextField txtSource;
 	@FXML
 	TextField txtDestiny;
-	
+
 	@FXML
 	RadioButton ckDestiny;
 
@@ -31,37 +33,76 @@ public class CaminhoMinimoController {
 	TableColumn<Vertice, Number> colDistancia;
 	@FXML
 	TableColumn<Vertice, String> colPath;
-	
-	
+
+	ArrayList<Vertice> verticeLista = new ArrayList<Vertice>();
+	ArrayList<Aresta> arestaLista = new ArrayList<Aresta>();
+	boolean valorado, orientado;
 	Fila fila = new Fila();
 	Vertice destiny;
 
 	@FXML
 	public void initialize() {
 		inicializaTbl();
+		lerArquivoProperties();
+		leVertice();
+		leAresta();
+
+	}
+
+	private void leAresta() {
+		arestaLista.clear();
+		try (BufferedReader br = new BufferedReader(new FileReader("aresta.txt"))) {
+			String linha = "";
+			while ((linha = br.readLine()) != null) {
+				String origem = linha.substring(0, 5);
+				String destino = linha.substring(5, 10);
+				int valor = Integer.parseInt(linha.substring(10, 13));
+				Aresta a = new Aresta();
+				a.setOrigem(origem);
+				a.setDestino(destino);
+				a.setValor(valor);
+				arestaLista.add(a);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	private void leVertice() {
+		verticeLista.clear();
+		try (BufferedReader br = new BufferedReader(new FileReader("vertice.txt"))) {
+			String linha = "";
+			while ((linha = br.readLine()) != null) {
+				Vertice v = new Vertice();
+				String nome = linha.substring(0, 5);
+				v.setNome(nome);
+				verticeLista.add(v);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 	private void lerArquivoProperties() {
 		Properties propertie = new Properties();
 		try (FileReader fr = new FileReader("conf.properties")) {
 			propertie.load(fr);
-			txtInstituicaoEnsino.setText(propertie.getProperty("nome"));
-			txtMediaA.setText(propertie.getProperty("mediaA"));
-			txtMediaR.setText(propertie.getProperty("mediaR"));
+			orientado = Boolean.valueOf(propertie.getProperty("orientado"));
+			valorado = Boolean.valueOf(propertie.getProperty("valorado"));
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
-	
+
 	@FXML
-	public void finalizar() {
+	public void dijkstra() {
 
 		while (fila.tamanho() != 0) {
 			Vertice atual = fila.remove();
 			for (int i = 0; i < atual.getAdj().size(); i++) {
 				if (!atual.getAdj().get(i).isPerm()) {
 					for (Aresta aresta : arestaLista) {
-						if (ckOrientado.isSelected()) {
+						if (orientado) {
 							if ((atual.getNome().equals(aresta.getOrigem()))
 									&& (atual.getAdj().get(i).getNome().equals(aresta.getDestino()))) {
 								alteraDist(atual, aresta, i);
@@ -109,7 +150,7 @@ public class CaminhoMinimoController {
 		}
 	}
 
-	@FXML
+	@FXML //
 	public void adicionaDestiny() {
 
 		for (Vertice vertice : verticeLista) {
@@ -144,8 +185,16 @@ public class CaminhoMinimoController {
 		fila.insere(source);
 		txtSource.setText("");
 
-	}
+		if (ckDestiny.isSelected())
+			for (Vertice vertice : verticeLista) {
+				if (vertice.getNome().equals(txtDestiny.getText())) {
+					destiny = vertice;
+				}
+			}
+		txtDestiny.setText("");
+		dijkstra();
 
+	}
 
 	private void inicializaTbl() {
 		colNome.setCellValueFactory(cellData -> cellData.getValue().nomeProperty());
@@ -153,5 +202,5 @@ public class CaminhoMinimoController {
 		colPath.setCellValueFactory(cellData -> cellData.getValue().pathProperty());
 
 	}
-	
+
 }
