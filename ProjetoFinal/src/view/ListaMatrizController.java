@@ -17,8 +17,6 @@ public class ListaMatrizController {
 	Label ckOrientado;
 	@FXML
 	Label ckValorado;
-	
-	boolean valorado, orientado;
 
 	@FXML
 	TextArea txtMatrizIncidencia;
@@ -33,12 +31,17 @@ public class ListaMatrizController {
 
 	ArrayList<Vertice> verticeLista = new ArrayList<Vertice>();
 	ArrayList<Aresta> arestaLista = new ArrayList<Aresta>();
+	boolean valorado, orientado;
 
 	@FXML
 	public void initialize() {
 		lerArquivoProperties();
 		leVertice();
 		leAresta();
+		calculaMatrizIncidencia();
+		calculaMatrizAdjacencia();
+		calculaListaAdjacencia();
+		calculaListaAresta();
 	}
 
 	private void leAresta() {
@@ -79,7 +82,7 @@ public class ListaMatrizController {
 		Properties propertie = new Properties();
 		try (FileReader fr = new FileReader("conf.properties")) {
 			propertie.load(fr);
-			orientado =Boolean.valueOf(propertie.getProperty("orientado"));
+			orientado = Boolean.valueOf(propertie.getProperty("orientado"));
 			valorado = Boolean.valueOf(propertie.getProperty("valorado"));
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -272,16 +275,6 @@ public class ListaMatrizController {
 			stringListaAresta += lista.get(k).toString() + "\n";
 		}
 		txtListaAresta.setText(stringListaAresta);
-	}
-
-	@FXML
-	public void finalizar() {
-
-		calculaMatrizIncidencia();
-		calculaMatrizAdjacencia();
-		calculaListaAdjacencia();
-		calculaListaAresta();
-
 	}
 
 }
