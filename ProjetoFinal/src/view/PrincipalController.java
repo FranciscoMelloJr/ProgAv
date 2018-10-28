@@ -35,9 +35,50 @@ public class PrincipalController {
 	@FXML
 	TextField txtValor;
 
-	ArrayList<Vertice> verticeLista = new ArrayList<Vertice>();
+	ArrayList<Vertice> verticeLista = new ArrayList<Vertice>(); //testar removendo
 	ArrayList<Aresta> arestaLista = new ArrayList<Aresta>();
 
+	public void initialize() {
+		leVertice();
+		leAresta();
+		
+	}
+	
+	private void leAresta() {
+		arestaLista.clear();
+		try (BufferedReader br = new BufferedReader(new FileReader("aresta.txt"))) {
+			String linha = "";
+			while ((linha = br.readLine()) != null) {
+				String origem = linha.substring(0, 5);
+				String destino = linha.substring(5, 10);
+				int valor = Integer.parseInt(linha.substring(10, 13));
+				Aresta a = new Aresta();
+				a.setOrigem(origem);
+				a.setDestino(destino);
+				a.setValor(valor);
+				arestaLista.add(a);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	private void leVertice() {
+		verticeLista.clear();
+		try (BufferedReader br = new BufferedReader(new FileReader("vertice.txt"))) {
+			String linha = "";
+			while ((linha = br.readLine()) != null) {
+				Vertice v = new Vertice();
+				String nome = linha.substring(0, 5);
+				v.setNome(nome);
+				verticeLista.add(v);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	
 	private void alteraArquivoProperties() {
 		Properties propertie = new Properties();
 		try (FileReader fr = new FileReader("conf.properties"); BufferedReader br = new BufferedReader(fr)) {
