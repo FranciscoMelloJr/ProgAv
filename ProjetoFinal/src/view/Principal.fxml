@@ -61,7 +61,7 @@
                               <Insets left="20.0" right="11.5" />
                            </HBox.margin>
                         </RadioButton>
-                        <RadioButton fx:id="ckValorado" mnemonicParsing="false" text="Valorado">
+                        <RadioButton fx:id="ckValorado" mnemonicParsing="false" onAction="#valoradoSN" text="Valorado">
                            <font>
                               <Font size="18.0" />
                            </font>
@@ -124,12 +124,12 @@
                               <Insets left="10.0" right="5.0" />
                            </HBox.margin>
                         </TextField>
-                        <TextField fx:id="txtDestino" prefHeight="25.0" prefWidth="30.0">
+                        <TextField fx:id="txtDestino" onAction="#focusValor" prefHeight="25.0" prefWidth="30.0">
                            <HBox.margin>
                               <Insets right="5.0" />
                            </HBox.margin>
                         </TextField>
-                        <TextField fx:id="txtValor" onAction="#inserirAresta" prefHeight="25.0" prefWidth="30.0">
+                        <TextField fx:id="txtValor" disable="true" onAction="#inserirAresta" prefHeight="25.0" prefWidth="30.0" promptText="X">
                            <HBox.margin>
                               <Insets right="10.0" />
                            </HBox.margin>

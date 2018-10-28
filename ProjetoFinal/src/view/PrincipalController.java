@@ -100,7 +100,7 @@ public class PrincipalController {
 		}
 	}
 
-	public void adicionaAdjacente(Aresta aresta) {
+	public void adicionaAdjacente(Aresta aresta) { //
 
 		for (Vertice vertice : verticeLista) {
 			if (vertice.getNome().equals(aresta.getOrigem())) {
@@ -115,7 +115,7 @@ public class PrincipalController {
 	}
 
 	@FXML
-	public void adicionaAresta() {
+	public void adicionaAresta() { //
 
 		Aresta aresta = new Aresta();
 		aresta.setOrigem(txtOrigem.getText());
@@ -129,7 +129,7 @@ public class PrincipalController {
 	}
 
 	@FXML
-	public void adicionaVertice() {
+	public void adicionaVertice() { //
 
 		Vertice vertice = new Vertice();
 		vertice.setNome(txtVertice.getText());
@@ -138,6 +138,15 @@ public class PrincipalController {
 
 	}
 
+	@FXML
+	public void valoradoSN() {
+		if (ckValorado.isSelected()) {
+			txtValor.setDisable(false);
+		} else {
+			txtValor.setDisable(true);
+		}
+	}
+	
 	@FXML
 	public void limpaTelaE() {
 
@@ -149,7 +158,11 @@ public class PrincipalController {
 
 	@FXML
 	public void focusValor() {
-		txtValor.requestFocus();
+		if (ckValorado.isSelected())
+			txtValor.requestFocus();
+		else {
+			inserirAresta();
+		}
 	}
 
 	@FXML
@@ -160,7 +173,7 @@ public class PrincipalController {
 
 	@FXML
 	public void abreAdjacenciaIncidencia() {
-		alteraArquivoProperties() ;
+		alteraArquivoProperties();
 		abreTab("Matriz/Lista", "ListaMatriz.fxml");
 	}
 
