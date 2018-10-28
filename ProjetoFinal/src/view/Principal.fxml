@@ -14,7 +14,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.PrincipalController">
+<AnchorPane xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.PrincipalController">
    <children>
       <BorderPane prefHeight="800.0" prefWidth="1080.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <right>
@@ -89,12 +89,12 @@
                               <Insets left="67.0" />
                            </HBox.margin>
                         </Label>
-                        <TextField fx:id="txtVertice" prefHeight="25.0" prefWidth="30.0">
+                        <TextField fx:id="txtVertice" onAction="#inserirVertice" prefHeight="25.0" prefWidth="30.0">
                            <HBox.margin>
                               <Insets left="10.0" right="10.0" />
                            </HBox.margin>
                         </TextField>
-                        <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="50.0" style="-fx-background-radius: 25; -fx-border-radius: 25; -fx-border-color: black;" text="ADD">
+                        <Button mnemonicParsing="false" onAction="#inserirVertice" prefHeight="25.0" prefWidth="50.0" style="-fx-background-radius: 25; -fx-border-radius: 25; -fx-border-color: black;" text="ADD">
                            <HBox.margin>
                               <Insets />
                            </HBox.margin>
@@ -119,7 +119,7 @@
                               <Insets left="29.5" />
                            </HBox.margin>
                         </Label>
-                        <TextField fx:id="txtOrigem" prefHeight="25.0" prefWidth="30.0">
+                        <TextField fx:id="txtOrigem" onAction="#focusDestino" prefHeight="25.0" prefWidth="30.0">
                            <HBox.margin>
                               <Insets left="10.0" right="5.0" />
                            </HBox.margin>
@@ -129,12 +129,12 @@
                               <Insets right="5.0" />
                            </HBox.margin>
                         </TextField>
-                        <TextField fx:id="txtValor" prefHeight="25.0" prefWidth="30.0">
+                        <TextField fx:id="txtValor" onAction="#inserirAresta" prefHeight="25.0" prefWidth="30.0">
                            <HBox.margin>
                               <Insets right="10.0" />
                            </HBox.margin>
                         </TextField>
-                        <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="50.0" style="-fx-background-radius: 25; -fx-border-radius: 25; -fx-border-color: black;" text="ADD" />
+                        <Button mnemonicParsing="false" onAction="#inserirAresta" prefHeight="25.0" prefWidth="50.0" style="-fx-background-radius: 25; -fx-border-radius: 25; -fx-border-color: black;" text="ADD" />
                      </children>
                   </HBox>
                   <HBox>

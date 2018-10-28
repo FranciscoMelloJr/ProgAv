@@ -47,7 +47,6 @@ public class PrincipalController {
 
 			try (BufferedWriter bw = new BufferedWriter(new FileWriter("conf.properties"))) {
 				propertie.store(bw, "Atualização de Configurações");
-				bw.close();
 
 			} catch (Exception ex) {
 				System.out.println(ex.getMessage());
