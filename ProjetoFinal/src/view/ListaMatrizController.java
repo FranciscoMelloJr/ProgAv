@@ -101,23 +101,23 @@ public class ListaMatrizController {
 		for (int j = 0; j < verticeLista.size(); j++) {
 			for (int i = 0; i < arestaLista.size(); i++) {
 				if (arestaLista.get(i).getOrigem().equals(verticeLista.get(j))) {
-					if (ckValorado.equals(true)) {
+					if (ckValorado.equals("valorado")) {
 						matrizIncidencia[j + 1][i + 1] = String.valueOf(" " + arestaLista.get(i).getValor());
 					} else {
 						matrizIncidencia[j + 1][i + 1] = "1   ";
 					}
 				}
 				if (arestaLista.get(i).getDestino().equals(verticeLista.get(j))) {
-					if (ckOrientado.equals(false)) {
+					if (ckOrientado.equals("false")) {
 						matrizIncidencia[j + 1][i + 1] = "1   ";
 						if (arestaLista.get(i).getDestino().equals(arestaLista.get(i).getOrigem())) {
 							matrizIncidencia[j + 1][i + 1] = "2   ";
 						}
-						if (ckValorado.equals(true)) {
+						if (ckValorado.equals("true")) {
 							matrizIncidencia[j + 1][i + 1] = String.valueOf(" " + arestaLista.get(i).getValor());
 						}
 					} else {
-						if (ckValorado.equals(true)) {
+						if (ckValorado.equals("true")) {
 							matrizIncidencia[j + 1][i + 1] = String.valueOf("-" + arestaLista.get(i).getValor());
 						} else {
 							matrizIncidencia[j + 1][i + 1] = "-1   ";
@@ -132,7 +132,7 @@ public class ListaMatrizController {
 		for (int i = 0; i < verticeLista.size() + 1; i++) {
 			for (int j = 0; j < arestaLista.size() + 1; j++) {
 				if (matrizIncidencia[i][j] == null) {
-					if (ckValorado.equals(true)) {
+					if (ckValorado.equals("true")) {
 						matrizIncidencia[i][j] = "X  ";
 					} else {
 						matrizIncidencia[i][j] = "0  ";
