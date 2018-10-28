@@ -6,7 +6,6 @@ import java.util.ArrayList;
 import java.util.Properties;
 
 import javafx.fxml.FXML;
-import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import model.Aresta;
 import model.Vertice;
@@ -14,16 +13,9 @@ import model.Vertice;
 public class ListaMatrizController {
 
 	@FXML
-	Label ckOrientado;
-	@FXML
-	Label ckValorado;
-
-	@FXML
 	TextArea txtMatrizIncidencia;
 	@FXML
 	TextArea txtMatrizAdjacencia;
-	@FXML
-	TextArea txtMatrizDistancia;
 	@FXML
 	TextArea txtListaAdjacencia;
 	@FXML
