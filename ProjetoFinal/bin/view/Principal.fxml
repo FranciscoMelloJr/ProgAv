@@ -14,11 +14,11 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.PrincipalController">
+<AnchorPane xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.PrincipalController">
    <children>
-      <BorderPane prefHeight="800.0" prefWidth="1080.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <BorderPane prefHeight="720.0" prefWidth="1080.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <right>
-            <TabPane fx:id="tabPane" prefHeight="800.0" prefWidth="800.0" style="-fx-border-color: black;" BorderPane.alignment="CENTER">
+            <TabPane fx:id="tabPane" prefHeight="700.0" prefWidth="800.0" style="-fx-border-color: black;" BorderPane.alignment="CENTER">
                <BorderPane.margin>
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </BorderPane.margin>
@@ -48,7 +48,7 @@
                         <Font name="Freestyle Script" size="36.0" />
                      </font>
                      <VBox.margin>
-                        <Insets bottom="10.0" left="65.0" />
+                        <Insets left="65.0" />
                      </VBox.margin>
                   </Label>
                   <HBox>
@@ -76,7 +76,7 @@
                         <Font name="Freestyle Script" size="36.0" />
                      </font>
                      <VBox.margin>
-                        <Insets bottom="10.0" left="59.5" top="15.0" />
+                        <Insets left="59.5" top="5.0" />
                      </VBox.margin>
                   </Label>
                   <HBox>
@@ -103,7 +103,7 @@
                   </HBox>
                   <Label text="Adicionar Aresta">
                      <VBox.margin>
-                        <Insets bottom="10.0" left="62.0" top="15.0" />
+                        <Insets left="62.0" top="5.0" />
                      </VBox.margin>
                      <font>
                         <Font name="Freestyle Script" size="36.0" />
@@ -141,7 +141,7 @@
                      <children>
                         <Button mnemonicParsing="false" onAction="#abreAdjacenciaIncidencia" prefHeight="40.0" prefWidth="200.0" style="-fx-background-radius: 25; -fx-border-radius: 25; -fx-border-color: black;" text="Adjacência/Incidência">
                            <HBox.margin>
-                              <Insets left="40.0" top="15.0" />
+                              <Insets left="40.0" top="10.0" />
                            </HBox.margin>
                            <font>
                               <Font size="18.0" />
@@ -151,7 +151,7 @@
                   </HBox>
                   <Button mnemonicParsing="false" onAction="#abreDistancia" prefHeight="40.0" prefWidth="200.0" style="-fx-background-radius: 25; -fx-border-radius: 25; -fx-border-color: black;" text="Distância">
                      <VBox.margin>
-                        <Insets left="40.0" top="10.0" />
+                        <Insets left="40.0" top="5.0" />
                      </VBox.margin>
                      <font>
                         <Font size="18.0" />
@@ -162,7 +162,7 @@
                         <Font size="18.0" />
                      </font>
                      <VBox.margin>
-                        <Insets left="40.0" top="10.0" />
+                        <Insets left="40.0" top="5.0" />
                      </VBox.margin>
                   </Button>
                   <Button mnemonicParsing="false" onAction="#abre" prefHeight="40.0" prefWidth="200.0" style="-fx-background-radius: 25; -fx-border-radius: 25; -fx-border-color: black;" text="?">
@@ -170,7 +170,7 @@
                         <Font size="18.0" />
                      </font>
                      <VBox.margin>
-                        <Insets bottom="10.0" left="40.0" top="10.0" />
+                        <Insets bottom="10.0" left="40.0" top="5.0" />
                      </VBox.margin>
                   </Button>
                </children></VBox>

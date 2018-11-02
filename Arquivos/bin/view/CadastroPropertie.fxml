@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ColorPicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.CadastroPropertieController">
+   <children>
+      <BorderPane layoutX="-99.0" layoutY="-106.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <center>
+            <VBox BorderPane.alignment="CENTER">
+               <children>
+                  <HBox>
+                     <children>
+                        <Label text="Largura">
+                           <font>
+                              <Font name="Georgia" size="14.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets left="10.0" top="25.0" />
+                           </HBox.margin>
+                        </Label>
+                        <TextField fx:id="txtLargura">
+                           <HBox.margin>
+                              <Insets left="10.0" top="20.0" />
+                           </HBox.margin>
+                        </TextField>
+                     </children>
+                  </HBox>
+                  <HBox>
+                     <children>
+                        <Label text="Altura">
+                           <font>
+                              <Font name="Georgia" size="14.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets left="15.0" top="15.0" />
+                           </HBox.margin>
+                        </Label>
+                        <TextField fx:id="txtAltura">
+                           <HBox.margin>
+                              <Insets left="15.0" top="10.0" />
+                           </HBox.margin>
+                        </TextField>
+                     </children>
+                  </HBox>
+                  <HBox>
+                     <children>
+                        <Label text="Logotipo">
+                           <font>
+                              <Font name="Georgia" size="14.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets left="10.0" top="15.0" />
+                           </HBox.margin>
+                        </Label>
+                        <TextField fx:id="txtLogotipo">
+                           <HBox.margin>
+                              <Insets left="5.0" top="10.0" />
+                           </HBox.margin>
+                        </TextField>
+                        <Button mnemonicParsing="false" onAction="#abreArquivo" prefHeight="20.0" prefWidth="20.0" text="Button">
+                           <HBox.margin>
+                              <Insets left="5.0" right="10.0" top="10.0" />
+                           </HBox.margin>
+                        </Button>
+                     </children>
+                  </HBox>
+                  <HBox>
+                     <children>
+                        <Label text="Cor Fundo">
+                           <font>
+                              <Font name="Georgia" size="14.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets left="10.0" top="15.0" />
+                           </HBox.margin>
+                        </Label>
+                        <ColorPicker fx:id="txtCor">
+                           <HBox.margin>
+                              <Insets left="10.0" top="10.0" />
+                           </HBox.margin>
+                        </ColorPicker>
+                     </children>
+                  </HBox>
+                  <HBox>
+                     <children>
+                        <Label text="Razão Social">
+                           <font>
+                              <Font name="Georgia" size="14.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets left="10.0" top="15.0" />
+                           </HBox.margin>
+                        </Label>
+                        <TextField fx:id="txtRazaoSocial">
+                           <HBox.margin>
+                              <Insets left="10.0" top="10.0" />
+                           </HBox.margin>
+                        </TextField>
+                     </children>
+                  </HBox>
+                  <Button mnemonicParsing="false" onAction="#gravar" prefHeight="25.0" prefWidth="100.0" style="-fx-background-radius: 25; -fx-border-radius: 25; -fx-border-color: black;" text="Gravar">
+                     <VBox.margin>
+                        <Insets bottom="20.0" left="10.0" top="15.0" />
+                     </VBox.margin>
+                  </Button>
+               </children>
+            </VBox>
+         </center>
+      </BorderPane>
+   </children>
+</AnchorPane>

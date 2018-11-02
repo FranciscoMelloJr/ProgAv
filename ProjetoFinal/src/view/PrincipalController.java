@@ -49,9 +49,9 @@ public class PrincipalController {
 		try (BufferedReader br = new BufferedReader(new FileReader("aresta.txt"))) {
 			String linha = "";
 			while ((linha = br.readLine()) != null) {
-				String origem = linha.substring(0, 5);
-				String destino = linha.substring(5, 10);
-				int valor = Integer.parseInt(linha.substring(10, 13));
+				String origem = linha.substring(0, 5).trim();
+				String destino = linha.substring(5, 10).trim();
+				int valor = Integer.parseInt(linha.substring(10, 13).trim());
 				Aresta a = new Aresta();
 				a.setOrigem(origem);
 				a.setDestino(destino);
@@ -69,7 +69,7 @@ public class PrincipalController {
 			String linha = "";
 			while ((linha = br.readLine()) != null) {
 				Vertice v = new Vertice();
-				String nome = linha.substring(0, 5);
+				String nome = linha.substring(0, 5).trim();
 				v.setNome(nome);
 				verticeLista.add(v);
 			}
