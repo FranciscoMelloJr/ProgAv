@@ -35,7 +35,7 @@ public class PrincipalController {
 	@FXML
 	TextField txtValor;
 
-	ArrayList<Vertice> verticeLista = new ArrayList<Vertice>(); //testar removendo
+	ArrayList<Vertice> verticeLista = new ArrayList<Vertice>(); //testar removendo os dois (implementação)
 	ArrayList<Aresta> arestaLista = new ArrayList<Aresta>();
 
 	public void initialize() {
