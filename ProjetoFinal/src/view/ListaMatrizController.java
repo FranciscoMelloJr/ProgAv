@@ -81,6 +81,10 @@ public class ListaMatrizController {
 		}
 	}
 
+	public static String centerString(int width, String s) {
+		return String.format("%-" + width + "s", String.format("%" + (s.length() + (width - s.length()) / 2) + "s", s));
+	}
+
 	public void calculaMatrizIncidencia() {
 
 		String matrizIncidencia[][] = new String[verticeLista.size() + 1][arestaLista.size() + 1];
@@ -90,50 +94,53 @@ public class ListaMatrizController {
 		}
 
 		for (int j = 0; j < arestaLista.size(); j++) {
-			matrizIncidencia[0][j + 1] = arestaLista.get(j).nValorado();
+			matrizIncidencia[0][j + 1] = centerString(4, arestaLista.get(j).nValorado());
 		}
 
 		for (int j = 0; j < verticeLista.size(); j++) {
 			for (int i = 0; i < arestaLista.size(); i++) {
 				if (arestaLista.get(i).getOrigem().equals(verticeLista.get(j).getNome())) {
 					if (valorado) {
-						matrizIncidencia[j + 1][i + 1] = String.valueOf(" " + arestaLista.get(i).getValor());
+						matrizIncidencia[j + 1][i + 1] = centerString(6,
+								String.valueOf(" " + arestaLista.get(i).getValor()));
 					} else {
-						matrizIncidencia[j + 1][i + 1] = "1   ";
+						matrizIncidencia[j + 1][i + 1] = centerString(6, " 1");
 					}
 				}
 				if (arestaLista.get(i).getDestino().equals(verticeLista.get(j).getNome())) {
 					if (!orientado) {
-						matrizIncidencia[j + 1][i + 1] = "1   ";
+						matrizIncidencia[j + 1][i + 1] = centerString(6, " 1");
 						if (arestaLista.get(i).getDestino().equals(arestaLista.get(i).getOrigem())) {
-							matrizIncidencia[j + 1][i + 1] = "2   ";
+							matrizIncidencia[j + 1][i + 1] = centerString(6, " 2");
 						}
 						if (valorado) {
-							matrizIncidencia[j + 1][i + 1] = String.valueOf(" " + arestaLista.get(i).getValor());
+							matrizIncidencia[j + 1][i + 1] = centerString(6,
+									String.valueOf(" " + arestaLista.get(i).getValor()));
 						}
 					} else {
 						if (valorado) {
-							matrizIncidencia[j + 1][i + 1] = String.valueOf("-" + arestaLista.get(i).getValor());
+							matrizIncidencia[j + 1][i + 1] = centerString(6,
+									String.valueOf("-" + arestaLista.get(i).getValor()));
 						} else {
-							matrizIncidencia[j + 1][i + 1] = "-1   ";
+							matrizIncidencia[j + 1][i + 1] = centerString(6, "-1");
 						}
 					}
 				}
 			}
 		}
 
-		matrizIncidencia[0][0] = " ";
+		matrizIncidencia[0][0] = "    ";
 		String stringMatrizIncidencia = "";
 		for (int i = 0; i < verticeLista.size() + 1; i++) {
 			for (int j = 0; j < arestaLista.size() + 1; j++) {
 				if (matrizIncidencia[i][j] == null) {
 					if (valorado) {
-						matrizIncidencia[i][j] = "X  ";
+						matrizIncidencia[i][j] = centerString(6, " X");
 					} else {
-						matrizIncidencia[i][j] = "0  ";
+						matrizIncidencia[i][j] = centerString(6, " 0");
 					}
 				}
-				stringMatrizIncidencia += (matrizIncidencia[i][j] + "  ");
+				stringMatrizIncidencia += (matrizIncidencia[i][j]);
 			}
 			stringMatrizIncidencia += "\n";
 		}

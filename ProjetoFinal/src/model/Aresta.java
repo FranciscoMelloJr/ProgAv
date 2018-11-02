@@ -12,8 +12,8 @@ public class Aresta {
 	private IntegerProperty valor = new SimpleIntegerProperty(0);
 
 	public String nValorado() {
-		
-		return this.getOrigem() + "" + this.getDestino();
+
+		return this.getOrigem() + this.getDestino();
 	}
 
 	@Override
