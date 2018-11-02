@@ -235,7 +235,6 @@ public class ListaMatrizController {
 
 		String stringListaAdjacencia = "";
 		for (int k = 0; k < verticeLista.size(); k++) {
-			System.out.println(adjacenciaLista.get(k).nValorado());
 			stringListaAdjacencia += adjacenciaLista.get(k).nValorado() + "\n";
 		}
 		txtListaAdjacencia.setText(stringListaAdjacencia);
