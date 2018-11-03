@@ -12,12 +12,14 @@ public class Vertice {
 	private StringProperty nome = new SimpleStringProperty("");
 	private StringProperty path = new SimpleStringProperty("");
 	private IntegerProperty distancia = new SimpleIntegerProperty(999);
-	private boolean perm = false;
+	private StringProperty cor = new SimpleStringProperty("Branco");
+	private IntegerProperty profundidade = new SimpleIntegerProperty(0);
+
 	private ArrayList<Vertice> adj = new ArrayList<Vertice>();
 
 	@Override
 	public String toString() {
-		return "\nNome: " + nome + "\nPath: " + path + "\nDistancia: " + distancia + "\nPerm:" + perm;
+		return "\nNome: " + nome + "\nPath: " + path + "\nDistancia: " + distancia + "\nCor:" + cor;
 	}
 
 	public ArrayList<Vertice> getAdj() {
@@ -26,14 +28,6 @@ public class Vertice {
 
 	public void setAdj(ArrayList<Vertice> adj) {
 		this.adj = adj;
-	}
-
-	public boolean isPerm() {
-		return perm;
-	}
-
-	public void setPerm(boolean perm) {
-		this.perm = perm;
 	}
 
 	public final StringProperty nomeProperty() {
@@ -70,6 +64,30 @@ public class Vertice {
 
 	public final void setPath(final String path) {
 		this.pathProperty().set(path);
+	}
+
+	public final StringProperty corProperty() {
+		return this.cor;
+	}
+
+	public final String getCor() {
+		return this.corProperty().get();
+	}
+
+	public final void setCor(final String cor) {
+		this.corProperty().set(cor);
+	}
+
+	public final IntegerProperty profundidadeProperty() {
+		return this.profundidade;
+	}
+
+	public final int getProfundidade() {
+		return this.profundidadeProperty().get();
+	}
+
+	public final void setProfundidade(final int profundidade) {
+		this.profundidadeProperty().set(profundidade);
 	}
 
 }

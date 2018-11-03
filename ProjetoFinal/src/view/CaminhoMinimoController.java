@@ -17,6 +17,13 @@ import model.Vertice;
 
 public class CaminhoMinimoController {
 
+	public static final String BLACK = "Preto";
+	public static final String GRAY = "Cinza";
+	public static final String WHITE = "Branco";
+	public static final String ARESTA_TXT = "aresta.txt";
+	public static final String CONF_PROPERTIES = "conf.properties";
+	public static final String VERTICE_TXT = "vertice.txt";
+
 	@FXML
 	TextField txtSource;
 	@FXML
@@ -33,12 +40,26 @@ public class CaminhoMinimoController {
 	TableColumn<Vertice, Number> colDistancia;
 	@FXML
 	TableColumn<Vertice, String> colPath;
+	@FXML
+	TableColumn<Vertice, Number> colProfundidade;
 
 	ArrayList<Vertice> verticeLista = new ArrayList<Vertice>();
 	ArrayList<Aresta> arestaLista = new ArrayList<Aresta>();
 	boolean valorado, orientado;
 	Fila fila = new Fila();
-	Vertice destiny;
+	Vertice source, destiny;
+	int time = 0;
+
+	public void escolherAlgoritmo() {
+
+		if ((!valorado) && (!orientado))
+			buscaLargura();
+		if ((!valorado) && (orientado))
+			buscaProfundidade();
+		if (valorado)
+			dijkstra();
+
+	}
 
 	@FXML
 	public void initialize() {
@@ -49,43 +70,17 @@ public class CaminhoMinimoController {
 
 	}
 
-	private void leAresta() {
-		arestaLista.clear();
-		try (BufferedReader br = new BufferedReader(new FileReader("aresta.txt"))) {
-			String linha = "";
-			while ((linha = br.readLine()) != null) {
-				String origem = linha.substring(0, 5);
-				String destino = linha.substring(5, 10);
-				int valor = Integer.parseInt(linha.substring(10, 13));
-				Aresta a = new Aresta();
-				a.setOrigem(origem);
-				a.setDestino(destino);
-				a.setValor(valor);
-				arestaLista.add(a);
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
+	private void inicializaTbl() {
+		colNome.setCellValueFactory(cellData -> cellData.getValue().nomeProperty());
+		colDistancia.setCellValueFactory(cellData -> cellData.getValue().distanciaProperty());
+		colProfundidade.setCellValueFactory(cellData -> cellData.getValue().profundidadeProperty());
+		colPath.setCellValueFactory(cellData -> cellData.getValue().pathProperty());
 
-	private void leVertice() {
-		verticeLista.clear();
-		try (BufferedReader br = new BufferedReader(new FileReader("vertice.txt"))) {
-			String linha = "";
-			while ((linha = br.readLine()) != null) {
-				Vertice v = new Vertice();
-				String nome = linha.substring(0, 5);
-				v.setNome(nome);
-				verticeLista.add(v);
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
 	}
 
 	private void lerArquivoProperties() {
 		Properties propertie = new Properties();
-		try (FileReader fr = new FileReader("conf.properties")) {
+		try (FileReader fr = new FileReader(CONF_PROPERTIES)) {
 			propertie.load(fr);
 			orientado = Boolean.valueOf(propertie.getProperty("orientado"));
 			valorado = Boolean.valueOf(propertie.getProperty("valorado"));
@@ -94,40 +89,140 @@ public class CaminhoMinimoController {
 		}
 	}
 
+	private void leVertice() {
+		verticeLista.clear();
+		try (BufferedReader br = new BufferedReader(new FileReader(VERTICE_TXT))) {
+			String linha = "";
+			while ((linha = br.readLine()) != null) {
+				Vertice v = new Vertice();
+				String nome = linha.substring(0, 5).trim();
+				v.setNome(nome);
+				verticeLista.add(v);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	private void leAresta() {
+		arestaLista.clear();
+		try (BufferedReader br = new BufferedReader(new FileReader(ARESTA_TXT))) {
+			String linha = "";
+			while ((linha = br.readLine()) != null) {
+				String origem = linha.substring(0, 5).trim();
+				String destino = linha.substring(5, 10).trim();
+				int valor = Integer.parseInt(linha.substring(10, 13).trim());
+				Aresta aresta = new Aresta();
+				aresta.setOrigem(origem);
+				aresta.setDestino(destino);
+				aresta.setValor(valor);
+				adicionaAdjacente(aresta);
+				arestaLista.add(aresta);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	public void adicionaAdjacente(Aresta aresta) {
+
+		for (Vertice vertice : verticeLista) {
+			if (vertice.getNome().equals(aresta.getOrigem())) {
+				for (Vertice adjacente : verticeLista) {
+					if (adjacente.getNome().equals(aresta.getDestino())) {
+						vertice.getAdj().add(adjacente);
+						adjacente.getAdj().add(vertice);
+					}
+				}
+			}
+		}
+	}
+
 	@FXML
-	public void dijkstra() {
+	public void buscaLargura() {
 
 		while (fila.tamanho() != 0) {
 			Vertice atual = fila.remove();
 			for (int i = 0; i < atual.getAdj().size(); i++) {
-				if (!atual.getAdj().get(i).isPerm()) {
-					for (Aresta aresta : arestaLista) {
-						if (orientado) {
-							if ((atual.getNome().equals(aresta.getOrigem()))
-									&& (atual.getAdj().get(i).getNome().equals(aresta.getDestino()))) {
-								alteraDist(atual, aresta, i);
-							}
-						} else {
-							if ((atual.getNome().equals(aresta.getOrigem())
-									|| atual.getNome().equals(aresta.getDestino()))
-									&& (atual.getAdj().get(i).getNome().equals(aresta.getDestino())
-											|| atual.getAdj().get(i).getNome().equals(aresta.getOrigem()))) {
-								alteraDist(atual, aresta, i);
-							}
-						}
-					}
+				if (atual.getAdj().get(i).getCor().equals(WHITE)) {
+					atual.getAdj().get(i).setCor(GRAY);
+					atual.getAdj().get(i).setDistancia(atual.getDistancia() + 1);
+					atual.getAdj().get(i).setPath(atual.getNome());
+					fila.insere(atual.getAdj().get(i));
 				}
 			}
-			insereADJ(atual);
-			atual.setPerm(true);
-			if ((ckDestiny.isSelected()) && (destiny.isPerm())) {
+			atual.setCor(BLACK);
+			if ((ckDestiny.isSelected()) && (destiny.getCor().equals(BLACK))) {
 				break;
 			}
 		}
 		tbl.setItems(FXCollections.observableArrayList(verticeLista));
 	}
 
-	public void alteraDist(Vertice atual, Aresta aresta, int i) {
+	@FXML
+	public void buscaProfundidade() {
+
+		colDistancia.setText("Visitado");
+		colProfundidade.setText("Busca Completa");
+
+		for (Vertice vertice : verticeLista) {
+			if (vertice.getCor().equals(WHITE))
+				dfsVisit(vertice);
+
+		}
+		tbl.setItems(FXCollections.observableArrayList(verticeLista));
+	}
+
+	public void dfsVisit(Vertice vertice) {
+
+		vertice.setCor(GRAY);
+		time++;
+		vertice.setDistancia(time);
+		for (int i = 0; i < vertice.getAdj().size(); i++) {
+			if (vertice.getAdj().get(i).getCor().equals(WHITE)) {
+				vertice.getAdj().get(i).setPath(vertice.getNome());
+				dfsVisit(vertice.getAdj().get(i));
+			}
+		}
+		vertice.setCor(BLACK);
+		time++;
+		vertice.setProfundidade(time);
+	}
+
+	@FXML
+	public void dijkstra() {
+		colDistancia.setText("Distância");
+		while (fila.tamanho() != 0) {
+			Vertice atual = fila.remove();
+			for (int i = 0; i < atual.getAdj().size(); i++) {
+				if (atual.getAdj().get(i).getCor().equals(WHITE)) {
+					for (Aresta aresta : arestaLista) {
+						if (orientado) {
+							if ((atual.getNome().equals(aresta.getOrigem()))
+									&& (atual.getAdj().get(i).getNome().equals(aresta.getDestino()))) {
+								alteraDistanciaDijkstra(atual, aresta, i);
+							}
+						} else {
+							if ((atual.getNome().equals(aresta.getOrigem())
+									|| atual.getNome().equals(aresta.getDestino()))
+									&& (atual.getAdj().get(i).getNome().equals(aresta.getDestino())
+											|| atual.getAdj().get(i).getNome().equals(aresta.getOrigem()))) {
+								alteraDistanciaDijkstra(atual, aresta, i);
+							}
+						}
+					}
+				}
+			}
+			insereAdjacentesDijkstra(atual);
+			atual.setCor(GRAY);
+			if ((ckDestiny.isSelected()) && (destiny.getCor().equals(GRAY))) {
+				break;
+			}
+		}
+		tbl.setItems(FXCollections.observableArrayList(verticeLista));
+	}
+
+	public void alteraDistanciaDijkstra(Vertice atual, Aresta aresta, int i) {
 
 		for (Vertice vertice : verticeLista) {
 			if (vertice.getNome().equals(atual.getAdj().get(i).getNome())) {
@@ -139,49 +234,27 @@ public class CaminhoMinimoController {
 		}
 	}
 
-	public void insereADJ(Vertice vertice) {
+	public void insereAdjacentesDijkstra(Vertice vertice) {
 
 		for (int i = 0; i < vertice.getAdj().size(); i++) {
-			if (!vertice.getAdj().get(i).isPerm()) {
+			if (!vertice.getAdj().get(i).getCor().equals(GRAY)) {
 				if (!(fila.verificaIgual((vertice.getAdj().get(i).getNome())))) {
-					fila.insere(vertice.getAdj().get(i));
+					fila.inserePrioridade(vertice.getAdj().get(i));
 				}
 			}
 		}
 	}
 
-	@FXML //
-	public void adicionaDestiny() {
-
-		for (Vertice vertice : verticeLista) {
-			if (vertice.getNome().equals(txtDestiny.getText())) {
-				destiny = vertice;
-			}
-		}
-		txtDestiny.setText("");
-
-	}
-
 	@FXML
-	public void destinySN() {
-		if (ckDestiny.isSelected()) {
-			txtDestiny.setDisable(false);
-		} else {
-			txtDestiny.setDisable(true);
-		}
-	}
+	public void sourceDestinyEnd() {
 
-	@FXML
-	public void adicionaSource() {
-
-		Vertice source = null;
 		for (Vertice vertice : verticeLista) {
 			if (vertice.getNome().equals(txtSource.getText())) {
 				source = vertice;
 			}
 		}
 		source.setDistancia(0);
-		source.setPerm(true);
+		source.setCor(GRAY);
 		fila.insere(source);
 		txtSource.setText("");
 
@@ -192,15 +265,17 @@ public class CaminhoMinimoController {
 				}
 			}
 		txtDestiny.setText("");
-		dijkstra();
+		escolherAlgoritmo();
 
 	}
 
-	private void inicializaTbl() {
-		colNome.setCellValueFactory(cellData -> cellData.getValue().nomeProperty());
-		colDistancia.setCellValueFactory(cellData -> cellData.getValue().distanciaProperty());
-		colPath.setCellValueFactory(cellData -> cellData.getValue().pathProperty());
-
+	@FXML
+	public void destinySN() {
+		if (ckDestiny.isSelected()) {
+			txtDestiny.setDisable(false);
+		} else {
+			txtDestiny.setDisable(true);
+		}
 	}
 
 }

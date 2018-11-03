@@ -109,7 +109,6 @@ public class PrincipalController {
 			if (ckValorado.isSelected())
 				aresta.setValor(Integer.parseInt(txtValor.getText()));
 			arestaLista.add(aresta);
-			adicionaAdjacente(aresta);
 			limpaTelaE();
 			txtOrigem.requestFocus();
 
@@ -139,44 +138,6 @@ public class PrincipalController {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-	}
-
-	public void adicionaAdjacente(Aresta aresta) { //
-
-		for (Vertice vertice : verticeLista) {
-			if (vertice.getNome().equals(aresta.getOrigem())) {
-				for (Vertice adjacente : verticeLista) {
-					if (adjacente.getNome().equals(aresta.getDestino())) {
-						vertice.getAdj().add(adjacente);
-						adjacente.getAdj().add(vertice);
-					}
-				}
-			}
-		}
-	}
-
-	@FXML
-	public void adicionaAresta() { //
-
-		Aresta aresta = new Aresta();
-		aresta.setOrigem(txtOrigem.getText());
-		aresta.setDestino(txtDestino.getText());
-		if (ckValorado.isSelected())
-			aresta.setValor(Integer.parseInt(txtValor.getText()));
-		arestaLista.add(aresta);
-		adicionaAdjacente(aresta);
-		limpaTelaE();
-		txtOrigem.requestFocus();
-	}
-
-	@FXML
-	public void adicionaVertice() { //
-
-		Vertice vertice = new Vertice();
-		vertice.setNome(txtVertice.getText());
-		verticeLista.add(vertice);
-		txtVertice.setText("");
-
 	}
 
 	@FXML
