@@ -13,7 +13,7 @@ public class Vertice {
 	private StringProperty path = new SimpleStringProperty("");
 	private IntegerProperty distancia = new SimpleIntegerProperty(999);
 	private StringProperty cor = new SimpleStringProperty("Branco");
-	private IntegerProperty profundidade = new SimpleIntegerProperty(0);
+	private IntegerProperty profundidade = new SimpleIntegerProperty();
 
 	private ArrayList<Vertice> adj = new ArrayList<Vertice>();
 

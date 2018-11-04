@@ -18,10 +18,10 @@
          <center>
             <TableView fx:id="tbl" prefHeight="597.0" prefWidth="800.0" BorderPane.alignment="CENTER">
               <columns>
-                <TableColumn fx:id="colNome" prefWidth="195.0" text="Vértice" />
-                <TableColumn fx:id="colPath" prefWidth="195.0" text="Caminho" />
-                  <TableColumn fx:id="colDistancia" prefWidth="195.0" />
-                  <TableColumn fx:id="colProfundidade" prefWidth="195.0" />
+                <TableColumn fx:id="colNome" prefWidth="195.0" style="-fx-alignment: center;" text="Vértice" />
+                <TableColumn fx:id="colPath" prefWidth="195.0" style="-fx-alignment: center;" text="Caminho" />
+                  <TableColumn fx:id="colDistancia" prefWidth="195.0" style="-fx-alignment: center;" />
+                  <TableColumn fx:id="colProfundidade" prefWidth="195.0" style="-fx-alignment: center;" text="Auxiliar" />
               </columns>
                <BorderPane.margin>
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />

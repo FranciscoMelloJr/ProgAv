@@ -131,7 +131,8 @@ public class CaminhoMinimoController {
 				for (Vertice adjacente : verticeLista) {
 					if (adjacente.getNome().equals(aresta.getDestino())) {
 						vertice.getAdj().add(adjacente);
-						adjacente.getAdj().add(vertice);
+						if (!orientado)
+							adjacente.getAdj().add(vertice);
 					}
 				}
 			}
@@ -152,7 +153,7 @@ public class CaminhoMinimoController {
 				}
 			}
 			atual.setCor(BLACK);
-			if ((ckDestiny.isSelected()) && (destiny.getCor().equals(BLACK))) {
+			if ((ckDestiny.isSelected()) && (destiny.getCor().equals(GRAY))) {
 				break;
 			}
 		}
@@ -164,17 +165,20 @@ public class CaminhoMinimoController {
 
 		colDistancia.setText("Visitado");
 		colProfundidade.setText("Busca Completa");
-
+		source.setCor(WHITE);
+		dfsVisit(source);
 		for (Vertice vertice : verticeLista) {
 			if (vertice.getCor().equals(WHITE))
 				dfsVisit(vertice);
-
 		}
 		tbl.setItems(FXCollections.observableArrayList(verticeLista));
 	}
 
 	public void dfsVisit(Vertice vertice) {
 
+		if ((ckDestiny.isSelected()) && (destiny.getCor().equals(GRAY))) {
+			return;
+		}
 		vertice.setCor(GRAY);
 		time++;
 		vertice.setDistancia(time);
@@ -249,7 +253,7 @@ public class CaminhoMinimoController {
 	public void sourceDestinyEnd() {
 
 		for (Vertice vertice : verticeLista) {
-			if (vertice.getNome().equals(txtSource.getText())) {
+			if (vertice.getNome().equalsIgnoreCase(txtSource.getText())) {
 				source = vertice;
 			}
 		}
@@ -260,7 +264,7 @@ public class CaminhoMinimoController {
 
 		if (ckDestiny.isSelected())
 			for (Vertice vertice : verticeLista) {
-				if (vertice.getNome().equals(txtDestiny.getText())) {
+				if (vertice.getNome().equalsIgnoreCase(txtDestiny.getText())) {
 					destiny = vertice;
 				}
 			}
