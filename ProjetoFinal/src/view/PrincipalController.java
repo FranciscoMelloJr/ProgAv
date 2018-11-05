@@ -35,15 +35,15 @@ public class PrincipalController {
 	@FXML
 	TextField txtValor;
 
-	ArrayList<Vertice> verticeLista = new ArrayList<Vertice>(); //testar removendo os dois (implementação)
+	ArrayList<Vertice> verticeLista = new ArrayList<Vertice>(); // testar removendo os dois (implementação)
 	ArrayList<Aresta> arestaLista = new ArrayList<Aresta>();
 
 	public void initialize() {
 		leVertice();
 		leAresta();
-		
+
 	}
-	
+
 	private void leAresta() {
 		arestaLista.clear();
 		try (BufferedReader br = new BufferedReader(new FileReader("aresta.txt"))) {
@@ -77,8 +77,7 @@ public class PrincipalController {
 			e.printStackTrace();
 		}
 	}
-	
-	
+
 	private void alteraArquivoProperties() {
 		Properties propertie = new Properties();
 		try (FileReader fr = new FileReader("conf.properties"); BufferedReader br = new BufferedReader(fr)) {
@@ -88,16 +87,13 @@ public class PrincipalController {
 
 			try (BufferedWriter bw = new BufferedWriter(new FileWriter("conf.properties"))) {
 				propertie.store(bw, "Atualização de Configurações");
-
 			} catch (Exception ex) {
 				System.out.println(ex.getMessage());
 				ex.printStackTrace();
 			}
-
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-
 	}
 
 	public void inserirAresta() {
@@ -148,7 +144,7 @@ public class PrincipalController {
 			txtValor.setDisable(true);
 		}
 	}
-	
+
 	@FXML
 	public void limpaTelaE() {
 

@@ -52,13 +52,21 @@ public class CaminhoMinimoController {
 
 	public void escolherAlgoritmo() {
 
-		if ((!valorado) && (!orientado))
+		if (!valorado && !orientado) {
 			buscaLargura();
-		if ((!valorado) && (orientado))
+		}
+		if (!valorado && orientado) {
 			buscaProfundidade();
-		if (valorado)
+		}
+		if (valorado) {
+			for (Aresta aresta : arestaLista) {
+				if (aresta.getValor() < 0) {
+					bellmanFord();
+					return;
+				}
+			}
 			dijkstra();
-
+		}
 	}
 
 	@FXML
@@ -202,15 +210,15 @@ public class CaminhoMinimoController {
 				if (atual.getAdj().get(i).getCor().equals(WHITE)) {
 					for (Aresta aresta : arestaLista) {
 						if (orientado) {
-							if ((atual.getNome().equals(aresta.getOrigem()))
-									&& (atual.getAdj().get(i).getNome().equals(aresta.getDestino()))) {
+							if (atual.getNome().equals(aresta.getOrigem())
+									&& atual.getAdj().get(i).getNome().equals(aresta.getDestino())) {
 								alteraDistanciaDijkstra(atual, aresta, i);
 							}
 						} else {
-							if ((atual.getNome().equals(aresta.getOrigem())
-									|| atual.getNome().equals(aresta.getDestino()))
-									&& (atual.getAdj().get(i).getNome().equals(aresta.getDestino())
-											|| atual.getAdj().get(i).getNome().equals(aresta.getOrigem()))) {
+							if (atual.getNome().equals(aresta.getOrigem())
+									|| atual.getNome().equals(aresta.getDestino())
+											&& atual.getAdj().get(i).getNome().equals(aresta.getDestino())
+									|| atual.getAdj().get(i).getNome().equals(aresta.getOrigem())) {
 								alteraDistanciaDijkstra(atual, aresta, i);
 							}
 						}
@@ -242,11 +250,66 @@ public class CaminhoMinimoController {
 
 		for (int i = 0; i < vertice.getAdj().size(); i++) {
 			if (!vertice.getAdj().get(i).getCor().equals(GRAY)) {
-				if (!(fila.verificaIgual((vertice.getAdj().get(i).getNome())))) {
+				if (!fila.verificaIgual((vertice.getAdj().get(i).getNome()))) {
 					fila.inserePrioridade(vertice.getAdj().get(i));
 				}
 			}
 		}
+	}
+
+	public void bellmanFord() {
+
+		Vertice origem = null, destino = null;
+
+		for (int i = 1; i < verticeLista.size(); i++) {
+			for (Aresta aresta : arestaLista) {
+				origem = pegaVerticeOrigem(aresta);
+				destino = pegaVerticeDestino(aresta);
+				alteraDistanciaBellmanFord(origem, destino, aresta);
+			}
+		}
+		for (Aresta aresta : arestaLista) {
+			origem = pegaVerticeOrigem(aresta);
+			destino = pegaVerticeDestino(aresta);
+			if (alteraDistanciaBellmanFord(origem, destino, aresta)) {
+				System.out.println("Graph contains negative-weight cycles");
+			}
+		}
+		tbl.setItems(FXCollections.observableArrayList(verticeLista));
+	}
+
+	public boolean alteraDistanciaBellmanFord(Vertice origem, Vertice destino, Aresta aresta) {
+
+		if (origem.getDistancia() + aresta.getValor() < destino.getDistancia()) {
+			destino.setDistancia((origem.getDistancia() + aresta.getValor()));
+			destino.setPath(origem.getNome());
+			return true;
+		}
+		return false;
+	}
+
+	public Vertice pegaVerticeOrigem(Aresta aresta) {
+
+		Vertice origem = null;
+
+		for (Vertice vertice : verticeLista) {
+			if (aresta.getOrigem().equals(vertice.getNome())) {
+				origem = vertice;
+			}
+		}
+		return origem;
+	}
+
+	public Vertice pegaVerticeDestino(Aresta aresta) {
+
+		Vertice destino = null;
+
+		for (Vertice vertice : verticeLista) {
+			if (aresta.getDestino().equals(vertice.getNome())) {
+				destino = vertice;
+			}
+		}
+		return destino;
 	}
 
 	@FXML
@@ -261,7 +324,6 @@ public class CaminhoMinimoController {
 		source.setCor(GRAY);
 		fila.insere(source);
 		txtSource.setText("");
-
 		if (ckDestiny.isSelected())
 			for (Vertice vertice : verticeLista) {
 				if (vertice.getNome().equalsIgnoreCase(txtDestiny.getText())) {
@@ -270,7 +332,6 @@ public class CaminhoMinimoController {
 			}
 		txtDestiny.setText("");
 		escolherAlgoritmo();
-
 	}
 
 	@FXML
@@ -281,5 +342,4 @@ public class CaminhoMinimoController {
 			txtDestiny.setDisable(true);
 		}
 	}
-
 }
