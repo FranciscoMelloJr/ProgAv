@@ -19,6 +19,10 @@ import model.Vertice;
 
 public class PrincipalController {
 
+	public static final String ARESTA_TXT = "aresta.txt";
+	public static final String CONF_PROPERTIES = "conf.properties";
+	public static final String VERTICE_TXT = "vertice.txt";
+
 	@FXML
 	TabPane tabPane;
 	@FXML
@@ -46,7 +50,7 @@ public class PrincipalController {
 
 	private void leAresta() {
 		arestaLista.clear();
-		try (BufferedReader br = new BufferedReader(new FileReader("aresta.txt"))) {
+		try (BufferedReader br = new BufferedReader(new FileReader(ARESTA_TXT))) {
 			String linha = "";
 			while ((linha = br.readLine()) != null) {
 				String origem = linha.substring(0, 5).trim();
@@ -65,7 +69,7 @@ public class PrincipalController {
 
 	private void leVertice() {
 		verticeLista.clear();
-		try (BufferedReader br = new BufferedReader(new FileReader("vertice.txt"))) {
+		try (BufferedReader br = new BufferedReader(new FileReader(VERTICE_TXT))) {
 			String linha = "";
 			while ((linha = br.readLine()) != null) {
 				Vertice v = new Vertice();
@@ -80,7 +84,7 @@ public class PrincipalController {
 
 	private void alteraArquivoProperties() {
 		Properties propertie = new Properties();
-		try (FileReader fr = new FileReader("conf.properties"); BufferedReader br = new BufferedReader(fr)) {
+		try (FileReader fr = new FileReader(CONF_PROPERTIES); BufferedReader br = new BufferedReader(fr)) {
 			propertie.load(fr);
 			propertie.setProperty("orientado", String.valueOf(ckOrientado.isSelected()));
 			propertie.setProperty("valorado", String.valueOf(ckValorado.isSelected()));
@@ -97,7 +101,7 @@ public class PrincipalController {
 	}
 
 	public void inserirAresta() {
-		try (BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter("aresta.txt", true))) {
+		try (BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(ARESTA_TXT, true))) {
 
 			Aresta aresta = new Aresta();
 			aresta.setOrigem(txtOrigem.getText());
@@ -120,7 +124,7 @@ public class PrincipalController {
 	}
 
 	public void inserirVertice() {
-		try (BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter("vertice.txt", true))) {
+		try (BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(VERTICE_TXT, true))) {
 
 			Vertice vertice = new Vertice();
 			vertice.setNome(txtVertice.getText());

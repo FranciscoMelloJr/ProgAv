@@ -212,6 +212,10 @@ public class ListaMatrizController {
 		txtMatrizAdjacencia.setText(stringMatrizAdjacencia);
 	}
 
+	// Não valorado tem que iniciar com 0 e ir incrementado
+	
+	
+	
 	public void calculaListaAdjacencia() {
 
 		ArrayList<Aresta> adjacenciaLista = new ArrayList<Aresta>();
