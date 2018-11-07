@@ -51,6 +51,10 @@ public class DistanciaController {
 	private void floydWarshall() {
 
 		Integer[][] matrizDistancia = new Integer[verticeLista.size() + 1][verticeLista.size() + 1];
+		String[] linha = new String[verticeLista.size() + 1];
+		String[] coluna = new String[verticeLista.size() + 1];
+		String stringMatrizTransposta = "      ";
+		String stringMatrizDistancia = "      ";
 		int indiceX = 0;
 		int indiceY = 0;
 
@@ -104,11 +108,6 @@ public class DistanciaController {
 			}
 		}
 
-		String[] linha = new String[verticeLista.size() + 1];
-		String[] coluna = new String[verticeLista.size() + 1];
-
-		String stringMatrizDistancia = "      ";
-
 		// cria string da coluna e linha dos vertices
 		for (int k = 0; k < verticeLista.size(); k++) {
 			linha[k] = verticeLista.get(k).getNome();
@@ -125,12 +124,11 @@ public class DistanciaController {
 
 		// Coloca os maiores valores das linhas no final E COLUNA
 		for (int i = 0; i < matrizDistancia.length - 1; i++) {
-			int aux = 0;
-			for (int j = 0; j < matrizDistancia.length - 1; j++) {
-				if (matrizDistancia[i][j] > aux)
-					aux = matrizDistancia[i][j];
-			}
-			matrizDistancia[i][matrizDistancia.length - 1] = aux;
+			int auxDistancia = 0;
+			for (int j = 0; j < matrizDistancia.length - 1; j++) 
+				if (matrizDistancia[i][j] > auxDistancia)
+					auxDistancia = matrizDistancia[i][j];
+			matrizDistancia[i][matrizDistancia.length - 1] = auxDistancia;
 		}
 
 		// coloca os maiores valores das colunas no final R Linha
@@ -144,8 +142,6 @@ public class DistanciaController {
 				matrizDistancia[matrizDistancia.length - 1][i] = aux;
 			}
 		}
-		Integer[][] matrizTransposta = calculaMatrizTransposta(matrizDistancia);
-		String stringMatrizTransposta = "      ";
 
 		// inicializa com a primeira linha de vertices
 		for (int i = 0; i < matrizDistancia.length; i++) {
@@ -154,13 +150,28 @@ public class DistanciaController {
 		}
 		stringMatrizDistancia += "\n";
 		stringMatrizTransposta += "\n";
-
+		
+		Integer[][] matrizTransposta = calculaMatrizTransposta(matrizDistancia);
+		
+		
+		// Coloca os maiores valores das linhas no final E COLUNA da transposta ta repetindo mas ok
+		for (int i = 0; i < matrizTransposta.length - 1; i++) {
+			int auxTransposta = 0;
+			for (int j = 0; j < matrizTransposta.length - 1; j++) {
+				if (matrizTransposta[i][j] > auxTransposta)
+					auxTransposta = matrizTransposta[i][j];
+			}
+			matrizTransposta[i][matrizTransposta.length - 1] = auxTransposta;
+		}
+		
 		// adiciona as colunas com os valores IMPRIME
 		for (int i = 0; i < matrizDistancia.length; i++) {
 			stringMatrizDistancia += coluna[i] + "->";
 			stringMatrizTransposta += coluna[i] + "->";
 			for (int j = 0; j < matrizDistancia.length; j++) {
-				stringMatrizTransposta += matrizTransposta[i][j] + "  ";              //COLOCA APENAS EEEEEEEEE PARA O ORIENTADO E NAO ORIENTADO DA TRANSPOSTA     // SETAR OS VALORES NA COLUNA
+				stringMatrizTransposta += matrizTransposta[i][j] + "  "; // COLOCA APENAS EEEEEEEEE PARA O ORIENTADO E
+																			// NAO ORIENTADO DA TRANSPOSTA // SETAR OS
+																			// VALORES NA COLUNA
 				stringMatrizDistancia += matrizDistancia[i][j] + "  ";
 			}
 			stringMatrizTransposta += "\n";
