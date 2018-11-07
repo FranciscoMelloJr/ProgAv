@@ -53,6 +53,7 @@ public class CadastroController {
 	
 	@FXML 
 	public void listaAlunos() {
+		tbl.getItems().clear();
 		try {
 			Connection conn = Conexao.getConexao();
 			String sql = "Select * from aluno order by nome";
