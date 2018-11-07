@@ -169,7 +169,7 @@
                         <Insets bottom="10.0" left="40.0" top="5.0" />
                      </VBox.margin>
                   </Button>
-                  <Button mnemonicParsing="false" onAction="#abre" prefHeight="25.0" prefWidth="140.0" style="-fx-background-radius: 25; -fx-border-radius: 25; -fx-border-color: black; -fx-background-color: gray;" text="Limpar Dados">
+                  <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="140.0" style="-fx-background-radius: 25; -fx-border-radius: 25; -fx-border-color: black; -fx-background-color: gray;" text="Limpar Dados">
                      <font>
                         <Font size="18.0" />
                      </font>

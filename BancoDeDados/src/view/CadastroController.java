@@ -2,6 +2,7 @@ package view;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -30,11 +31,73 @@ public class CadastroController {
 	private List<Aluno> alunos = new ArrayList<>();
 	
 
+	classe CadAlunoController {
+		
+	TextField txtNome;
+	TextField txtIdade;
+	ComboBox <Cidade> cbCidade;
+	ComboBox <Curso> cbCurso;
+	TableView<Aluno> tbl;
+	TableCollumn<Aluno,String> colNome;
+	TableCollumn<Aluno,Number> colIdade;
+	TableCollumn<Aluno,String> colCidade;
+	TableCollumn<Aluno,String> colCurso;
+	
 	@FXML
 	public void initialize() {
 		alunoService.initialize(colNome,chUf);
 		preencheComboCidade();
 		preencheComboCurso();
+	}
+	
+	@FXML 
+	public void listaAlunos() {
+		
+	}
+	
+	private Cidade buscaCidadePorCodigo(int cod) {
+		Cidade c = new Cidade();
+		try {
+			Connection conn = Conexao.getConexao();
+			String sql = "Select * from cidade where codigo=?";
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setInt(1,cod);
+			ResultSet rs = ps.executeQuery();
+			if(rs.next()) {
+				c.setCodigo(rs.getInt("codigo"));
+				c.setNome(rs.getString("nome"));
+				c.setUf(rs.getString("uf"));
+			}
+			conn.close();
+			
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return c;
+	}
+	
+	private Curso buscaCursoPorCodigo(int cod) {
+		Curso c = new Curso();
+		try {
+			Connection conn = Conexao.getConexao();
+			String sql = "Select * from cidade where codigo=?";
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setInt(1,cod);
+			ResultSet rs = ps.executeQuery();
+			if(rs.next()) {
+				c.setCodigo(rs.getInt("codigo"));
+				c.setNome(rs.getString("nome"));
+			}
+			conn.close();
+			
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return c;
+		
 	}
 	
 	@FXML
