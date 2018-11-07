@@ -48,11 +48,29 @@ public class CadastroController {
 		alunoService.initialize(colNome,chUf);
 		preencheComboCidade();
 		preencheComboCurso();
+		listaAlunos();
 	}
 	
 	@FXML 
 	public void listaAlunos() {
-		
+		try {
+			Connection conn = Conexao.getConexao();
+			String sql = "Select * from aluno order by nome";
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ResultSet rs = ps.executeQuery();
+			while(rs.next()) {
+				Aluno a = new Alno();
+				a.setCodigo(rs.getInt("codigo"));
+				a.setNome(rs.getString("nome"));
+				a.setIdade(rs.getInt("idade"));
+				a.setCidade(buscaCidadePorCodigo(rs.getInt("cidade")));
+				a.setCurso(buscaCursoPorCodigo(rs.getInt("curso")));
+				tbl.getItens().add(a);
+				
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
 	}
 	
 	private Cidade buscaCidadePorCodigo(int cod) {
@@ -132,6 +150,7 @@ public class CadastroController {
 			ps.setInt(4, a.getCurso().getCodigo());
 			ps.executeUpdate();
 			conn.close();
+			listaAlunos();
 		} catch (Exception e) {
 			// TODO: handle exception
 		}

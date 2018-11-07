@@ -165,7 +165,7 @@ public class DistanciaController {
 			matrizTransposta[i][matrizTransposta.length - 1] = auxTransposta;
 		}
 		
-		// adiciona as colunas com os valores IMPRIME
+		// adiciona as colunas com os valores IMPRIME   //sepa tem que duplicar, um pra cada matriz pra nao dar conflito tbm
 		for (int i = 0; i < matrizDistancia.length; i++) {
 			stringMatrizDistancia += coluna[i] + "->";
 			stringMatrizTransposta += coluna[i] + "->";
