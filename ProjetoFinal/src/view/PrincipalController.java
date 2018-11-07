@@ -192,8 +192,9 @@ public class PrincipalController {
 	}
 
 	@FXML
-	public void abre() {
-
+	public void abreArvoreMinima() {
+		alteraArquivoProperties();
+		abreTab("Arvore Geradora Miníma", "ArvoreMinima.fxml");
 	}
 
 	private void abreTab(String titulo, String path) {

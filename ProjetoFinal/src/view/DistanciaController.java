@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.Properties;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextArea;
 import model.Aresta;
 import model.Vertice;
@@ -13,7 +14,7 @@ import model.Vertice;
 public class DistanciaController {
 
 	private static final int INFINITO = 99;
-
+	
 	@FXML
 	TextArea txtMatrizDistancia;
 	@FXML
@@ -169,14 +170,15 @@ public class DistanciaController {
 			stringMatrizDistancia += coluna[i] + "->";
 			stringMatrizTransposta += coluna[i] + "->";
 			for (int j = 0; j < matrizDistancia.length; j++) {
-				stringMatrizTransposta += matrizTransposta[i][j] + "  "; // COLOCA APENAS EEEEEEEEE PARA O ORIENTADO E
-																			// NAO ORIENTADO DA TRANSPOSTA // SETAR OS
-																			// VALORES NA COLUNA
+				stringMatrizTransposta += matrizTransposta[i][j] + "  "; 
 				stringMatrizDistancia += matrizDistancia[i][j] + "  ";
 			}
 			stringMatrizTransposta += "\n";
 			stringMatrizDistancia += "\n";
 			if (!orientado && i == matrizDistancia.length - 2) {
+				break;
+			}
+			if (orientado && i == matrizTransposta.length - 2) {
 				break;
 			}
 		}
