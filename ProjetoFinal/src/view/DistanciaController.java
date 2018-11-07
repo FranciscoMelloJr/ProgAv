@@ -29,8 +29,6 @@ public class DistanciaController {
 		leVertice();
 		leAresta();
 		floydWarshall();
-		calculaMatrizDistancia();
-		calculaMatrizTransposta();
 
 	}
 
@@ -38,8 +36,16 @@ public class DistanciaController {
 
 	}
 
-	private void calculaMatrizTransposta() {
+	private Integer[][] calculaMatrizTransposta(Integer[][] matrizDistancia) {
 
+		Integer[][] matrizTransposta = new Integer[matrizDistancia.length][matrizDistancia.length];
+
+		for (int i = 0; i < verticeLista.size(); i++) {
+			for (int j = 0; j < verticeLista.size(); j++) {
+				matrizTransposta[i][j] = matrizDistancia[j][i] + matrizDistancia[i][j];
+			}
+		}
+		return matrizTransposta;
 	}
 
 	private void floydWarshall() {
@@ -49,8 +55,8 @@ public class DistanciaController {
 		int indiceY = 0;
 
 		// inicializa a matriz com 0 na principal e 99 nos outros
-		for (int i = 0; i < verticeLista.size(); i++) {
-			for (int j = 0; j < verticeLista.size(); j++) {
+		for (int i = 0; i < matrizDistancia.length; i++) {
+			for (int j = 0; j < matrizDistancia.length; j++) {
 				if (i == j) {
 					matrizDistancia[i][j] = 0;
 				} else {
@@ -116,11 +122,6 @@ public class DistanciaController {
 		} else {
 			linha[linha.length - 1] = "E"; // não orientado
 		}
-		// inicializa com a primeira linha de vertices
-		for (int i = 0; i < matrizDistancia.length; i++) {
-			stringMatrizDistancia += linha[i] + "  ";
-		}
-		stringMatrizDistancia += "\n";
 
 		// Coloca os maiores valores das linhas no final E COLUNA
 		for (int i = 0; i < matrizDistancia.length - 1; i++) {
@@ -132,7 +133,7 @@ public class DistanciaController {
 			matrizDistancia[i][matrizDistancia.length - 1] = aux;
 		}
 
-		//coloca os maiores valores das colunas no final R Linha
+		// coloca os maiores valores das colunas no final R Linha
 		if (orientado) {
 			for (int i = 0; i < matrizDistancia.length - 1; i++) {
 				int aux = 0;
@@ -143,16 +144,33 @@ public class DistanciaController {
 				matrizDistancia[matrizDistancia.length - 1][i] = aux;
 			}
 		}
-tratar os nulo
-		// adiciona as colunas com os valores
+		Integer[][] matrizTransposta = calculaMatrizTransposta(matrizDistancia);
+		String stringMatrizTransposta = "      ";
+
+		// inicializa com a primeira linha de vertices
+		for (int i = 0; i < matrizDistancia.length; i++) {
+			stringMatrizDistancia += linha[i] + "  ";
+			stringMatrizTransposta += linha[i] + "  ";
+		}
+		stringMatrizDistancia += "\n";
+		stringMatrizTransposta += "\n";
+
+		// adiciona as colunas com os valores IMPRIME
 		for (int i = 0; i < matrizDistancia.length; i++) {
 			stringMatrizDistancia += coluna[i] + "->";
+			stringMatrizTransposta += coluna[i] + "->";
 			for (int j = 0; j < matrizDistancia.length; j++) {
+				stringMatrizTransposta += matrizTransposta[i][j] + "  ";              //COLOCA APENAS EEEEEEEEE PARA O ORIENTADO E NAO ORIENTADO DA TRANSPOSTA     // SETAR OS VALORES NA COLUNA
 				stringMatrizDistancia += matrizDistancia[i][j] + "  ";
 			}
+			stringMatrizTransposta += "\n";
 			stringMatrizDistancia += "\n";
+			if (!orientado && i == matrizDistancia.length - 2) {
+				break;
+			}
 		}
 		txtMatrizDistancia.setText(stringMatrizDistancia);
+		txtMatrizTransposta.setText(stringMatrizTransposta);
 	}
 
 	public Vertice pegaVerticeOrigem(Aresta aresta) {
