@@ -6,7 +6,6 @@ import java.util.ArrayList;
 import java.util.Properties;
 
 import javafx.fxml.FXML;
-import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextArea;
 import model.Aresta;
 import model.Vertice;
@@ -14,7 +13,7 @@ import model.Vertice;
 public class DistanciaController {
 
 	private static final int INFINITO = 99;
-	
+
 	@FXML
 	TextArea txtMatrizDistancia;
 	@FXML
@@ -30,10 +29,6 @@ public class DistanciaController {
 		leVertice();
 		leAresta();
 		floydWarshall();
-
-	}
-
-	private void calculaMatrizDistancia() {
 
 	}
 
@@ -116,17 +111,15 @@ public class DistanciaController {
 		}
 
 		// Coloca Saida e Retorno
+		linha[linha.length - 1] = "E";
 		if (orientado) {
 			coluna[coluna.length - 1] = "S";
-			linha[linha.length - 1] = "R";
-		} else {
-			linha[linha.length - 1] = "E"; // não orientado
 		}
 
 		// Coloca os maiores valores das linhas no final E COLUNA
 		for (int i = 0; i < matrizDistancia.length - 1; i++) {
 			int auxDistancia = 0;
-			for (int j = 0; j < matrizDistancia.length - 1; j++) 
+			for (int j = 0; j < matrizDistancia.length - 1; j++)
 				if (matrizDistancia[i][j] > auxDistancia)
 					auxDistancia = matrizDistancia[i][j];
 			matrizDistancia[i][matrizDistancia.length - 1] = auxDistancia;
@@ -151,11 +144,11 @@ public class DistanciaController {
 		}
 		stringMatrizDistancia += "\n";
 		stringMatrizTransposta += "\n";
-		
+
 		Integer[][] matrizTransposta = calculaMatrizTransposta(matrizDistancia);
-		
-		
-		// Coloca os maiores valores das linhas no final E COLUNA da transposta ta repetindo mas ok
+
+		// Coloca os maiores valores das linhas no final E COLUNA da transposta ta
+		// repetindo mas ok
 		for (int i = 0; i < matrizTransposta.length - 1; i++) {
 			int auxTransposta = 0;
 			for (int j = 0; j < matrizTransposta.length - 1; j++) {
@@ -164,24 +157,32 @@ public class DistanciaController {
 			}
 			matrizTransposta[i][matrizTransposta.length - 1] = auxTransposta;
 		}
-		
-		// adiciona as colunas com os valores IMPRIME   //sepa tem que duplicar, um pra cada matriz pra nao dar conflito tbm
+
+		// adiciona as colunas com os valores IMPRIME distancia
+
 		for (int i = 0; i < matrizDistancia.length; i++) {
 			stringMatrizDistancia += coluna[i] + "->";
-			stringMatrizTransposta += coluna[i] + "->";
 			for (int j = 0; j < matrizDistancia.length; j++) {
-				stringMatrizTransposta += matrizTransposta[i][j] + "  "; 
 				stringMatrizDistancia += matrizDistancia[i][j] + "  ";
 			}
-			stringMatrizTransposta += "\n";
 			stringMatrizDistancia += "\n";
 			if (!orientado && i == matrizDistancia.length - 2) {
 				break;
 			}
-			if (orientado && i == matrizTransposta.length - 2) {
+		}
+
+		// adiciona as colunas com os valores IMPRIME transposta
+		for (int i = 0; i < matrizTransposta.length; i++) {
+			stringMatrizTransposta += coluna[i] + "->";
+			for (int j = 0; j < matrizDistancia.length; j++) {
+				stringMatrizTransposta += matrizTransposta[i][j] + "  ";
+			}
+			stringMatrizTransposta += "\n";
+			if (i == matrizTransposta.length - 2) {
 				break;
 			}
 		}
+
 		txtMatrizDistancia.setText(stringMatrizDistancia);
 		txtMatrizTransposta.setText(stringMatrizTransposta);
 	}
