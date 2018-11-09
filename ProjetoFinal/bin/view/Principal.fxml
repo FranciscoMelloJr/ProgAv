@@ -161,7 +161,7 @@
                         <Insets left="40.0" top="5.0" />
                      </VBox.margin>
                   </Button>
-                  <Button disable="true" mnemonicParsing="false" onAction="#abreArvoreMinima" prefHeight="40.0" prefWidth="200.0" style="-fx-background-radius: 25; -fx-border-radius: 25; -fx-border-color: black;" text="Árvore G. Miníma">
+                  <Button mnemonicParsing="false" onAction="#abreArvoreMinima" prefHeight="40.0" prefWidth="200.0" style="-fx-background-radius: 25; -fx-border-radius: 25; -fx-border-color: black;" text="Árvore G. Miníma">
                      <font>
                         <Font size="18.0" />
                      </font>

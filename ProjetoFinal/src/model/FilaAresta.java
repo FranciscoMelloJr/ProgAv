@@ -34,7 +34,7 @@ public class FilaAresta {
 						break;
 					}
 				} else {
-					if ((inicio.aresta.getOrigem()+inicio.aresta.getOrigem()).equals((atual.aresta.getOrigem()+atual.aresta.getDestino()))) {
+					if ((inicio.aresta.getOrigem().concat(inicio.aresta.getDestino())).equals((atual.aresta.getOrigem().concat(atual.aresta.getDestino())))) {
 						inicio.anterior = novo;
 						novo.proximo = inicio;
 						inicio = novo;

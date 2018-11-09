@@ -20,6 +20,18 @@ public class Vertice {
 	private ArrayList<Vertice> conjunto = new ArrayList<Vertice>();
 	private ArrayList<Vertice> adj = new ArrayList<Vertice>();
 
+
+	public String conjunto() {
+		
+		String conjuntos = "";
+		
+		for (Vertice vertice : conjunto) {
+			conjuntos += vertice.getNome();
+		}
+	
+		return conjuntos;
+	}
+
 	public ArrayList<Vertice> getConjunto() {
 		return conjunto;
 	}

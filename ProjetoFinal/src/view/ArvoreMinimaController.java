@@ -4,7 +4,7 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.Properties;
-
+import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -35,10 +35,12 @@ public class ArvoreMinimaController {
 	@FXML
 	TableColumn<Aresta, Number> colValor;
 
+	ArrayList<Aresta> listPrim = new ArrayList<>();
 	ArrayList<Vertice> verticeLista = new ArrayList<Vertice>();
 	ArrayList<Aresta> arestaLista = new ArrayList<Aresta>();
 	boolean valorado, orientado;
 	FilaAresta filaAresta = new FilaAresta();
+	Fila fila = new Fila();
 	Vertice source;
 
 	@FXML
@@ -57,42 +59,129 @@ public class ArvoreMinimaController {
 
 	}
 
-	public String nomeAresta(Aresta aresta) {
-		
-		String nome = aresta.getOrigem().concat(aresta.getDestino());
-		return nome;
-	}
-	
-	
-	public void kruskal() {
-		
-		insereValorPrioridade();
-	//	Aresta aresta = filaAresta.remove();
-		for (Vertice vertice : verticeLista) {
-			vertice.getConjunto().add(vertice);	
-		
-			
-			
-		}
-		
-		
-	}
-	
-	
-	public void lalsalsa(String nome, Vertice vertice) {
-		
-		
-		
-		ArrayList<Vertice> nome = new ArrayList<>();
-		
-		
-	}
-
-
 	public void prim() {
 
+		ArrayList<Vertice> listaPrim = new ArrayList<>(verticeLista);
+		ArrayList<Vertice> listaConjuntoPrim = new ArrayList<>();
 		source();
+		int custo = 0;
+		
+		while (listaConjuntoPrim.size() != verticeLista.size()) {
+	//		for (int i = 0; i < listaPrim.size(); i++) {
+				Vertice aux = listaPrim.get(0);
+				for (int j = 0; j < listaPrim.size(); j++) {
+					if (listaPrim.get(j).getDistancia() < aux.getDistancia()) {
+						aux = listaPrim.get(j);
+					}
+				}
 
+				Vertice atual = aux;
+				listaPrim.remove(aux);
+				listaConjuntoPrim.add(atual);
+				for (int k = 0; k < atual.getAdj().size(); k++) {
+					alteraDistanciaPrim(atual, k);
+				}
+
+		//	}
+		}
+		for (Vertice vertice : listaConjuntoPrim) {
+			custo += vertice.getDistancia();
+		}
+		tbl.setItems(FXCollections.observableArrayList(listPrim));
+		txtCusto.setText(Integer.toString(custo));
+	}
+
+	public void insereAdjacentesPrim(Vertice vertice) {
+
+		for (int i = 0; i < vertice.getAdj().size(); i++) {
+			if (!fila.verificaIgual((vertice.getAdj().get(i).getNome()))) {
+				fila.inserePrioridade(vertice.getAdj().get(i));
+			}
+		}
+	}
+
+	public void alteraDistanciaPrim(Vertice vertice, int i) {
+
+		for (Aresta aresta : arestaLista) {
+
+			if (vertice.getNome().equals(aresta.getOrigem())
+					&& vertice.getAdj().get(i).getNome().equals(aresta.getDestino())) {
+
+				if (aresta.getValor() < vertice.getAdj().get(i).getDistancia()) {
+					vertice.getAdj().get(i).setDistancia(aresta.getValor());
+					vertice.getAdj().get(i).setPath(vertice.getNome());
+					listPrim.add(aresta);
+				}
+			}
+		}
+	}
+
+	public Vertice pegaVerticeOrigem(Aresta aresta) {
+
+		Vertice origem = null;
+
+		for (Vertice vertice : verticeLista) {
+			if (aresta.getOrigem().equals(vertice.getNome())) {
+				origem = vertice;
+			}
+		}
+		return origem;
+	}
+
+	public Vertice pegaVerticeDestino(Aresta aresta) {
+
+		Vertice destino = null;
+
+		for (Vertice vertice : verticeLista) {
+			if (aresta.getDestino().equals(vertice.getNome())) {
+				destino = vertice;
+			}
+		}
+		return destino;
+	}
+
+	public void kruskal() {
+
+		int custo = 0;
+
+		ArrayList<Aresta> listaConjuntoAresta = new ArrayList<>();
+		for (Vertice vertice : verticeLista) {
+			vertice.getConjunto().add(vertice);
+		}
+
+		insereValorPrioridade();
+
+		do {
+			Aresta aresta = filaAresta.remove();
+			Vertice primeiroVertice = pegaVerticeOrigem(aresta);
+			Vertice segundoVertice = pegaVerticeDestino(aresta);
+			boolean unir = false;
+			int tamanhoConjunto = segundoVertice.conjunto().length();
+
+			for (int i = 0; i < tamanhoConjunto; i++) {
+				if (!primeiroVertice.conjunto().contains(Character.toString(segundoVertice.conjunto().charAt(i)))) {
+					for (int j = 0; j < segundoVertice.conjunto().length(); j++)
+						primeiroVertice.getConjunto().add(segundoVertice.getConjunto().get(j));
+					segundoVertice.setConjunto(primeiroVertice.getConjunto());
+					unir = true;
+					for (Vertice vertice : verticeLista) {
+						for (int l = 0; l < segundoVertice.conjunto().length(); l++) {
+							if (vertice.conjunto().contains(Character.toString(segundoVertice.conjunto().charAt(l)))) {
+								vertice.setConjunto(segundoVertice.getConjunto());
+							}
+						}
+					}
+				}
+			}
+			if (unir)
+				listaConjuntoAresta.add(aresta);
+		} while (listaConjuntoAresta.size() != verticeLista.size() - 1);
+
+		for (Aresta aresta : listaConjuntoAresta) {
+			custo += aresta.getValor();
+		}
+		tbl.setItems(FXCollections.observableArrayList(listaConjuntoAresta));
+		txtCusto.setText(Integer.toString(custo));
 	}
 
 	public void insereValorPrioridade() {
