@@ -14,8 +14,19 @@ public class Vertice {
 	private IntegerProperty distancia = new SimpleIntegerProperty(999);
 	private StringProperty cor = new SimpleStringProperty("Branco");
 	private IntegerProperty profundidade = new SimpleIntegerProperty();
-
+	
+	
+	
+	private ArrayList<Vertice> conjunto = new ArrayList<Vertice>();
 	private ArrayList<Vertice> adj = new ArrayList<Vertice>();
+
+	public ArrayList<Vertice> getConjunto() {
+		return conjunto;
+	}
+
+	public void setConjunto(ArrayList<Vertice> conjunto) {
+		this.conjunto = conjunto;
+	}
 
 	@Override
 	public String toString() {
