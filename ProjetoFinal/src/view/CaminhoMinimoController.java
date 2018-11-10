@@ -7,6 +7,7 @@ import java.util.Properties;
 
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -24,6 +25,8 @@ public class CaminhoMinimoController {
 	public static final String CONF_PROPERTIES = "conf.properties";
 	public static final String VERTICE_TXT = "vertice.txt";
 
+	@FXML
+	Label txtLabel;
 	@FXML
 	TextField txtSource;
 	@FXML
@@ -54,18 +57,22 @@ public class CaminhoMinimoController {
 
 		if (!valorado && !orientado) {
 			buscaLargura();
+			txtLabel.setText("Busca Largura");
 		}
 		if (!valorado && orientado) {
 			buscaProfundidade();
+			txtLabel.setText("Busca Profundidade");
 		}
 		if (valorado) {
 			for (Aresta aresta : arestaLista) {
 				if (aresta.getValor() < 0) {
 					bellmanFord();
+					txtLabel.setText("Bellman-Ford");
 					return;
 				}
 			}
 			dijkstra();
+			txtLabel.setText("Dijkstra");
 		}
 	}
 
