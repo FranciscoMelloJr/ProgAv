@@ -6,12 +6,14 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.ArvoreMinimaController">
+<AnchorPane xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.ArvoreMinimaController">
    <children>
       <BorderPane layoutX="-136.0" layoutY="-109.0" prefHeight="760.0" prefWidth="800.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="-0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <top>
@@ -35,10 +37,17 @@
                         <Insets top="30.0" />
                      </HBox.margin>
                   </TextField>
-                  <Button mnemonicParsing="false" onAction="#prim" prefHeight="40.0" prefWidth="125.0" style="-fx-background-radius: 25; -fx-border-radius: 25; -fx-border-color: black; -fx-background-color: red;" text="Prim">
+                  <Button mnemonicParsing="false" onAction="#prim" prefHeight="40.0" prefWidth="125.0" style="-fx-background-radius: 25; -fx-border-radius: 25; -fx-border-color: black;" text="Prim">
                      <HBox.margin>
                         <Insets left="10.0" top="25.0" />
                      </HBox.margin>
+                     <graphic>
+                        <ImageView fitHeight="24.0" fitWidth="161.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../img/x-icon-clip-art_f.jpg" />
+                           </image>
+                        </ImageView>
+                     </graphic>
                   </Button>
                </children>
             </HBox>
