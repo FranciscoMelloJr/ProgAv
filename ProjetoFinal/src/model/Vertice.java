@@ -15,11 +15,8 @@ public class Vertice {
 	private StringProperty cor = new SimpleStringProperty("Branco");
 	private IntegerProperty profundidade = new SimpleIntegerProperty();
 	
-	
-	
 	private ArrayList<Vertice> conjunto = new ArrayList<Vertice>();
 	private ArrayList<Vertice> adj = new ArrayList<Vertice>();
-
 
 	public String conjunto() {
 		

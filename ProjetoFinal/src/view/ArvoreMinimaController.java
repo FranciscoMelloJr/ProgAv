@@ -35,7 +35,6 @@ public class ArvoreMinimaController {
 	@FXML
 	TableColumn<Aresta, Number> colValor;
 
-	ArrayList<Aresta> listPrim = new ArrayList<>();
 	ArrayList<Vertice> verticeLista = new ArrayList<Vertice>();
 	ArrayList<Aresta> arestaLista = new ArrayList<Aresta>();
 	boolean valorado, orientado;
@@ -65,29 +64,28 @@ public class ArvoreMinimaController {
 		ArrayList<Vertice> listaConjuntoPrim = new ArrayList<>();
 		source();
 		int custo = 0;
-		
+
 		while (listaConjuntoPrim.size() != verticeLista.size()) {
-	//		for (int i = 0; i < listaPrim.size(); i++) {
-				Vertice aux = listaPrim.get(0);
-				for (int j = 0; j < listaPrim.size(); j++) {
-					if (listaPrim.get(j).getDistancia() < aux.getDistancia()) {
-						aux = listaPrim.get(j);
-					}
+			Vertice aux = listaPrim.get(0);
+			for (int j = 0; j < listaPrim.size(); j++) {
+				if (listaPrim.get(j).getDistancia() < aux.getDistancia()) {
+					aux = listaPrim.get(j);
 				}
+			}
 
-				Vertice atual = aux;
-				listaPrim.remove(aux);
-				listaConjuntoPrim.add(atual);
-				for (int k = 0; k < atual.getAdj().size(); k++) {
-					alteraDistanciaPrim(atual, k);
-				}
-
-		//	}
+			Vertice atual = aux;
+			listaPrim.remove(aux);
+			listaConjuntoPrim.add(atual);
+			for (int k = 0; k < atual.getAdj().size(); k++) {
+				alteraDistanciaPrim(atual, k);
+			}
 		}
 		for (Vertice vertice : listaConjuntoPrim) {
 			custo += vertice.getDistancia();
 		}
-		tbl.setItems(FXCollections.observableArrayList(listPrim));
+		for (Vertice vertice : listaConjuntoPrim) {
+			System.out.println(vertice.getDistancia());
+		}
 		txtCusto.setText(Integer.toString(custo));
 	}
 
@@ -110,7 +108,7 @@ public class ArvoreMinimaController {
 				if (aresta.getValor() < vertice.getAdj().get(i).getDistancia()) {
 					vertice.getAdj().get(i).setDistancia(aresta.getValor());
 					vertice.getAdj().get(i).setPath(vertice.getNome());
-					listPrim.add(aresta);
+
 				}
 			}
 		}
