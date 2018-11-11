@@ -14,18 +14,24 @@ public class Vertice {
 	private IntegerProperty distancia = new SimpleIntegerProperty(999);
 	private StringProperty cor = new SimpleStringProperty("Branco");
 	private IntegerProperty profundidade = new SimpleIntegerProperty();
-	
+
 	private ArrayList<Vertice> conjunto = new ArrayList<Vertice>();
 	private ArrayList<Vertice> adj = new ArrayList<Vertice>();
 
+
+	@Override
+	public String toString() {
+		return "\nNome: " + nome + "\nPath: " + path + "\nDistancia: " + distancia + "\nCor:" + cor;
+	}
+	
 	public String conjunto() {
-		
+
 		String conjuntos = "";
-		
+
 		for (Vertice vertice : conjunto) {
 			conjuntos += vertice.getNome();
 		}
-	
+
 		return conjuntos;
 	}
 
@@ -35,11 +41,6 @@ public class Vertice {
 
 	public void setConjunto(ArrayList<Vertice> conjunto) {
 		this.conjunto = conjunto;
-	}
-
-	@Override
-	public String toString() {
-		return "\nNome: " + nome + "\nPath: " + path + "\nDistancia: " + distancia + "\nCor:" + cor;
 	}
 
 	public ArrayList<Vertice> getAdj() {

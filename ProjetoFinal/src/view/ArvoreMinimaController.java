@@ -19,6 +19,9 @@ public class ArvoreMinimaController {
 	public static final String ARESTA_TXT = "aresta.txt";
 	public static final String CONF_PROPERTIES = "conf.properties";
 	public static final String VERTICE_TXT = "vertice.txt";
+	public static final String GRAY = "Cinza";
+	public static final String WHITE = "Branco";
+	public static final int INFINITO = 999;
 
 	@FXML
 	TextField txtCusto;
@@ -60,58 +63,93 @@ public class ArvoreMinimaController {
 
 	public void prim() {
 
-		ArrayList<Vertice> listaPrim = new ArrayList<>(verticeLista);
-		ArrayList<Vertice> listaConjuntoPrim = new ArrayList<>();
+		ArrayList<Aresta> conjunto = new ArrayList<Aresta>();
 		source();
+		criaFilaVertice();
 		int custo = 0;
+		Aresta auxiliar = new Aresta();
+		Aresta definitivo = new Aresta();
+		definitivo.setValor(INFINITO);
 
-		while (listaConjuntoPrim.size() != verticeLista.size()) {
-			Vertice aux = listaPrim.get(0);
-			for (int j = 0; j < listaPrim.size(); j++) {
-				if (listaPrim.get(j).getDistancia() < aux.getDistancia()) {
-					aux = listaPrim.get(j);
+		while (!fila.vazia()) {
+			System.out.println("tamanhdo conjunto    " + conjunto.size());
+			fila = organizaFilaVertice(fila);
+			Vertice atual = fila.remove();
+			atual.setCor(GRAY);
+			for (int i = 0; i < atual.getAdj().size(); i++) {
+				if (atual.getAdj().get(i).getCor().equals(WHITE)) {
+					System.out.println(atual.getAdj().get(i).toString());
+					auxiliar = alteraDistanciaPrim(atual, i);
+				}
+				if (auxiliar.getValor() < definitivo.getValor()) {
+					definitivo = auxiliar;
 				}
 			}
-
-			Vertice atual = aux;
-			listaPrim.remove(aux);
-			listaConjuntoPrim.add(atual);
-			for (int k = 0; k < atual.getAdj().size(); k++) {
-				alteraDistanciaPrim(atual, k);
-			}
+			conjunto.add(definitivo);
 		}
-		for (Vertice vertice : listaConjuntoPrim) {
+		for (Vertice vertice : verticeLista) {
 			custo += vertice.getDistancia();
 		}
-		for (Vertice vertice : listaConjuntoPrim) {
-			System.out.println(vertice.getDistancia());
-		}
+		tbl.setItems(FXCollections.observableArrayList(conjunto));
 		txtCusto.setText(Integer.toString(custo));
 	}
 
-	public void insereAdjacentesPrim(Vertice vertice) {
+	public Aresta alteraDistanciaPrim(Vertice vertice, int i) {
 
-		for (int i = 0; i < vertice.getAdj().size(); i++) {
-			if (!fila.verificaIgual((vertice.getAdj().get(i).getNome()))) {
-				fila.inserePrioridade(vertice.getAdj().get(i));
+		Aresta aresta = pegaAresta(vertice, vertice.getAdj().get(i));
+		System.out.println("pegou a aresta " + aresta.toString());
+		if (aresta.getValor() < vertice.getAdj().get(i).getDistancia()) {
+			if (vertice.getAdj().get(i).getCor().equals(WHITE)) {
+				System.out.println(aresta.getValor() + "é menor que " + vertice.getAdj().get(i).getDistancia());
+				// if (!arestaIgual(vertice)) {
+				vertice.getAdj().get(i).setDistancia(aresta.getValor());
+				vertice.getAdj().get(i).setPath(vertice.getNome());
+				// conjunto.add(aresta);
+				// }
 			}
+		}
+		return aresta;
+	}
+
+	public Aresta pegaAresta(Vertice atual, Vertice adjacente) {
+
+		Aresta aresta = new Aresta();
+		for (Aresta busca : arestaLista) {
+			if (atual.getNome().equals(busca.getOrigem()) && adjacente.getNome().equals(busca.getDestino())) {
+				aresta = busca;
+			} else if (atual.getNome().equals(busca.getDestino()) && adjacente.getNome().equals(busca.getOrigem())) {
+				aresta.setValor(busca.getValor());
+				aresta.setDestino(busca.getOrigem());
+				aresta.setOrigem(busca.getDestino());
+			}
+		}
+		return aresta;
+	}
+
+	public boolean arestaIgual(Vertice vertice) {
+
+		boolean contem = false;
+
+		if (vertice.getCor().equals(GRAY))
+			contem = true;
+		return contem;
+	}
+
+	public void criaFilaVertice() {
+
+		for (Vertice vertice : verticeLista) {
+			fila.inserePrioridade(vertice);
 		}
 	}
 
-	public void alteraDistanciaPrim(Vertice vertice, int i) {
+	public Fila organizaFilaVertice(Fila fila) {
 
-		for (Aresta aresta : arestaLista) {
-
-			if (vertice.getNome().equals(aresta.getOrigem())
-					&& vertice.getAdj().get(i).getNome().equals(aresta.getDestino())) {
-
-				if (aresta.getValor() < vertice.getAdj().get(i).getDistancia()) {
-					vertice.getAdj().get(i).setDistancia(aresta.getValor());
-					vertice.getAdj().get(i).setPath(vertice.getNome());
-
-				}
-			}
+		Fila novaFila = new Fila();
+		int tamanho = fila.tamanho();
+		for (int i = 0; i < tamanho; i++) {
+			novaFila.inserePrioridade(fila.remove());
 		}
+		return novaFila;
 	}
 
 	public Vertice pegaVerticeOrigem(Aresta aresta) {
@@ -259,7 +297,6 @@ public class ArvoreMinimaController {
 			}
 		}
 		source.setDistancia(0);
-		fila.insere(source);
 		txtSource.setText("");
 	}
 }
