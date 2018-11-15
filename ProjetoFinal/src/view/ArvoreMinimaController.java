@@ -67,24 +67,26 @@ public class ArvoreMinimaController {
 		source();
 		criaFilaVertice();
 		int custo = 0;
-		Aresta auxiliar = new Aresta();
 		Aresta definitivo = new Aresta();
-		definitivo.setValor(INFINITO);
 
 		while (!fila.vazia()) {
 			System.out.println("tamanhdo conjunto    " + conjunto.size());
 			fila = organizaFilaVertice(fila);
+			definitivo.setValor(INFINITO);
 			Vertice atual = fila.remove();
-			atual.setCor(GRAY);
+			Aresta auxiliar = new Aresta();
 			for (int i = 0; i < atual.getAdj().size(); i++) {
 				if (atual.getAdj().get(i).getCor().equals(WHITE)) {
 					System.out.println(atual.getAdj().get(i).toString());
 					auxiliar = alteraDistanciaPrim(atual, i);
-				}
-				if (auxiliar.getValor() < definitivo.getValor()) {
-					definitivo = auxiliar;
+
+					if (auxiliar.getValor() < definitivo.getValor()) {
+						System.out.println("alerto");
+						definitivo = auxiliar;
+					}
 				}
 			}
+			System.out.println("adicionou o " + definitivo.toString());
 			conjunto.add(definitivo);
 		}
 		for (Vertice vertice : verticeLista) {
@@ -99,14 +101,9 @@ public class ArvoreMinimaController {
 		Aresta aresta = pegaAresta(vertice, vertice.getAdj().get(i));
 		System.out.println("pegou a aresta " + aresta.toString());
 		if (aresta.getValor() < vertice.getAdj().get(i).getDistancia()) {
-			if (vertice.getAdj().get(i).getCor().equals(WHITE)) {
 				System.out.println(aresta.getValor() + "é menor que " + vertice.getAdj().get(i).getDistancia());
-				// if (!arestaIgual(vertice)) {
 				vertice.getAdj().get(i).setDistancia(aresta.getValor());
 				vertice.getAdj().get(i).setPath(vertice.getNome());
-				// conjunto.add(aresta);
-				// }
-			}
 		}
 		return aresta;
 	}
