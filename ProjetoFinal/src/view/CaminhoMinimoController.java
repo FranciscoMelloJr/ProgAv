@@ -157,6 +157,7 @@ public class CaminhoMinimoController {
 	@FXML
 	public void buscaLargura() {
 
+		colDistancia.setText("Distância");
 		while (fila.tamanho() != 0) {
 			Vertice atual = fila.remove();
 			for (int i = 0; i < atual.getAdj().size(); i++) {
