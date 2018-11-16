@@ -10,6 +10,7 @@ import java.util.Properties;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
+import javafx.scene.control.Button;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
@@ -29,6 +30,8 @@ public class PrincipalController {
 	RadioButton ckOrientado;
 	@FXML
 	RadioButton ckValorado;
+	@FXML
+	Button arvoreButton;
 
 	@FXML
 	TextField txtVertice;
@@ -142,10 +145,27 @@ public class PrincipalController {
 
 	@FXML
 	public void valoradoSN() {
+
+		if (!ckOrientado.isSelected()) {
+			if (ckValorado.isSelected()) {
+				txtValor.setDisable(false);
+				arvoreButton.setDisable(false);
+			} else {
+				txtValor.setDisable(true);
+				arvoreButton.setDisable(true);
+			}
+		}
+	}
+
+	@FXML
+	public void OrientadoSN() {
+
 		if (ckValorado.isSelected()) {
-			txtValor.setDisable(false);
-		} else {
-			txtValor.setDisable(true);
+			if (ckOrientado.isSelected()) {
+				arvoreButton.setDisable(true);
+			} else {
+				arvoreButton.setDisable(false);
+			}
 		}
 	}
 

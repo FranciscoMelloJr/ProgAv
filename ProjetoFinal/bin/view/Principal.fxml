@@ -15,7 +15,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="720.0" prefWidth="1080.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.PrincipalController">
+<AnchorPane prefHeight="720.0" prefWidth="1080.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.PrincipalController">
    <children>
       <BorderPane prefHeight="720.0" prefWidth="1080.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <right>
@@ -54,7 +54,7 @@
                   </Label>
                   <HBox>
                      <children>
-                        <RadioButton fx:id="ckOrientado" mnemonicParsing="false" text="Orientado">
+                        <RadioButton fx:id="ckOrientado" mnemonicParsing="false" onAction="#OrientadoSN" text="Orientado">
                            <font>
                               <Font size="14.0" />
                            </font>
@@ -162,7 +162,7 @@
                         <Insets left="40.0" top="5.0" />
                      </VBox.margin>
                   </Button>
-                  <Button mnemonicParsing="false" onAction="#abreArvoreMinima" prefHeight="40.0" prefWidth="200.0" style="-fx-background-radius: 25; -fx-border-radius: 25; -fx-border-color: black;" text="Árvore G. Miníma">
+                  <Button fx:id="arvoreButton" disable="true" mnemonicParsing="false" onAction="#abreArvoreMinima" prefHeight="40.0" prefWidth="200.0" style="-fx-background-radius: 25; -fx-border-radius: 25; -fx-border-color: black;" text="Árvore G. Miníma">
                      <font>
                         <Font size="18.0" />
                      </font>

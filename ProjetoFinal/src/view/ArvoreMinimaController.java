@@ -67,28 +67,28 @@ public class ArvoreMinimaController {
 		source();
 		criaFilaVertice();
 		int custo = 0;
-		Aresta definitivo = new Aresta();
 
 		while (!fila.vazia()) {
-			System.out.println("tamanhdo conjunto    " + conjunto.size());
-			fila = organizaFilaVertice(fila);
-			definitivo.setValor(INFINITO);
 			Vertice atual = fila.remove();
-			Aresta auxiliar = new Aresta();
 			for (int i = 0; i < atual.getAdj().size(); i++) {
-				if (atual.getAdj().get(i).getCor().equals(WHITE)) {
-					System.out.println(atual.getAdj().get(i).toString());
-					auxiliar = alteraDistanciaPrim(atual, i);
-
-					if (auxiliar.getValor() < definitivo.getValor()) {
-						System.out.println("alerto");
-						definitivo = auxiliar;
+				if (fila.verificaIgual(atual.getAdj().get(i).getNome())) {
+					Aresta aresta = pegaAresta(atual, atual.getAdj().get(i));
+					if (aresta.getValor() < atual.getAdj().get(i).getDistancia()) {
+						atual.getAdj().get(i).setDistancia(aresta.getValor());
+						atual.getAdj().get(i).setPath(atual.getNome());
 					}
+
 				}
 			}
-			System.out.println("adicionou o " + definitivo.toString());
-			conjunto.add(definitivo);
+
+			fila = organizaFilaVertice(fila);
+
+			if (!fila.vazia()) {
+				conjunto.add(pegaAresta(atual, fila.getInicio()));
+
+			}
 		}
+
 		for (Vertice vertice : verticeLista) {
 			custo += vertice.getDistancia();
 		}
@@ -101,9 +101,9 @@ public class ArvoreMinimaController {
 		Aresta aresta = pegaAresta(vertice, vertice.getAdj().get(i));
 		System.out.println("pegou a aresta " + aresta.toString());
 		if (aresta.getValor() < vertice.getAdj().get(i).getDistancia()) {
-				System.out.println(aresta.getValor() + "é menor que " + vertice.getAdj().get(i).getDistancia());
-				vertice.getAdj().get(i).setDistancia(aresta.getValor());
-				vertice.getAdj().get(i).setPath(vertice.getNome());
+			System.out.println(aresta.getValor() + "é menor que " + vertice.getAdj().get(i).getDistancia());
+			vertice.getAdj().get(i).setDistancia(aresta.getValor());
+			vertice.getAdj().get(i).setPath(vertice.getNome());
 		}
 		return aresta;
 	}

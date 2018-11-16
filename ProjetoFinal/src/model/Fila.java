@@ -76,6 +76,13 @@ public class Fila {
 
 		return v;
 	}
+	
+	public Vertice getInicio() {
+		
+		Vertice atual = new Vertice();
+		atual = inicio.vertice;
+		return atual;
+	}
 
 	public boolean verificaIgual(String vertice) {
 
