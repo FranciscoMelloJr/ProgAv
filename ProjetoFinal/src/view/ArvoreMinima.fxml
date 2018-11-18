@@ -32,7 +32,7 @@
                         <Insets left="250.0" top="10.0" />
                      </HBox.margin>
                   </Label>
-                  <TextField fx:id="txtSource" prefHeight="25.0" prefWidth="35.0">
+                  <TextField fx:id="txtSource" onAction="#prim" prefHeight="25.0" prefWidth="35.0">
                      <HBox.margin>
                         <Insets top="30.0" />
                      </HBox.margin>

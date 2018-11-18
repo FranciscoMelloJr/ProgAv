@@ -67,9 +67,12 @@ public class ArvoreMinimaController {
 		source();
 		criaFilaVertice();
 		int custo = 0;
+		Vertice auxiliar = fila.getInicio();
 
+	
 		while (!fila.vazia()) {
 			Vertice atual = fila.remove();
+			System.out.println("Vertice atual: " + atual.getNome());
 			for (int i = 0; i < atual.getAdj().size(); i++) {
 				if (fila.verificaIgual(atual.getAdj().get(i).getNome())) {
 					Aresta aresta = pegaAresta(atual, atual.getAdj().get(i));
@@ -84,9 +87,18 @@ public class ArvoreMinimaController {
 			fila = organizaFilaVertice(fila);
 
 			if (!fila.vazia()) {
-				conjunto.add(pegaAresta(atual, fila.getInicio()));
-
+				Aresta aresta = pegaAresta(atual, fila.getInicio());
+				if (aresta.getOrigem().trim().isEmpty()) {
+					System.out.println("Aresta não encontrada " + "inseriu: " + auxiliar.getNome());
+					conjunto.add(pegaAresta(auxiliar, fila.getInicio()));
+				} else {
+					System.out.println("adicionou ao conjunto" + atual.getNome().concat(fila.getInicio().getNome()));
+					conjunto.add(pegaAresta(atual, fila.getInicio()));
+				}
 			}
+			// auxiliar = atual;
+			auxiliar = atualAuxiliar(atual, auxiliar);
+			System.out.println("nome do auxi: " + auxiliar.getNome());
 		}
 
 		for (Vertice vertice : verticeLista) {
@@ -94,6 +106,26 @@ public class ArvoreMinimaController {
 		}
 		tbl.setItems(FXCollections.observableArrayList(conjunto));
 		txtCusto.setText(Integer.toString(custo));
+	}
+
+	public Vertice atualAuxiliar(Vertice atual, Vertice auxiliar) {
+
+		int menor = INFINITO;
+
+		for (int i = 0; i < auxiliar.getAdj().size(); i++) {
+			if (fila.verificaIgual(auxiliar.getAdj().get(i).getNome())) {
+				if (auxiliar.getAdj().get(i).getDistancia() < menor) {
+					menor = auxiliar.getAdj().get(i).getDistancia();
+				}
+			}
+		}
+		for (int i = 0; i < atual.getAdj().size(); i++) {
+			if (fila.verificaIgual(atual.getAdj().get(i).getNome())) {
+				if (atual.getAdj().size() < menor)
+					auxiliar = atual;
+			}
+		}
+		return auxiliar;
 	}
 
 	public Aresta alteraDistanciaPrim(Vertice vertice, int i) {
