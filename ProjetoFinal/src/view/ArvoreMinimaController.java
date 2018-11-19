@@ -66,76 +66,62 @@ public class ArvoreMinimaController {
 		ArrayList<Aresta> conjunto = new ArrayList<Aresta>();
 		source();
 		criaFilaVertice();
-		int custo = 0;
-		Vertice auxiliar = fila.getInicio();
 
-	
 		while (!fila.vazia()) {
 			Vertice atual = fila.remove();
-			System.out.println("Vertice atual: " + atual.getNome());
-			for (int i = 0; i < atual.getAdj().size(); i++) {
-				if (fila.verificaIgual(atual.getAdj().get(i).getNome())) {
-					Aresta aresta = pegaAresta(atual, atual.getAdj().get(i));
-					if (aresta.getValor() < atual.getAdj().get(i).getDistancia()) {
-						atual.getAdj().get(i).setDistancia(aresta.getValor());
-						atual.getAdj().get(i).setPath(atual.getNome());
-					}
-
-				}
-			}
-
+			alteraDistanciaPrim(atual);
 			fila = organizaFilaVertice(fila);
+			adicionaArestaNoConjunto(atual,conjunto);
+		}
+		tbl.setItems(FXCollections.observableArrayList(conjunto));
+		txtCusto.setText(Integer.toString(custoDistancia()));
+	}
 
-			if (!fila.vazia()) {
-				Aresta aresta = pegaAresta(atual, fila.getInicio());
-				if (aresta.getOrigem().trim().isEmpty()) {
-					System.out.println("Aresta não encontrada " + "inseriu: " + auxiliar.getNome());
-					conjunto.add(pegaAresta(auxiliar, fila.getInicio()));
-				} else {
-					System.out.println("adicionou ao conjunto" + atual.getNome().concat(fila.getInicio().getNome()));
-					conjunto.add(pegaAresta(atual, fila.getInicio()));
+	public void alteraDistanciaPrim(Vertice atual) {
+		
+		for (int i = 0; i < atual.getAdj().size(); i++) {
+			if (fila.verificaIgual(atual.getAdj().get(i).getNome())) {
+				Aresta aresta = pegaAresta(atual, atual.getAdj().get(i));
+				if (aresta.getValor() < atual.getAdj().get(i).getDistancia()) {
+					atual.getAdj().get(i).setDistancia(aresta.getValor());
+					atual.getAdj().get(i).setPath(atual.getNome());
 				}
 			}
-			// auxiliar = atual;
-			auxiliar = atualAuxiliar(atual, auxiliar);
-			System.out.println("nome do auxi: " + auxiliar.getNome());
 		}
+	}
+	
+	public void adicionaArestaNoConjunto(Vertice atual,ArrayList<Aresta> conjunto) {
+		
+		if (!fila.vazia()) {
+			Aresta aresta = pegaAresta(atual, fila.getInicio());
+			if (aresta.getOrigem().trim().isEmpty()) {
+				conjunto.add(anteriorMenor());
+			} else {
+				conjunto.add(pegaAresta(atual, fila.getInicio()));
+			}
+		}
+	}
+	
+	public int custoDistancia() {
 
+		int custo = 0;
 		for (Vertice vertice : verticeLista) {
 			custo += vertice.getDistancia();
 		}
-		tbl.setItems(FXCollections.observableArrayList(conjunto));
-		txtCusto.setText(Integer.toString(custo));
+		return custo;
 	}
 
-	public Vertice atualAuxiliar(Vertice atual, Vertice auxiliar) {
+	public Aresta anteriorMenor() {
+		Aresta aresta = new Aresta();
+		aresta.setValor(INFINITO);
+		Vertice adjacente = fila.getInicio();
 
-		int menor = INFINITO;
-
-		for (int i = 0; i < auxiliar.getAdj().size(); i++) {
-			if (fila.verificaIgual(auxiliar.getAdj().get(i).getNome())) {
-				if (auxiliar.getAdj().get(i).getDistancia() < menor) {
-					menor = auxiliar.getAdj().get(i).getDistancia();
+		for (int i = 0; i < adjacente.getAdj().size(); i++) {
+			if (!fila.verificaIgual(adjacente.getAdj().get(i).getNome())) {
+				if (pegaAresta(adjacente.getAdj().get(i), adjacente).getValor() < aresta.getValor()) {
+					aresta = pegaAresta(adjacente.getAdj().get(i), adjacente);
 				}
 			}
-		}
-		for (int i = 0; i < atual.getAdj().size(); i++) {
-			if (fila.verificaIgual(atual.getAdj().get(i).getNome())) {
-				if (atual.getAdj().size() < menor)
-					auxiliar = atual;
-			}
-		}
-		return auxiliar;
-	}
-
-	public Aresta alteraDistanciaPrim(Vertice vertice, int i) {
-
-		Aresta aresta = pegaAresta(vertice, vertice.getAdj().get(i));
-		System.out.println("pegou a aresta " + aresta.toString());
-		if (aresta.getValor() < vertice.getAdj().get(i).getDistancia()) {
-			System.out.println(aresta.getValor() + "é menor que " + vertice.getAdj().get(i).getDistancia());
-			vertice.getAdj().get(i).setDistancia(aresta.getValor());
-			vertice.getAdj().get(i).setPath(vertice.getNome());
 		}
 		return aresta;
 	}

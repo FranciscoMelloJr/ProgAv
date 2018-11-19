@@ -170,7 +170,7 @@
                         <Insets left="40.0" top="5.0" />
                      </VBox.margin>
                   </Button>
-                  <TextArea editable="false" prefHeight="25.0" prefWidth="240.0" promptText="Para remover o grafo, limpar &quot;aresta.txt&quot; e &quot;vertice.txt&quot;" wrapText="true">
+                  <TextArea editable="false" prefHeight="45.0" prefWidth="240.0" text="Para remover o grafo, limpar &quot;aresta.txt&quot; e &quot;vertice.txt&quot;" wrapText="true">
                      <VBox.margin>
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                      </VBox.margin>
