@@ -42,13 +42,12 @@ public class PrincipalController {
 	@FXML
 	TextField txtValor;
 
-	ArrayList<Vertice> verticeLista = new ArrayList<Vertice>(); // testar removendo os dois (implementação)
+	ArrayList<Vertice> verticeLista = new ArrayList<Vertice>();
 	ArrayList<Aresta> arestaLista = new ArrayList<Aresta>();
 
 	public void initialize() {
 		leVertice();
 		leAresta();
-
 	}
 
 	private void leAresta() {
@@ -91,7 +90,6 @@ public class PrincipalController {
 			propertie.load(fr);
 			propertie.setProperty("orientado", String.valueOf(ckOrientado.isSelected()));
 			propertie.setProperty("valorado", String.valueOf(ckValorado.isSelected()));
-
 			try (BufferedWriter bw = new BufferedWriter(new FileWriter("conf.properties"))) {
 				propertie.store(bw, "Atualização de Configurações");
 			} catch (Exception ex) {
@@ -105,7 +103,6 @@ public class PrincipalController {
 
 	public void inserirAresta() {
 		try (BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(ARESTA_TXT, true))) {
-
 			Aresta aresta = new Aresta();
 			aresta.setOrigem(txtOrigem.getText());
 			aresta.setDestino(txtDestino.getText());
@@ -114,13 +111,10 @@ public class PrincipalController {
 			arestaLista.add(aresta);
 			limpaTelaE();
 			txtOrigem.requestFocus();
-
 			String origem = String.format("%-5.5s", aresta.getOrigem());
 			String destino = String.format("%-5.5s", aresta.getDestino());
 			String valor = String.format("%03d", aresta.getValor()).substring(0, 3);
-
 			bufferedWriter.append(origem + destino + valor + "\n");
-
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -128,16 +122,12 @@ public class PrincipalController {
 
 	public void inserirVertice() {
 		try (BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(VERTICE_TXT, true))) {
-
 			Vertice vertice = new Vertice();
 			vertice.setNome(txtVertice.getText());
 			verticeLista.add(vertice);
 			txtVertice.setText("");
-
 			String nome = String.format("%-5.5s", vertice.getNome());
-
 			bufferedWriter.append(nome + "\n");
-
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -175,7 +165,6 @@ public class PrincipalController {
 		txtOrigem.setText("");
 		txtValor.setText("");
 		txtDestino.setText("");
-
 	}
 
 	@FXML
@@ -190,7 +179,6 @@ public class PrincipalController {
 	@FXML
 	public void focusDestino() {
 		txtDestino.requestFocus();
-
 	}
 
 	@FXML

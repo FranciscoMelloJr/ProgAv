@@ -64,5 +64,4 @@ public class FilaAresta {
 	public int tamanho() {
 		return tamanho;
 	}
-
 }

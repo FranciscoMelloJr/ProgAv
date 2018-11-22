@@ -110,5 +110,4 @@ public class Vertice {
 	public final void setProfundidade(final int profundidade) {
 		this.profundidadeProperty().set(profundidade);
 	}
-
 }

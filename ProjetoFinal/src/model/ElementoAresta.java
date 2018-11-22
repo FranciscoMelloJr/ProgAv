@@ -10,5 +10,4 @@ public class ElementoAresta {
 		this.proximo = null;
 		this.anterior = null;
 	}
-
 }
