@@ -2,9 +2,13 @@ package view;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.Properties;
 
+import core.Conexao;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextArea;
 import model.Aresta;
@@ -37,17 +41,35 @@ public class ListaMatrizController {
 	}
 
 	private void leAresta() {
+		// arestaLista.clear();
+		// try (BufferedReader br = new BufferedReader(new FileReader("aresta.txt"))) {
+		// String linha = "";
+		// while ((linha = br.readLine()) != null) {
+		// String origem = linha.substring(0, 5).trim();
+		// String destino = linha.substring(5, 10).trim();
+		// int valor = Integer.parseInt(linha.substring(10, 13).trim());
+		// Aresta a = new Aresta();
+		// a.setOrigem(origem);
+		// a.setDestino(destino);
+		// a.setValor(valor);
+		// arestaLista.add(a);
+		// }
+		// } catch (Exception e) {
+		// e.printStackTrace();
+		// }
+
 		arestaLista.clear();
-		try (BufferedReader br = new BufferedReader(new FileReader("aresta.txt"))) {
-			String linha = "";
-			while ((linha = br.readLine()) != null) {
-				String origem = linha.substring(0, 5).trim();
-				String destino = linha.substring(5, 10).trim();
-				int valor = Integer.parseInt(linha.substring(10, 13).trim());
+
+		String sqlSelect = "SELECT * FROM aresta";
+		try (Connection conn = Conexao.getConexao()) {
+			PreparedStatement preparedStatement = conn.prepareStatement(sqlSelect);
+			ResultSet resultSet = preparedStatement.executeQuery();
+			while (resultSet.next()) {
 				Aresta a = new Aresta();
-				a.setOrigem(origem);
-				a.setDestino(destino);
-				a.setValor(valor);
+				a.setOrigem(resultSet.getString("origem"));
+				a.setDestino(resultSet.getString("destino"));
+				a.setValor(Integer.parseInt(resultSet.getString("valor")));
+				System.out.println(a.toString());
 				arestaLista.add(a);
 			}
 		} catch (Exception e) {
@@ -56,18 +78,36 @@ public class ListaMatrizController {
 	}
 
 	private void leVertice() {
+		// verticeLista.clear();
+		// try (BufferedReader br = new BufferedReader(new FileReader("vertice.txt"))) {
+		// String linha = "";
+		// while ((linha = br.readLine()) != null) {
+		// Vertice v = new Vertice();
+		// String nome = linha.substring(0, 5).trim();
+		// v.setNome(nome);
+		// verticeLista.add(v);
+		// }
+		// } catch (Exception e) {
+		// e.printStackTrace();
+		// }
+
 		verticeLista.clear();
-		try (BufferedReader br = new BufferedReader(new FileReader("vertice.txt"))) {
-			String linha = "";
-			while ((linha = br.readLine()) != null) {
+
+		String sqlSelect = "SELECT * FROM vertice";
+		try (Connection conn = Conexao.getConexao()) {
+			PreparedStatement preparedStatement = conn.prepareStatement(sqlSelect);
+			ResultSet resultSet = preparedStatement.executeQuery();
+			while (resultSet.next()) {
 				Vertice v = new Vertice();
-				String nome = linha.substring(0, 5).trim();
-				v.setNome(nome);
+				v.setNome(resultSet.getString("nome"));
+				System.out.println(v.toString());
 				verticeLista.add(v);
 			}
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+
 	}
 
 	private void lerArquivoProperties() {
@@ -211,7 +251,7 @@ public class ListaMatrizController {
 		}
 		txtMatrizAdjacencia.setText(stringMatrizAdjacencia);
 	}
-	
+
 	public void calculaListaAdjacencia() {
 
 		ArrayList<Aresta> adjacenciaLista = new ArrayList<Aresta>();

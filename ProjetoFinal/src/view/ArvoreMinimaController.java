@@ -2,8 +2,13 @@ package view;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.Properties;
+
+import core.Conexao;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
@@ -71,14 +76,14 @@ public class ArvoreMinimaController {
 			Vertice atual = fila.remove();
 			alteraDistanciaPrim(atual);
 			fila = organizaFilaVertice(fila);
-			adicionaArestaNoConjunto(atual,conjunto);
+			adicionaArestaNoConjunto(atual, conjunto);
 		}
 		tbl.setItems(FXCollections.observableArrayList(conjunto));
 		txtCusto.setText(Integer.toString(custoDistancia()));
 	}
 
 	public void alteraDistanciaPrim(Vertice atual) {
-		
+
 		for (int i = 0; i < atual.getAdj().size(); i++) {
 			if (fila.verificaIgual(atual.getAdj().get(i).getNome())) {
 				Aresta aresta = pegaAresta(atual, atual.getAdj().get(i));
@@ -89,9 +94,9 @@ public class ArvoreMinimaController {
 			}
 		}
 	}
-	
-	public void adicionaArestaNoConjunto(Vertice atual,ArrayList<Aresta> conjunto) {
-		
+
+	public void adicionaArestaNoConjunto(Vertice atual, ArrayList<Aresta> conjunto) {
+
 		if (!fila.vazia()) {
 			Aresta aresta = pegaAresta(atual, fila.getInicio());
 			if (aresta.getOrigem().trim().isEmpty()) {
@@ -101,7 +106,7 @@ public class ArvoreMinimaController {
 			}
 		}
 	}
-	
+
 	public int custoDistancia() {
 
 		int custo = 0;
@@ -254,35 +259,70 @@ public class ArvoreMinimaController {
 	}
 
 	private void leVertice() {
+		// verticeLista.clear();
+		// try (BufferedReader br = new BufferedReader(new FileReader(VERTICE_TXT))) {
+		// String linha = "";
+		// while ((linha = br.readLine()) != null) {
+		// Vertice v = new Vertice();
+		// String nome = linha.substring(0, 5).trim();
+		// v.setNome(nome);
+		// verticeLista.add(v);
+		// }
+		// } catch (Exception e) {
+		// e.printStackTrace();
+		// }
+
 		verticeLista.clear();
-		try (BufferedReader br = new BufferedReader(new FileReader(VERTICE_TXT))) {
-			String linha = "";
-			while ((linha = br.readLine()) != null) {
+
+		String sqlSelect = "SELECT * FROM vertice";
+		try (Connection conn = Conexao.getConexao()) {
+			PreparedStatement preparedStatement = conn.prepareStatement(sqlSelect);
+			ResultSet resultSet = preparedStatement.executeQuery();
+			while (resultSet.next()) {
 				Vertice v = new Vertice();
-				String nome = linha.substring(0, 5).trim();
-				v.setNome(nome);
+				v.setNome(resultSet.getString("nome"));
+
 				verticeLista.add(v);
 			}
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
 
 	private void leAresta() {
+		// arestaLista.clear();
+		// try (BufferedReader br = new BufferedReader(new FileReader(ARESTA_TXT))) {
+		// String linha = "";
+		// while ((linha = br.readLine()) != null) {
+		// String origem = linha.substring(0, 5).trim();
+		// String destino = linha.substring(5, 10).trim();
+		// int valor = Integer.parseInt(linha.substring(10, 13).trim());
+		// Aresta a = new Aresta();
+		// a.setOrigem(origem);
+		// a.setDestino(destino);
+		// a.setValor(valor);
+		// arestaLista.add(a);
+		// }
+		// } catch (Exception e) {
+		// e.printStackTrace();
+		// }
+
 		arestaLista.clear();
-		try (BufferedReader br = new BufferedReader(new FileReader(ARESTA_TXT))) {
-			String linha = "";
-			while ((linha = br.readLine()) != null) {
-				String origem = linha.substring(0, 5).trim();
-				String destino = linha.substring(5, 10).trim();
-				int valor = Integer.parseInt(linha.substring(10, 13).trim());
-				Aresta aresta = new Aresta();
-				aresta.setOrigem(origem);
-				aresta.setDestino(destino);
-				aresta.setValor(valor);
-				adicionaAdjacente(aresta);
-				arestaLista.add(aresta);
+
+		String sqlSelect = "SELECT * FROM aresta";
+		try (Connection conn = Conexao.getConexao()) {
+			PreparedStatement preparedStatement = conn.prepareStatement(sqlSelect);
+			ResultSet resultSet = preparedStatement.executeQuery();
+			while (resultSet.next()) {
+				Aresta a = new Aresta();
+				a.setOrigem(resultSet.getString("origem"));
+				a.setDestino(resultSet.getString("destino"));
+				a.setValor(Integer.parseInt(resultSet.getString("valor")));
+				adicionaAdjacente(a);
+				arestaLista.add(a);
 			}
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

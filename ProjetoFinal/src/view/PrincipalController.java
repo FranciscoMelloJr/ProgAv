@@ -4,9 +4,13 @@ import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.FileReader;
 import java.io.FileWriter;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.Properties;
 
+import core.Conexao;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -42,8 +46,8 @@ public class PrincipalController {
 	@FXML
 	TextField txtValor;
 
-	ArrayList<Vertice> verticeLista = new ArrayList<Vertice>();
-	ArrayList<Aresta> arestaLista = new ArrayList<Aresta>();
+	ArrayList<Vertice> verticeLista = new ArrayList<>();
+	ArrayList<Aresta> arestaLista = new ArrayList<>();
 
 	public void initialize() {
 		leVertice();
@@ -51,34 +55,70 @@ public class PrincipalController {
 	}
 
 	private void leAresta() {
+		// arestaLista.clear();
+		// try (BufferedReader br = new BufferedReader(new FileReader(ARESTA_TXT))) {
+		// String linha = "";
+		// while ((linha = br.readLine()) != null) {
+		// String origem = linha.substring(0, 5).trim();
+		// String destino = linha.substring(5, 10).trim();
+		// int valor = Integer.parseInt(linha.substring(10, 13).trim());
+		// Aresta a = new Aresta();
+		// a.setOrigem(origem);
+		// a.setDestino(destino);
+		// a.setValor(valor);
+		// arestaLista.add(a);
+		// }
+		// } catch (Exception e) {
+		// e.printStackTrace();
+		// }
+
 		arestaLista.clear();
-		try (BufferedReader br = new BufferedReader(new FileReader(ARESTA_TXT))) {
-			String linha = "";
-			while ((linha = br.readLine()) != null) {
-				String origem = linha.substring(0, 5).trim();
-				String destino = linha.substring(5, 10).trim();
-				int valor = Integer.parseInt(linha.substring(10, 13).trim());
+
+		String sqlSelect = "SELECT * FROM aresta";
+		try (Connection conn = Conexao.getConexao()) {
+			PreparedStatement preparedStatement = conn.prepareStatement(sqlSelect);
+			ResultSet resultSet = preparedStatement.executeQuery();
+			while (resultSet.next()) {
 				Aresta a = new Aresta();
-				a.setOrigem(origem);
-				a.setDestino(destino);
-				a.setValor(valor);
+				a.setOrigem(resultSet.getString("origem"));
+				a.setDestino(resultSet.getString("destino"));
+				a.setValor(Integer.parseInt(resultSet.getString("valor")));
+
 				arestaLista.add(a);
 			}
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
 
 	private void leVertice() {
+		// verticeLista.clear();
+		// try (BufferedReader br = new BufferedReader(new FileReader(VERTICE_TXT))) {
+		// String linha = "";
+		// while ((linha = br.readLine()) != null) {
+		// Vertice v = new Vertice();
+		// String nome = linha.substring(0, 5).trim();
+		// v.setNome(nome);
+		// verticeLista.add(v);
+		// }
+		// } catch (Exception e) {
+		// e.printStackTrace();
+		// }
+
 		verticeLista.clear();
-		try (BufferedReader br = new BufferedReader(new FileReader(VERTICE_TXT))) {
-			String linha = "";
-			while ((linha = br.readLine()) != null) {
+
+		String sqlSelect = "SELECT * FROM vertice";
+		try (Connection conn = Conexao.getConexao()) {
+			PreparedStatement preparedStatement = conn.prepareStatement(sqlSelect);
+			ResultSet resultSet = preparedStatement.executeQuery();
+			while (resultSet.next()) {
 				Vertice v = new Vertice();
-				String nome = linha.substring(0, 5).trim();
-				v.setNome(nome);
+				v.setNome(resultSet.getString("nome"));
+
 				verticeLista.add(v);
 			}
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -102,32 +142,93 @@ public class PrincipalController {
 	}
 
 	public void inserirAresta() {
-		try (BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(ARESTA_TXT, true))) {
-			Aresta aresta = new Aresta();
-			aresta.setOrigem(txtOrigem.getText());
-			aresta.setDestino(txtDestino.getText());
-			if (ckValorado.isSelected())
-				aresta.setValor(Integer.parseInt(txtValor.getText()));
+		// try (BufferedWriter bufferedWriter = new BufferedWriter(new
+		// FileWriter(ARESTA_TXT, true))) {
+		// Aresta aresta = new Aresta();
+		// aresta.setOrigem(txtOrigem.getText());
+		// aresta.setDestino(txtDestino.getText());
+		// if (ckValorado.isSelected())
+		// aresta.setValor(Integer.parseInt(txtValor.getText()));
+		// arestaLista.add(aresta);
+		// limpaTelaE();
+		// txtOrigem.requestFocus();
+		// String origem = String.format("%-5.5s", aresta.getOrigem());
+		// String destino = String.format("%-5.5s", aresta.getOrigem());
+		// String valor = String.format("%03d", aresta.getValor()).substring(0, 3);
+		// bufferedWriter.append(origem + destino + valor + "\n");
+		// } catch (Exception e) {
+		// e.printStackTrace();
+		// }
+
+		Aresta aresta = new Aresta();
+		aresta.setOrigem(txtOrigem.getText());
+		aresta.setDestino(txtDestino.getText());
+		if (ckValorado.isSelected())
+			aresta.setValor(Integer.parseInt(txtValor.getText()));
+
+		limpaTelaE();
+		try (Connection conn = Conexao.getConexao()) {
+
+			String sql = "INSERT INTO aresta(origem,destino,valor) values(?,?,?)";
+			PreparedStatement preparedStatement = conn.prepareStatement(sql);
+			preparedStatement.setString(1, aresta.getOrigem());
+			preparedStatement.setString(2, aresta.getDestino());
+			preparedStatement.setInt(3, aresta.getValor());
+			preparedStatement.executeUpdate();
 			arestaLista.add(aresta);
-			limpaTelaE();
-			txtOrigem.requestFocus();
-			String origem = String.format("%-5.5s", aresta.getOrigem());
-			String destino = String.format("%-5.5s", aresta.getDestino());
-			String valor = String.format("%03d", aresta.getValor()).substring(0, 3);
-			bufferedWriter.append(origem + destino + valor + "\n");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+
+
 	}
 
 	public void inserirVertice() {
-		try (BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(VERTICE_TXT, true))) {
-			Vertice vertice = new Vertice();
-			vertice.setNome(txtVertice.getText());
+		// try (BufferedWriter bufferedWriter = new BufferedWriter(new
+		// FileWriter(VERTICE_TXT, true))) {
+		// Vertice vertice = new Vertice();
+		// vertice.setNome(txtVertice.getText());
+		// verticeLista.add(vertice);
+		// txtVertice.setText("");
+		// String nome = String.format("%-5.5s", vertice.getNome());
+		// bufferedWriter.append(nome + "\n");
+		// } catch (Exception e) {
+		// e.printStackTrace();
+		// }
+
+		Vertice vertice = new Vertice();
+		vertice.setNome(txtVertice.getText());
+		txtVertice.setText("");
+
+		try (Connection conn = Conexao.getConexao()) {
+
+			String sql = "INSERT INTO vertice(nome) values(?)";
+			PreparedStatement preparedStatement = conn.prepareStatement(sql);
+			preparedStatement.setString(1, vertice.getNome());
+			preparedStatement.executeUpdate();
+
 			verticeLista.add(vertice);
-			txtVertice.setText("");
-			String nome = String.format("%-5.5s", vertice.getNome());
-			bufferedWriter.append(nome + "\n");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+	}
+
+	@FXML
+	public void deleteValorBanco() {
+		try (Connection conn = Conexao.getConexao()) {
+
+			String sql = "DELETE FROM vertice";
+			String sqlaresta = "DELETE FROM aresta";
+
+			PreparedStatement preparedStatement = conn.prepareStatement(sql);
+			preparedStatement.executeUpdate();
+
+			PreparedStatement prepared = conn.prepareStatement(sqlaresta);
+			prepared.executeUpdate();
+
+			verticeLista.clear();
+			arestaLista.clear();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

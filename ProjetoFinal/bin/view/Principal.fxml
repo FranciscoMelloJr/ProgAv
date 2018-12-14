@@ -5,7 +5,6 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.TabPane?>
-<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -15,7 +14,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="720.0" prefWidth="1080.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.PrincipalController">
+<AnchorPane prefHeight="720.0" prefWidth="1080.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.PrincipalController">
    <children>
       <BorderPane prefHeight="720.0" prefWidth="1080.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <right>
@@ -170,11 +169,14 @@
                         <Insets left="40.0" top="5.0" />
                      </VBox.margin>
                   </Button>
-                  <TextArea editable="false" prefHeight="45.0" prefWidth="240.0" text="Para remover o grafo, limpar &quot;aresta.txt&quot; e &quot;vertice.txt&quot;" wrapText="true">
+                  <Button mnemonicParsing="false" onAction="#deleteValorBanco" prefHeight="40.0" prefWidth="200.0" style="-fx-background-radius: 25; -fx-border-radius: 25; -fx-border-color: red;" text="Apagar Banco">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
                      <VBox.margin>
-                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                        <Insets left="40.0" top="5.0" />
                      </VBox.margin>
-                  </TextArea>
+                  </Button>
                </children></VBox>
          </left>
       </BorderPane>
