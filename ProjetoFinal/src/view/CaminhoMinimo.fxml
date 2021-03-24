@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.CaminhoMinimoController">
+<AnchorPane xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.CaminhoMinimoController">
    <children>
       <BorderPane layoutX="-146.0" layoutY="-156.0" prefHeight="700.0" prefWidth="800.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <center>
@@ -33,7 +33,7 @@
                <children>
                   <Label text="Vértice de Origem">
                      <font>
-                        <Font name="Freestyle Script" size="36.0" />
+                        <Font name="Comic Sans MS" size="25.0" />
                      </font>
                      <HBox.margin>
                         <Insets left="20.0" top="10.0" />
@@ -54,7 +54,7 @@
                   </RadioButton>
                   <Label text="Vértice de Destino">
                      <font>
-                        <Font name="Freestyle Script" size="36.0" />
+                        <Font name="Comic Sans MS" size="25.0" />
                      </font>
                      <HBox.margin>
                         <Insets left="10.0" top="10.0" />

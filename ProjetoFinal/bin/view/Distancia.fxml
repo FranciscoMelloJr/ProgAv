@@ -8,8 +8,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/10.0.1" fx:controller="view.DistanciaController">
+<AnchorPane xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.DistanciaController">
    <children>
       <BorderPane layoutX="-133.0" layoutY="-139.0" prefHeight="760.0" prefWidth="800.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <center>
@@ -17,10 +16,10 @@
                <children>
                   <Label text="Matriz de Distâncias - Saída ou Retorno">
                      <font>
-                        <Font name="Freestyle Script" size="36.0" />
+                        <Font name="Comic Sans MS" size="25.0" />
                      </font>
                      <VBox.margin>
-                        <Insets left="214.0" top="5.0" />
+                        <Insets left="180.0" top="5.0" />
                      </VBox.margin>
                   </Label>
                   <TextArea fx:id="txtMatrizDistancia" prefHeight="351.0" prefWidth="780.0">
@@ -30,10 +29,10 @@
                   </TextArea>
                   <Label text="Matriz de Distâncias - Saída e Retorno">
                      <font>
-                        <Font name="Freestyle Script" size="36.0" />
+                        <Font name="Comic Sans MS" size="25.0" />
                      </font>
                      <VBox.margin>
-                        <Insets left="218.0" />
+                        <Insets left="180.0" />
                      </VBox.margin>
                   </Label>
                   <TextArea fx:id="txtMatrizTransposta" prefHeight="360.0" prefWidth="780.0">
